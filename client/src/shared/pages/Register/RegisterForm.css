@@ -1,30 +1,18 @@
-.login-form-content {
+.register-form-content {
   width: 100%;
   max-width: 380px;
   display: flex;
   flex-direction: column;
 }
-.avatar-wrapper {
-  display: flex;
-  justify-content: flex-end;
-  margin-bottom: 0.5rem;
-}
 
-.avatar-placeholder {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background-color: #d1d5db;
-}
-
-.login-header-title {
+.register-header-title {
   font-size: 2.2rem;
   font-weight: 700;
   color: #000000;
   margin: 0 0 0.25rem 0;
 }
 
-.login-header-subtitle {
+.register-header-subtitle {
   color: #a0a0a0;
   font-size: 0.875rem;
   margin: 0;
@@ -34,7 +22,7 @@
   border: 0;
   border-top: 1px solid #e5e7eb;
   margin-top: 1rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.25rem;
 }
 
 .error-message {
@@ -43,11 +31,11 @@
   padding: 0.5rem 0.75rem;
   border-radius: 6px;
   font-size: 0.85rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
   border: 1px solid #fecaca;
 }
 
-.login-form {
+.register-form {
   display: flex;
   flex-direction: column;
 }
@@ -55,8 +43,8 @@
 .form-group {
   display: flex;
   flex-direction: column;
-  gap: 0.35rem;
-  margin-bottom: 1.25rem;
+  gap: 0.25rem;
+  margin-bottom: 0.85rem;
 }
 
 .form-label {
@@ -67,15 +55,14 @@
 
 .form-input {
   width: 100%;
-  padding: 0.8rem 1rem;
+  padding: 0.75rem 1rem;
   border-radius: 8px;
   border: none;
   background-color: #bebebe;
   color: #1f2937;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   box-sizing: border-box;
   outline: none;
-  letter-spacing: 0;
 }
 
 .form-input::placeholder {
@@ -109,16 +96,27 @@
   cursor: not-allowed;
 }
 
-.signup-text {
+.login-text {
   text-align: center;
   font-size: 0.75rem;
   color: #6b7280;
-  margin-top: 1rem;
+  margin-top: 0.85rem;
 }
 
-.signup-link {
+.login-link {
   color: #000000;
   font-weight: 600;
   text-decoration: underline;
   text-underline-offset: 2px;
+}
+
+@media (max-width: 768px) {
+  .register-card {
+    flex-direction: column;
+    padding: 1.25rem;
+  }
+
+  .register-hero-container {
+    min-height: 250px;
+  }
 }

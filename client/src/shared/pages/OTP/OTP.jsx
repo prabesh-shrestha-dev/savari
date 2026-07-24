@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { resendOTP, verifyOTP } from "../../services/authApi";
 import { useLocation, useNavigate } from "react-router-dom";
+import './OTP.css';
 
 export default function OTP() {
   const otpRef = useRef(null);
@@ -84,51 +85,73 @@ export default function OTP() {
   }
 
   return (
-    <form className="otp-form" onSubmit={handleSubmit}>
-      <h1>Verify Account</h1>
+    <div className="otp-page-container">
+      <div className="otp-card">
+          <div className="otp-form-content">
+            <div className="otp-header">
+              <h1 className="otp-header-title">Verify Account</h1>
+              <p className="otp-header-subtitle">
+                Enter the 6-digit verification code sent to your email or phone.
+              </p>
+              <hr className="header-divider" />
+            </div>
 
-      <p>
-        Enter the 6-digit verification code sent to your email or phone.
-      </p>
+            {/* OTP Form */}
+            <form className="otp-form" onSubmit={handleSubmit}>
+              {error && <p className="error-message">{error}</p>}
 
-      {error && (
-        <p className="error-message">
-          {error}
-        </p>
-      )}
+              <div className="form-group">
+                <label htmlFor="otp-input" className="form-label">
+                  Verification Code (OTP)
+                </label>
+                <input
+                  id="otp-input"
+                  className="form-input otp-input"
+                  type="text"
+                  maxLength={6}
+                  placeholder="Enter 6-digit OTP"
+                  required
+                  ref={otpRef}
+                  value={otp}
+                  onChange={(e) => {
+                    const value = e.target.value.replace(/\D/g, "");
+                    setOtp(value);
+                  }}
+                />
+              </div>
 
-      <label htmlFor="otp-input">
-        OTP
-      </label>
+              {/* Submit Button */}
+              <button
+                type="submit"
+                className="submit-btn"
+                disabled={loading}
+              >
+                {loading ? "Verifying..." : "Verify"}
+              </button>
 
-      <input
-        id="otp-input"
-        className="otp-input"
-        type="text"
-        maxLength={6}
-        required
-        ref={otpRef}
-        value={otp}
-        onChange={(e) => {
-          const value = e.target.value.replace(/\D/g, "");
-          setOtp(value);
-        }}
-      />
+              {/* Resend OTP Button */}
+              <button
+                type="button"
+                className="resend-btn"
+                disabled={loading}
+                onClick={handleResendOTP}
+              >
+                Resend OTP
+              </button>
+            </form>
 
-      <button
-        type="submit"
-        disabled={loading}
-      >
-        {loading ? "Verifying..." : "Verify"}
-      </button>
+            {/* Back Button */}
+            <button
+              type="button"
+              className="back-btn"
+              onClick={() => navigate("/register")}
+            >
+              ← Back to Register
+            </button>
 
-      <button
-        type="button"
-        disabled={loading}
-        onClick={handleResendOTP}
-      >
-        Resend OTP
-      </button>
-    </form>
+          </div>
+
+      </div>
+    </div>
   );
 }

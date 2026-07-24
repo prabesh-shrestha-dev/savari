@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { login, resendOTP } from "../../services/authApi";
 import { useAuth } from "../../contexts/authContext";
+import "./LoginForm.css";
 
 export default function LoginForm() {
   const navigate = useNavigate();
@@ -93,50 +94,62 @@ export default function LoginForm() {
   }
 
   return (
-    <form className="login-form" onSubmit={handleSubmit}>
-      {error && (
-        <p className="error-message">
-          {error}
+   <div className="login-form-content">
+      <div className="avatar-wrapper">
+        <div className="avatar-placeholder"></div>
+      </div>
+
+      <div className="login-header">
+        <h1 className="login-header-title">Login</h1>
+        <p className="login-header-subtitle">Welcome to LMS - Login</p>
+        <hr className="header-divider" />
+      </div>
+
+      <form className="login-form" onSubmit={handleSubmit}>
+        {error && <p className="error-message">{error}</p>}
+
+        <div className="form-group">
+          <label htmlFor="identifier-input" className="form-label">
+            Your Email or Phone no
+          </label>
+          <input
+            id="identifier-input"
+            placeholder="hello@gmail.com"
+            className="form-input identifier-input"
+            type="text"
+            required
+            ref={identifierRef}
+            value={identifier}
+            onChange={(e) => setIdentifier(e.target.value)}
+          />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="password-input" className="form-label">
+            Password
+          </label>
+          <input
+            id="password-input"
+            placeholder="••••••••••••"
+            className="form-input password-input"
+            type="password"
+            required
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
+
+        <button type="submit" className="submit-btn" disabled={loading}>
+          {loading ? "Logging in..." : "Login"}
+        </button>
+
+        <p className="signup-text">
+          Don’t have an account?{" "}
+          <Link to="/register" className="signup-link">
+            Signup
+          </Link>
         </p>
-      )}
-
-      <label htmlFor="identifier-input">
-        Email or phone
-      </label>
-
-      <input
-        id="identifier-input"
-        className="identifier-input"
-        type="text"
-        required
-        ref={identifierRef}
-        value={identifier}
-        onChange={(e) => setIdentifier(e.target.value)}
-      />
-
-      <label htmlFor="password-input">
-        Password
-      </label>
-
-      <input
-        id="password-input"
-        className="password-input"
-        type="password"
-        required
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-
-      <button
-        type="submit"
-        disabled={loading}
-      >
-        {loading ? "Logging in..." : "Login"}
-      </button>
-
-      <Link to="/register">
-        <span>Need an account?</span>
-      </Link>
-    </form>
+      </form>
+    </div>
   );
 }
