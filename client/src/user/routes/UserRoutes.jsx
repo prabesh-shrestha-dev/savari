@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import UserLayout from "../layouts/UserLayout";
 import { useAuth } from "../../shared/contexts/authContext";
+import Documents from "../pages/Documents/Documents";
 
 export default function UserRoutes() {
   const { auth } = useAuth();
@@ -11,9 +12,16 @@ export default function UserRoutes() {
     <Routes>
       <Route element={<UserLayout />}>
         <Route path="dashboard" element={<h1>User Dashboard {accessToken}, {user}</h1>} />
-        <Route path="profile" element={<h1>User Profile</h1>} />
-        <Route path="apply" element={<h1>User Apply</h1>} />
-        <Route path="payment" element={<h1>User Payment</h1>} />
+
+        <Route path="apply" element={<h1>User Apply Portal</h1>} />
+
+        <Route path="documents" element={<Documents />} />
+
+        <Route path="schedule" element={<h1>User Schedule</h1>} />
+
+        <Route path="payments" element={<h1>User Payments</h1>} />
+
+        <Route path="license" element={<h1>User License</h1>} />
       </Route>
 
       <Route path="*" element={<h1>User path not found</h1>} />

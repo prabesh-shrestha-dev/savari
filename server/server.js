@@ -4,6 +4,7 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import corsOptions from './config/corsOptions.js';
 import authRouter from './routes/auth.js';
+import documentRouter from './routes/document.js';
 import connectDB from './config/dbConn.js';
 
 dotenv.config();
@@ -17,6 +18,16 @@ app.use(cookieParser());
 app.use(express.json());
 
 app.use('/auth', authRouter);
+
+app.use("/documents", documentRouter);
+
+app.use((err, req, res, next) => {
+  console.error("Detailed Server Error:", err);
+  res.status(500).json({
+    success: false,
+    message: err.message || "Internal Server Error"
+  });
+});
 
 const startServer = async () => {
   try {

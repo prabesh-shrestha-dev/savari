@@ -1,6 +1,6 @@
 const allowedOrigins = [
   'http://localhost:5173',
-  'http://192.168.18.136:5173'
+  'http://192.168.16.101:5173'
 ];
 
 if (process.env.FRONTEND_URL) {

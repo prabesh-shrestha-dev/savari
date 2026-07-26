@@ -19,3 +19,7 @@ export const resendOTP = (data) => {
 export const refresh = (data) => {
   return api.post("/auth/refresh", data);
 }
+
+export const logout = () => {
+  return api.get("/auth/logout");
+}
