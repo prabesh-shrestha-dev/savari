@@ -30,6 +30,17 @@ const userSchema = new Schema(
     otpExpiresAt: {
       type: Date,
     },
+    licenses: [
+      { 
+        category: {
+          type: String,
+          enum: ["A", "B", "K", "H"],
+        },
+        issuedAt: {
+          type: Date,
+        }
+      }
+    ],
     refreshToken: String,
   },
   { timestamps: true }

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import useAxiosPrivate from "../../shared/hooks/useAxiosPrivate";
+import useAxiosPrivate from "../../../shared/hooks/useAxiosPrivate";
 
 export default function DocumentsReview() {
   const axiosPrivate = useAxiosPrivate();

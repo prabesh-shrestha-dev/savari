@@ -5,6 +5,7 @@ import cookieParser from 'cookie-parser';
 import corsOptions from './config/corsOptions.js';
 import authRouter from './routes/auth.js';
 import documentRouter from './routes/document.js';
+import applicationRouter from './routes/application.js';
 import connectDB from './config/dbConn.js';
 
 dotenv.config();
@@ -20,6 +21,7 @@ app.use(express.json());
 app.use('/auth', authRouter);
 
 app.use("/documents", documentRouter);
+app.use("/applications", applicationRouter);
 
 app.use((err, req, res, next) => {
   console.error("Detailed Server Error:", err);

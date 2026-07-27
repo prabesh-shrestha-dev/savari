@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import AdminLayout from "../layouts/AdminLayout";
-import DocumentsReview from "../../pages/Documents/DocumentsReview";
+import DocumentsReview from "../pages/Documents/DocumentsReview";
 
 export default function AdminRoutes() {
   return (
