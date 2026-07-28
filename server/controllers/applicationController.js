@@ -1,6 +1,7 @@
 import Application from "../models/Application.js";
 import Payment from "../models/Payment.js";
 import Document from "../models/Document.js";
+import { application, response } from "express";
 
 const createApplication = async (req, res) => {
   try {
@@ -111,4 +112,99 @@ const createApplication = async (req, res) => {
   }
 };
 
-export { createApplication };
+const getPendingApplications = async (req, res) => {
+  try {
+    const applications = await Application.find({
+      currentStep: "application_pending",
+      closed: false,
+    })
+      .populate("user", "fullname identifier")
+      .sort({ createdAt: -1 })
+      .lean();
+
+    const applicationsWithDocuments = await Promise.all(
+      applications.map(async (application) => {
+        const documents = await Document.findOne({
+          user: application.user._id,
+        }).lean();
+
+        return {
+          ...application,
+          documents,
+        };
+      })
+    );
+
+    return res.status(200).json({
+      success: true,
+      applications: applicationsWithDocuments,
+    });
+
+  } catch (err) {
+    console.error("Get pending applications error: ", err);
+
+    return res.status(500).json({
+      success: false,
+      message: `Internal Server Error: ${err.message}`,
+    });
+  }
+};
+
+const reviewApplication = async (req, res) => {
+  try {
+    const { applicationId } = req.params;
+    const { decision, reason } = req.body;
+
+    if (!["approved", "rejected"].includes(decision)) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid review decision.",
+      });
+    }
+
+    const application = await Application.findOne({
+      _id: applicationId,
+      currentStep: "application_pending",
+      closed: false,
+    });
+
+    if (!application) {
+      return res.status(404).json({
+        success: false,
+        message: "Application not found or already reviwed.",
+      });
+    }
+
+    if (decision === "approved") {
+      application.currentStep = "application_approved";
+    }
+
+    if (decision === "rejected") {
+      application.currentStep = "application_rejected";
+      application.closed = true;
+
+      application.rejection = {
+        reason: reason.trim(),
+        rejectedAt: new Date(),
+      };
+    }
+
+    await application.save();
+
+    return res.status(200).json({
+      success: true,
+      message: `Application ${decision} successfully.`,
+      application,
+    });
+
+  } catch (err) {
+    console.error("Review application error: ", err);
+
+    return res.status(500).json({
+      success: false,
+      message: `Internal Server Error: ${err.message}`,
+    });
+  }
+};
+
+export { createApplication, getPendingApplications, reviewApplication };

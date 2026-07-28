@@ -1,10 +1,36 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import useAxiosPrivate from "../../../shared/hooks/useAxiosPrivate";
+import "./Documents.css";
+
+const documentConfig = [
+  {
+    fieldName: "identityCard",
+    title: "Citizenship / NID",
+    description:
+      "Upload a clear copy of your citizenship certificate or National ID.",
+    accept: "image/*",
+  },
+  {
+    fieldName: "passportSizePhoto",
+    title: "Passport-size Photo",
+    description:
+      "Upload a recent passport-size photograph with a clear background.",
+    accept: "image/*",
+  },
+  {
+    fieldName: "bloodGroupReport",
+    title: "Blood Group Report",
+    description:
+      "Upload a valid blood group report from a recognized medical provider.",
+    accept: "image/*",
+  },
+];
 
 export default function Documents() {
   const axiosPrivate = useAxiosPrivate();
 
   const [documents, setDocuments] = useState(null);
+
   const [files, setFiles] = useState({
     identityCard: null,
     passportSizePhoto: null,
@@ -13,37 +39,49 @@ export default function Documents() {
 
   const [loadingField, setLoadingField] = useState(null);
   const [statusMessage, setStatusMessage] = useState("");
+  const [error, setError] = useState("");
+
+  const fetchDocuments = useCallback(async () => {
+    try {
+      setError("");
+
+      const response = await axiosPrivate.get("/documents/me");
+
+      setDocuments(response.data.documents || {});
+    } catch (err) {
+      console.error(
+        "Failed to fetch documents:",
+        err
+      );
+
+      if (err.response?.status === 404) {
+        setDocuments({});
+        return;
+      }
+
+      setError(
+        err.response?.data?.message ||
+          "Failed to load your documents."
+      );
+    }
+  }, [axiosPrivate]);
 
   useEffect(() => {
     fetchDocuments();
-  }, []);
-
-  const fetchDocuments = async () => {
-    try {
-      const response = await axiosPrivate.get("/documents/me");
-
-      setDocuments(response.data.documents);
-
-    } catch (err) {
-      console.error("Failed to fetch documents:", err);
-
-      if (err.response?.status === 404) {
-        // No Document record yet
-        setDocuments({});
-      } else {
-        setStatusMessage(
-          err.response?.data?.message ||
-          "Failed to load documents."
-        );
-      }
-    }
-  };
+  }, [fetchDocuments]);
 
   const handleFileChange = (fieldName, file) => {
+    if (!file) {
+      return;
+    }
+
     setFiles((prev) => ({
       ...prev,
       [fieldName]: file,
     }));
+
+    setStatusMessage("");
+    setError("");
   };
 
   const handleUpload = async (e, fieldName) => {
@@ -52,17 +90,17 @@ export default function Documents() {
     const file = files[fieldName];
 
     if (!file) {
-      setStatusMessage(
-        `Please select a file for ${fieldName} first.`
-      );
+      setError("Please select a file before uploading.");
       return;
     }
 
     const formData = new FormData();
+
     formData.append(fieldName, file);
 
     setLoadingField(fieldName);
     setStatusMessage("");
+    setError("");
 
     try {
       const response = await axiosPrivate.post(
@@ -75,182 +113,261 @@ export default function Documents() {
         }
       );
 
-      if (response.status === 200 || response.status === 201) {
+      if (
+        response.status === 200 ||
+        response.status === 201
+      ) {
         setStatusMessage(
-          `${fieldName} uploaded successfully.`
+          "Document uploaded successfully."
         );
 
-        // Fetch updated document status
         await fetchDocuments();
 
-        // Clear selected file
         setFiles((prev) => ({
           ...prev,
           [fieldName]: null,
         }));
       }
-
     } catch (err) {
-      console.error("Upload error:", err);
-
-      setStatusMessage(
-        err.response?.data?.message ||
-        "Upload failed. Please try again."
+      console.error(
+        "Document upload error:",
+        err
       );
 
+      setError(
+        err.response?.data?.message ||
+          "Upload failed. Please try again."
+      );
     } finally {
       setLoadingField(null);
     }
   };
 
-  const renderDocument = (
+  const getStatusLabel = (status) => {
+    switch (status) {
+      case "approved":
+        return "Approved";
+
+      case "pending":
+        return "Under Review";
+
+      case "rejected":
+        return "Rejected";
+
+      default:
+        return "Not Uploaded";
+    }
+  };
+
+  const renderDocumentCard = ({
     fieldName,
     title,
-    accept
-  ) => {
+    description,
+    accept,
+  }) => {
     const document = documents?.[fieldName];
 
-    // If no document exists, treat it as not_uploaded
-    const status = document?.status || "not_uploaded";
+    const status =
+      document?.status || "not_uploaded";
+
+    const selectedFile = files[fieldName];
+
+    const isUploading =
+      loadingField === fieldName;
+
+    const canUpload =
+      status === "not_uploaded" ||
+      status === "rejected";
 
     return (
       <div className="document-card">
-        <h2>{title}</h2>
 
-        {/* STATUS */}
-        <p>
-          Status:{" "}
-          <strong>
-            {status}
-          </strong>
+        <div className="document-card-header">
+          <div className="document-title-wrapper">
+            <h2>{title}</h2>
+
+            <span
+              className={`document-status status-${status}`}
+            >
+              {getStatusLabel(status)}
+            </span>
+          </div>
+        </div>
+
+
+        <p className="document-description">
+          {description}
         </p>
 
-        {/* PENDING / APPROVED / REJECTED */}
+
         {document?.url && (
           <a
             href={document.url}
             target="_blank"
             rel="noopener noreferrer"
+            className="view-document-btn"
           >
-            View Document
+            View Uploaded Document
           </a>
         )}
 
-        {/* NOT UPLOADED */}
-        {status === "not_uploaded" && (
+
+        {status === "rejected" &&
+          document?.rejection?.reason && (
+            <div className="rejection-message">
+              <strong>
+                Rejection reason
+              </strong>
+
+              <p>
+                {document.rejection.reason}
+              </p>
+            </div>
+          )}
+
+
+        {canUpload && (
           <form
+            className="document-upload-form"
             onSubmit={(e) =>
               handleUpload(e, fieldName)
             }
           >
-            <input
-              type="file"
-              accept={accept}
-              onChange={(e) =>
-                handleFileChange(
-                  fieldName,
-                  e.target.files[0]
-                )
-              }
-            />
+
+            <label className="file-input-label">
+              <span>
+                {selectedFile
+                  ? selectedFile.name
+                  : "Choose a file"}
+              </span>
+
+              <input
+                type="file"
+                accept={accept}
+                onChange={(e) =>
+                  handleFileChange(
+                    fieldName,
+                    e.target.files?.[0]
+                  )
+                }
+                disabled={isUploading}
+              />
+            </label>
+
+
+            {selectedFile && (
+              <p className="selected-file">
+                Selected: {selectedFile.name}
+              </p>
+            )}
+
 
             <button
               type="submit"
+              className="upload-btn"
               disabled={
-                loadingField === fieldName
+                isUploading ||
+                !selectedFile
               }
             >
-              {loadingField === fieldName
+              {isUploading
                 ? "Uploading..."
-                : "Upload"}
+                : status === "rejected"
+                  ? "Update Document"
+                  : "Upload Document"}
             </button>
+
           </form>
         )}
 
-        {/* REJECTED */}
-        {status === "rejected" && (
-          <form
-            onSubmit={(e) =>
-              handleUpload(e, fieldName)
-            }
-          >
-            <p>
-              Your document was rejected.
-              Please upload a new document.
-            </p>
 
-            <input
-              type="file"
-              accept={accept}
-              onChange={(e) =>
-                handleFileChange(
-                  fieldName,
-                  e.target.files[0]
-                )
-              }
-            />
-
-            <button
-              type="submit"
-              disabled={
-                loadingField === fieldName
-              }
-            >
-              {loadingField === fieldName
-                ? "Updating..."
-                : "Update Document"}
-            </button>
-          </form>
-        )}
-
-        {/* PENDING */}
         {status === "pending" && (
-          <p>
-            Your document is currently being reviewed.
-          </p>
+          <div className="document-info pending-info">
+            <span className="info-icon">
+              ⏳
+            </span>
+
+            <p>
+              Your document is currently being
+              reviewed by the administration.
+            </p>
+          </div>
         )}
 
-        {/* APPROVED */}
+
         {status === "approved" && (
-          <p>
-            Your document has been approved.
-          </p>
+          <div className="document-info approved-info">
+            <span className="info-icon">
+              ✓
+            </span>
+
+            <p>
+              Your document has been approved.
+            </p>
+          </div>
         )}
+
       </div>
     );
   };
 
+
   if (documents === null) {
-    return <p>Loading documents...</p>;
+    return (
+      <div className="documents-page">
+        <div className="documents-loading">
+          <div className="loading-spinner"></div>
+
+          <p>
+            Loading your documents...
+          </p>
+        </div>
+      </div>
+    );
   }
+
 
   return (
     <div className="documents-page">
-      <h1>My Documents</h1>
+
+      <div className="documents-page-header">
+        <div>
+          <h1>My Documents</h1>
+
+          <p>
+            Upload and manage the documents
+            required for your license application.
+          </p>
+        </div>
+      </div>
+
 
       {statusMessage && (
-        <p>
-          {statusMessage}
-        </p>
+        <div className="success-message">
+          <span>✓</span>
+
+          <p>{statusMessage}</p>
+        </div>
       )}
 
-      {renderDocument(
-        "identityCard",
-        "Citizenship or NID",
-        "image/*,.pdf"
+
+      {error && (
+        <div className="error-message">
+          <span>!</span>
+
+          <p>{error}</p>
+        </div>
       )}
 
-      {renderDocument(
-        "passportSizePhoto",
-        "Passport-size Photo",
-        "image/*"
-      )}
 
-      {renderDocument(
-        "bloodGroupReport",
-        "Blood Group Report",
-        "image/*,.pdf"
-      )}
+      <div className="documents-grid">
+        {documentConfig.map((document) => (
+          <div key={document.fieldName}>
+            {renderDocumentCard(document)}
+          </div>
+        ))}
+      </div>
+
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import useAxiosPrivate from "../../../shared/hooks/useAxiosPrivate";
+import "./DocumentsReview.css";
 
 export default function DocumentsReview() {
   const axiosPrivate = useAxiosPrivate();
@@ -26,16 +27,24 @@ export default function DocumentsReview() {
 
       setError(
         err.response?.data?.message ||
-        "Failed to load documents."
+          "Failed to load documents."
       );
     } finally {
       setLoading(false);
     }
   };
 
-  const updateDocumentStatus = async (userId, documentType, status) => {
+  const updateDocumentStatus = async (
+    userId,
+    documentType,
+    status
+  ) => {
     try {
-      setActionLoading(`${userId}-${documentType}-${status}`);
+      setActionLoading(
+        `${userId}-${documentType}-${status}`
+      );
+
+      setError("");
 
       await axiosPrivate.patch(
         `/documents/admin/${userId}/${documentType}`,
@@ -52,6 +61,7 @@ export default function DocumentsReview() {
 
           return {
             ...document,
+
             [documentType]: {
               ...document[documentType],
               status,
@@ -60,58 +70,104 @@ export default function DocumentsReview() {
         })
       );
     } catch (err) {
-      console.error("Failed to update document:", err);
+      console.error(
+        "Failed to update document:",
+        err
+      );
 
       setError(
         err.response?.data?.message ||
-        "Failed to update document status."
+          "Failed to update document status."
       );
     } finally {
       setActionLoading(null);
     }
   };
 
-  const renderDocument = (document, userId, documentType, label) => {
-    if (!document) {
-      return (
-        <div className="document-item">
-          <div>
-            <strong>{label}</strong>
-            <p>Not uploaded</p>
-          </div>
-        </div>
-      );
-    }
+  const getStatus = (document) => {
+    return document?.status || "not_uploaded";
+  };
 
-    const status = document.status || "not_uploaded";
+  const getStatusLabel = (status) => {
+    const labels = {
+      approved: "Approved",
+      rejected: "Rejected",
+      pending: "Pending",
+      not_uploaded: "Not Uploaded",
+    };
+
+    return labels[status] || status;
+  };
+
+  const renderDocument = (
+    document,
+    userId,
+    documentType,
+    label
+  ) => {
+    const status = getStatus(document);
+
+    const approveKey =
+      `${userId}-${documentType}-approved`;
+
+    const rejectKey =
+      `${userId}-${documentType}-rejected`;
+
+    const isApproving =
+      actionLoading === approveKey;
+
+    const isRejecting =
+      actionLoading === rejectKey;
 
     return (
-      <div className="document-item">
-        <div>
-          <strong>{label}</strong>
+      <div className="document-review-item">
 
-          <p>
-            Status:{" "}
-            <span className={`status ${status}`}>
-              {status}
+        <div className="document-info">
+
+          <div className="document-icon">
+            {document ? "📄" : "—"}
+          </div>
+
+          <div className="document-details">
+
+            <h4>{label}</h4>
+
+            <span
+              className={`document-status ${status}`}
+            >
+              <span className="status-dot"></span>
+
+              {getStatusLabel(status)}
             </span>
-          </p>
+
+          </div>
+
         </div>
 
         <div className="document-actions">
-          <a
-            href={document.url}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            View
-          </a>
+
+          {document?.url ? (
+            <a
+              href={document.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="view-document-btn"
+            >
+              View Document
+            </a>
+          ) : (
+            <span className="not-available">
+              No document
+            </span>
+          )}
 
           <button
             type="button"
+            className="approve-btn"
             disabled={
-              actionLoading ===
-              `${userId}-${documentType}-approved`
+              !document ||
+              isApproving ||
+              isRejecting
             }
             onClick={() =>
               updateDocumentStatus(
@@ -121,17 +177,18 @@ export default function DocumentsReview() {
               )
             }
           >
-            {actionLoading ===
-            `${userId}-${documentType}-approved`
+            {isApproving
               ? "Approving..."
               : "Approve"}
           </button>
 
           <button
             type="button"
+            className="reject-btn"
             disabled={
-              actionLoading ===
-              `${userId}-${documentType}-rejected`
+              !document ||
+              isApproving ||
+              isRejecting
             }
             onClick={() =>
               updateDocumentStatus(
@@ -141,85 +198,229 @@ export default function DocumentsReview() {
               )
             }
           >
-            {actionLoading ===
-            `${userId}-${documentType}-rejected`
+            {isRejecting
               ? "Rejecting..."
               : "Reject"}
           </button>
+
         </div>
       </div>
     );
   };
 
+  const visibleDocuments = documents.filter(
+    (document) => {
+      const identityStatus = getStatus(
+        document.identityCard
+      );
+
+      const photoStatus = getStatus(
+        document.passportSizePhoto
+      );
+
+      const bloodStatus = getStatus(
+        document.bloodGroupReport
+      );
+
+      const allApproved =
+        identityStatus === "approved" &&
+        photoStatus === "approved" &&
+        bloodStatus === "approved";
+
+      const allRejected =
+        identityStatus === "rejected" &&
+        photoStatus === "rejected" &&
+        bloodStatus === "rejected";
+
+      return !allApproved && !allRejected;
+    }
+  );
+
   if (loading) {
-    return <h1>Loading documents...</h1>;
+    return (
+      <div className="documents-review-page">
+        <div className="review-loading">
+          <div className="loading-spinner"></div>
+          <p>Loading documents...</p>
+        </div>
+      </div>
+    );
   }
 
   return (
-    <div className="documents-review">
-      <h1>Documents Review</h1>
+    <div className="documents-review-page">
+
+      <div className="review-page-header">
+
+        <div>
+          <h1>Documents Review</h1>
+
+          <p>
+            Review and verify documents submitted
+            by license applicants.
+          </p>
+        </div>
+
+        <div className="document-count">
+          <span>{visibleDocuments.length}</span>
+          <small>
+            {visibleDocuments.length === 1
+              ? "Applicant"
+              : "Applicants"}
+          </small>
+        </div>
+
+      </div>
+
 
       {error && (
-        <p className="error-message">
-          {error}
-        </p>
+        <div className="error-message">
+          <span>!</span>
+
+          <p>{error}</p>
+
+          <button
+            type="button"
+            onClick={() => setError("")}
+          >
+            ×
+          </button>
+        </div>
       )}
 
-      {documents.length === 0 ? (
-        <p>No documents found.</p>
+
+      {visibleDocuments.length === 0 ? (
+        <div className="empty-state">
+
+          <div className="empty-icon">
+            ✓
+          </div>
+
+          <h2>No documents to review</h2>
+
+          <p>
+            All submitted documents have been
+            reviewed or there are no documents
+            waiting for review.
+          </p>
+
+        </div>
       ) : (
+
         <div className="documents-list">
-          {documents
-            .filter((document) => {
-              return !(
-                (document.identityCard?.status === "approved" &&
-                document.passportSizePhoto?.status === "approved" &&
-                document.bloodGroupReport?.status === "approved") ||
-                (document.identityCard?.status === "rejected" &&
-                document.passportSizePhoto?.status === "rejected" &&
-                document.bloodGroupReport?.status === "rejected")
+
+          {visibleDocuments.map((document) => {
+
+            const userId =
+              document.user._id;
+
+            const identityStatus =
+              getStatus(
+                document.identityCard
               );
-            }).map((document) => {
-            const userId = document.user._id;
+
+            const photoStatus =
+              getStatus(
+                document.passportSizePhoto
+              );
+
+            const bloodStatus =
+              getStatus(
+                document.bloodGroupReport
+              );
+
+            const approvedCount = [
+              identityStatus,
+              photoStatus,
+              bloodStatus,
+            ].filter(
+              (status) =>
+                status === "approved"
+            ).length;
 
             return (
               <div
                 className="user-document-card"
                 key={document._id}
               >
-                <h2>
-                  {document.user.fullname}
-                </h2>
 
-                <p>
-                  {document.user.identifier}
-                </p>
+                {/* User Header */}
+                <div className="user-card-header">
 
-                {renderDocument(
-                  document.identityCard,
-                  userId,
-                  "identityCard",
-                  "Citizenship / NID"
-                )}
+                  <div className="user-info">
 
-                {renderDocument(
-                  document.passportSizePhoto,
-                  userId,
-                  "passportSizePhoto",
-                  "Passport-size Photo"
-                )}
+                    <div className="user-avatar">
+                      {document.user.fullname
+                        ?.charAt(0)
+                        ?.toUpperCase()}
+                    </div>
 
-                {renderDocument(
-                  document.bloodGroupReport,
-                  userId,
-                  "bloodGroupReport",
-                  "Blood Group Report"
-                )}
+                    <div>
+                      <h2>
+                        {document.user.fullname}
+                      </h2>
+
+                      <p>
+                        {document.user.identifier}
+                      </p>
+                    </div>
+
+                  </div>
+
+                  <div className="review-progress">
+
+                    <span>
+                      {approvedCount}/3 approved
+                    </span>
+
+                    <div className="progress-bar">
+                      <div
+                        className="progress-fill"
+                        style={{
+                          width:
+                            `${(approvedCount / 3) * 100}%`,
+                        }}
+                      ></div>
+                    </div>
+
+                  </div>
+
+                </div>
+
+
+                <div className="documents-container">
+
+                  {renderDocument(
+                    document.identityCard,
+                    userId,
+                    "identityCard",
+                    "Citizenship / NID"
+                  )}
+
+                  {renderDocument(
+                    document.passportSizePhoto,
+                    userId,
+                    "passportSizePhoto",
+                    "Passport-size Photo"
+                  )}
+
+                  {renderDocument(
+                    document.bloodGroupReport,
+                    userId,
+                    "bloodGroupReport",
+                    "Blood Group Report"
+                  )}
+
+                </div>
+
               </div>
             );
           })}
+
         </div>
+
       )}
+
     </div>
   );
 }

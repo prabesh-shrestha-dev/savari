@@ -140,6 +140,11 @@ const applicationSchema = new Schema(
   }
 );
 
+applicationSchema.index({
+  user: 1,
+  closed: 1,
+});
+
 const Application = mongoose.model("Application", applicationSchema);
 
 export default Application;
