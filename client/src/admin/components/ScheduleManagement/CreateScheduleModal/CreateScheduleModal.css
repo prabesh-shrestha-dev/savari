@@ -1,0 +1,131 @@
+.schedule-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.55);
+}
+
+.create-schedule-modal {
+  width: 100%;
+  max-width: 480px;
+  background: white;
+  border-radius: 14px;
+  padding: 25px;
+  box-sizing: border-box;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 25px;
+}
+
+.modal-header h2 {
+  margin: 0 0 5px;
+  color: #111827;
+}
+
+.modal-header p {
+  margin: 0;
+  color: #6b7280;
+  font-size: 13px;
+}
+
+.modal-close {
+  border: none;
+  background: transparent;
+  font-size: 26px;
+  cursor: pointer;
+  color: #6b7280;
+}
+
+.modal-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-bottom: 18px;
+}
+
+.modal-form-group label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.modal-form-group input,
+.modal-form-group select {
+  width: 100%;
+  padding: 11px 12px;
+  box-sizing: border-box;
+  border: 1px solid #d1d5db;
+  border-radius: 7px;
+  outline: none;
+}
+
+.modal-form-group input:focus,
+.modal-form-group select:focus {
+  border-color: #2563eb;
+}
+
+.schedule-details {
+  padding: 15px;
+  background: #eff6ff;
+  border-radius: 8px;
+  margin-top: 5px;
+}
+
+.schedule-details strong {
+  font-size: 14px;
+  color: #1e40af;
+}
+
+.schedule-details p {
+  margin: 6px 0 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #475569;
+}
+
+.modal-error {
+  padding: 12px;
+  margin-bottom: 18px;
+  background: #fee2e2;
+  color: #b91c1c;
+  border-radius: 7px;
+  font-size: 13px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 25px;
+}
+
+.modal-actions button {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 7px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.modal-secondary-btn {
+  background: #e5e7eb;
+  color: #374151;
+}
+
+.modal-primary-btn {
+  background: #2563eb;
+  color: white;
+}
+
+.modal-primary-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

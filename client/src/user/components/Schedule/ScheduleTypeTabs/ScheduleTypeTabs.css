@@ -1,0 +1,52 @@
+.schedule-type-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.schedule-type-tab {
+  min-width: 0;
+  padding: 16px;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  background: white;
+  color: #475569;
+  cursor: pointer;
+  text-align: left;
+  transition: 0.2s;
+}
+
+.schedule-type-tab:hover:not(:disabled) {
+  border-color: #93c5fd;
+  background: #f8fbff;
+}
+
+.schedule-type-tab.active {
+  border-color: #2563eb;
+  background: #eff6ff;
+  color: #2563eb;
+}
+
+.schedule-type-tab:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.schedule-type-tab span {
+  display: block;
+  font-weight: 600;
+}
+
+.schedule-type-tab small {
+  display: block;
+  margin-top: 5px;
+  font-size: 11px;
+  text-transform: capitalize;
+}
+
+@media (max-width: 700px) {
+  .schedule-type-tabs {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,32 @@
+.booking-section {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 24px;
+}
+
+.booking-section-header {
+  margin-bottom: 24px;
+}
+
+.booking-section-header h2 {
+  margin: 0 0 6px;
+  color: #0f172a;
+  font-size: 20px;
+}
+
+.booking-section-header p {
+  margin: 0;
+  color: #64748b;
+  font-size: 14px;
+}
+
+.booking-error {
+  margin: 20px 0;
+  padding: 12px 14px;
+  border-radius: 8px;
+  background: #fef2f2;
+  color: #b91c1c;
+  border: 1px solid #fecaca;
+  font-size: 14px;
+}

@@ -1,0 +1,173 @@
+.examination-card {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  transition: 0.2s ease;
+}
+
+.examination-card:hover {
+  border-color: #d1d5db;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.07);
+}
+
+.candidate-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.candidate-avatar {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #eff6ff;
+  color: #2563eb;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.candidate-title {
+  min-width: 0;
+}
+
+.candidate-title h3 {
+  margin: 0;
+  color: #1f2937;
+  font-size: 16px;
+  font-weight: 700;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.candidate-title p {
+  margin: 4px 0 0;
+  color: #6b7280;
+  font-size: 13px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.candidate-details {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px 0;
+}
+
+.detail-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.detail-label {
+  color: #6b7280;
+  font-size: 13px;
+}
+
+.detail-value {
+  color: #374151;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: right;
+}
+
+.category-badge {
+  min-width: 30px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  background: #f3f4f6;
+  text-align: center;
+}
+
+.examination-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 4px;
+}
+
+.examination-actions button {
+  flex: 1;
+  min-height: 42px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.examination-actions button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.pass-button {
+  background: #16a34a;
+  color: white;
+}
+
+.pass-button:hover:not(:disabled) {
+  background: #15803d;
+}
+
+.fail-button {
+  background: #dc2626;
+  color: white;
+}
+
+.fail-button:hover:not(:disabled) {
+  background: #b91c1c;
+}
+
+.ready-button {
+  background: #2563eb;
+  color: white;
+}
+
+.ready-button:hover:not(:disabled) {
+  background: #1d4ed8;
+}
+
+.collected-button {
+  background: #7c3aed;
+  color: white;
+}
+
+.collected-button:hover:not(:disabled) {
+  background: #6d28d9;
+}
+
+@media (max-width: 450px) {
+  .examination-card {
+    padding: 16px;
+  }
+
+  .examination-actions {
+    flex-direction: column;
+  }
+
+  .detail-item {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .detail-value {
+    text-align: left;
+  }
+}

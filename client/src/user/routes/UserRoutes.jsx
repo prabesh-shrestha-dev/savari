@@ -3,6 +3,7 @@ import UserLayout from "../layouts/UserLayout";
 import { useAuth } from "../../shared/contexts/authContext";
 import Documents from "../pages/Documents/Documents";
 import Application from "../pages/Application/Application";
+import Schedule from "../pages/Schedule/Schedule";
 
 export default function UserRoutes() {
   const { auth } = useAuth();
@@ -18,7 +19,7 @@ export default function UserRoutes() {
 
         <Route path="documents" element={<Documents />} />
 
-        <Route path="schedule" element={<h1>User Schedule</h1>} />
+        <Route path="schedule" element={<Schedule />} />
 
         <Route path="payments" element={<h1>User Payments</h1>} />
 

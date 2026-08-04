@@ -1,0 +1,25 @@
+.schedule-list {
+  display: grid;
+  grid-template-columns:
+    repeat(auto-fill, minmax(350px, 1fr));
+  gap: 20px;
+}
+
+.schedule-list-message,
+.schedule-list-empty {
+  padding: 50px 20px;
+  text-align: center;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+}
+
+.schedule-list-empty h3 {
+  margin: 0 0 8px;
+  color: #111827;
+}
+
+.schedule-list-empty p {
+  margin: 0;
+  color: #6b7280;
+}

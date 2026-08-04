@@ -112,6 +112,37 @@ const createApplication = async (req, res) => {
   }
 };
 
+const getMyApplication = async (req, res) => {
+  try {
+    const userId = req.user.id;
+
+    const application = await Application.findOne({
+      user: userId,
+      closed: false,
+    });
+
+    if (!application) {
+      return res.status(404).json({
+        success: false,
+        message: "No active application found.",
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      application,
+    });
+
+  } catch (err) {
+    console.error("Get my application error:", err);
+
+    return res.status(500).json({
+      success: false,
+      message: "Internal Server Error.",
+    });
+  }
+};
+
 const getPendingApplications = async (req, res) => {
   try {
     const applications = await Application.find({
@@ -207,4 +238,33 @@ const reviewApplication = async (req, res) => {
   }
 };
 
-export { createApplication, getPendingApplications, reviewApplication };
+const getApplicationsByStage = async (req, res) => {
+  try {
+    const { currentStep } = req.params;
+
+    const applications = await Application.find({
+      currentStep,
+      closed: false,
+    })
+      .populate("user", "fullname identifier")
+      .populate("biometric.schedule")
+      .populate("writtenExam.schedule")
+      .populate("practicalExam.schedule")
+      .sort({ createdAt: 1 });
+
+    return res.status(200).json({
+      success: true,
+      applications
+    });
+
+  } catch (err) {
+    console.error("Get applications by stage error:", err);
+
+    return res.status(500).json({
+      success: false,
+      message: `Internal Server Error: ${err.message}`,
+    });
+  }
+};
+
+export { createApplication, getMyApplication, getPendingApplications, reviewApplication, getApplicationsByStage };

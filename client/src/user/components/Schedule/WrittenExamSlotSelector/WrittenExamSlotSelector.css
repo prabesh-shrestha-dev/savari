@@ -1,0 +1,53 @@
+.slot-selector {
+  margin-bottom: 16px;
+}
+
+.slot-selector p {
+  margin: 0 0 10px;
+  color: #475569;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.slot-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.slot-button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  background: white;
+  cursor: pointer;
+  text-align: left;
+}
+
+.slot-button:hover:not(:disabled) {
+  border-color: #93c5fd;
+}
+
+.slot-button.selected {
+  border-color: #2563eb;
+  background: #eff6ff;
+  color: #2563eb;
+}
+
+.slot-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.slot-button span {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.slot-button small {
+  font-size: 11px;
+  color: #64748b;
+}

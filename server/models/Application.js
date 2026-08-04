@@ -59,15 +59,16 @@ const applicationSchema = new Schema(
         "application_approved",
 
         "biometric_pending",
+        "biometric_failed",
         "biometric_completed",
 
         "written_exam_pending",
         "written_exam_failed",
-        "written_exam_passed",
+        "written_exam_completed",
 
         "practical_exam_pending",
         "practical_exam_failed",
-        "practical_exam_passed",
+        "practical_exam_completed",
 
         "license_card_ready",
         "license_card_collected",
@@ -93,14 +94,24 @@ const applicationSchema = new Schema(
     },
 
     biometric: {
+      schedule: {
+        type: Schema.Types.ObjectId,
+        ref: "Schedule"
+      },
+
       completedAt: {
         type: Date,
       },
     },
 
     writtenExam: {
-      examDate: {
-        type: Date,
+      schedule: {
+        type: Schema.Types.ObjectId,
+        ref: "Schedule"
+      },
+
+      slot: {
+        type: Schema.Types.ObjectId,
       },
 
       resultDate: {
@@ -109,15 +120,16 @@ const applicationSchema = new Schema(
     },
 
     practicalExam: {
+      schedule: {
+        type: Schema.Types.ObjectId,
+        ref: "Schedule"
+      },
+
       attempts: {
         type: Number,
         default: 0,
         min: 0,
         max: 3,
-      },
-
-      examDate: {
-        type: Date,
       },
 
       resultDate: {
@@ -133,6 +145,10 @@ const applicationSchema = new Schema(
       collectedAt: {
         type: Date,
       },
+    },
+
+    eligibleToReapplyAt: {
+      type: Date,
     },
   },
   {

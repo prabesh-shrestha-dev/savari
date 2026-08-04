@@ -1,0 +1,54 @@
+.examination-filters {
+  padding: 18px;
+  margin-bottom: 24px;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+}
+
+.filter-label {
+  margin-bottom: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.stage-tabs {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.stage-tab {
+  padding: 10px 16px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: white;
+  color: #4b5563;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.stage-tab:hover {
+  border-color: #2563eb;
+  color: #2563eb;
+}
+
+.stage-tab.active {
+  background: #2563eb;
+  border-color: #2563eb;
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .stage-tabs {
+    flex-direction: column;
+  }
+
+  .stage-tab {
+    width: 100%;
+    text-align: left;
+  }
+}

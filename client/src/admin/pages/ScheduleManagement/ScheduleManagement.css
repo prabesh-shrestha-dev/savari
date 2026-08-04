@@ -1,0 +1,65 @@
+.schedule-management {
+  width: 100%;
+  min-height: 100%;
+  padding: 30px;
+  box-sizing: border-box;
+}
+
+.schedule-management-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.schedule-management-header h1 {
+  margin: 0 0 8px;
+  font-size: 28px;
+  color: #111827;
+}
+
+.schedule-management-header p {
+  margin: 0;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.create-schedule-btn {
+  border: none;
+  background: #2563eb;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.create-schedule-btn:hover {
+  background: #1d4ed8;
+}
+
+.schedule-error {
+  margin: 20px 0;
+  padding: 14px 16px;
+  background: #fee2e2;
+  color: #b91c1c;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+@media (max-width: 700px) {
+  .schedule-management {
+    padding: 20px;
+  }
+
+  .schedule-management-header {
+    flex-direction: column;
+  }
+
+  .create-schedule-btn {
+    width: 100%;
+  }
+}

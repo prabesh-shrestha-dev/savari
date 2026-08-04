@@ -31,6 +31,10 @@ export default function AdminLayout() {
             <CalendarDays size={20} />
             <span>Manage Schedules</span>
           </NavLink>
+
+          <NavLink to="/admin/examinations" className="sidebar-link">
+            <span>Manage Examinations</span>
+          </NavLink>
         </nav>
       </aside>
 
