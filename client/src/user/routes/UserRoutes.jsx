@@ -4,6 +4,7 @@ import { useAuth } from "../../shared/contexts/authContext";
 import Documents from "../pages/Documents/Documents";
 import Application from "../pages/Application/Application";
 import Schedule from "../pages/Schedule/Schedule";
+import MyLicense from "../pages/License/MyLicense";
 
 export default function UserRoutes() {
   const { auth } = useAuth();
@@ -23,7 +24,7 @@ export default function UserRoutes() {
 
         <Route path="payments" element={<h1>User Payments</h1>} />
 
-        <Route path="license" element={<h1>User License</h1>} />
+        <Route path="license" element={<MyLicense />} />
       </Route>
 
       <Route path="*" element={<h1>User path not found</h1>} />
