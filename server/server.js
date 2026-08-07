@@ -4,6 +4,7 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import corsOptions from './config/corsOptions.js';
 import authRouter from './routes/auth.js';
+import userRouter from './routes/user.js';
 import documentRouter from './routes/document.js';
 import applicationRouter from './routes/application.js';
 import scheduleRouter from './routes/schedule.js';
@@ -23,6 +24,7 @@ app.use(express.json());
 
 app.use('/auth', authRouter);
 
+app.use("/users", userRouter);
 app.use("/documents", documentRouter);
 app.use("/applications", applicationRouter);
 app.use("/schedules", scheduleRouter);

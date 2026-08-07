@@ -1,0 +1,95 @@
+.user-menu {
+  position: relative;
+
+  margin-top: auto;
+
+  padding: 1rem;
+
+  border-top: 1px solid #e5e7eb;
+
+  background: #ffffff;
+}
+
+.user-menu-button {
+  width: 100%;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 0.85rem 1rem;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+
+  background: #ffffff;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.user-menu-button:hover {
+  background: #f8fafc;
+  border-color: #d1d5db;
+}
+
+.user-menu-left {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.user-menu-avatar {
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 50%;
+
+  background: #2563eb;
+  color: white;
+
+  flex-shrink: 0;
+}
+
+.user-menu-name {
+  max-width: 140px;
+
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+  font-weight: 600;
+  color: #111827;
+}
+
+.user-menu-card {
+  position: fixed;
+
+  left: 20px;
+  bottom: 92px;
+
+  width: 320px;
+
+  z-index: 9999;
+}
+
+.user-menu-loading {
+  background: white;
+
+  padding: 2rem;
+
+  border-radius: 18px;
+
+  box-shadow: 0 18px 50px rgba(0,0,0,.15);
+
+  text-align: center;
+
+  font-weight: 500;
+
+  color: #64748b;
+}

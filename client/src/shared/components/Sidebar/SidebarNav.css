@@ -1,0 +1,42 @@
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+
+  padding: 1rem;
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+
+  padding: 0.9rem 1rem;
+
+  border-radius: 10px;
+
+  color: #4b5563;
+  text-decoration: none;
+
+  font-weight: 500;
+
+  transition: all 0.2s ease;
+}
+
+.sidebar-link:hover {
+  background: #f3f4f6;
+  color: #111827;
+}
+
+.sidebar-link.active {
+  background: #2563eb;
+  color: #ffffff;
+}
+
+.sidebar-link svg {
+  flex-shrink: 0;
+}
+
+.sidebar-link span {
+  font-size: 0.95rem;
+}
