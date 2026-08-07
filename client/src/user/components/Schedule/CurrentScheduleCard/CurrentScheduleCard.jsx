@@ -1,4 +1,7 @@
 import "./CurrentScheduleCard.css";
+import { QrCode } from "lucide-react";
+import QRModal from "./QRModal";
+import { useState } from "react";
 
 const scheduleInfo = [
   {
@@ -31,6 +34,8 @@ const formatDate = (date) => {
 export default function CurrentScheduleCard({
   schedules,
 }) {
+  const [selectedSchedule, setSelectedSchedule] = useState(null);
+
   const hasSchedule = scheduleInfo.some(
     (item) => schedules?.[item.key]?.schedule
   );
@@ -95,10 +100,28 @@ export default function CurrentScheduleCard({
               <span className="scheduled-status">
                 Scheduled
               </span>
+
+              <button
+                className="qr-button"
+                onClick={() => setSelectedSchedule({
+                  type: item.label,
+                  date: data.schedule.date,
+                  slot,
+                })}
+              >
+                <QrCode size={22} />
+              </button>
             </div>
           );
         })}
       </div>
+
+      {selectedSchedule && (
+        <QRModal
+          schedule={selectedSchedule}
+          onClose={() => setSelectedSchedule(null)}
+        />
+      )}
     </section>
   );
 }

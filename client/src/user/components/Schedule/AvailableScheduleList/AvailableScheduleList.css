@@ -60,6 +60,30 @@
   gap: 16px;
 }
 
+.booking-success {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 14px;
+
+  padding: 40px 24px;
+
+  text-align: center;
+}
+
+
+.booking-success h3 {
+  color: #15803d;
+
+  margin-bottom: 10px;
+}
+
+
+.booking-success p {
+  color: #166534;
+
+  margin: 0;
+}
+
 @keyframes spin-small {
   to {
     transform: rotate(360deg);

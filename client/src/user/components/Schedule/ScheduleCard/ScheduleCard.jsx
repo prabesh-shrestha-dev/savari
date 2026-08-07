@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import WrittenExamSlotSelector from "../WrittenExamSlotSelector/WrittenExamSlotSelector";
+import BookScheduleModal from "./BookScheduleModal";
 
 import "./ScheduleCard.css";
 
@@ -28,23 +29,54 @@ export default function ScheduleCard({
   const [showSlots, setShowSlots] =
     useState(false);
 
+  const [showBookingModal, setShowBookingModal] =
+    useState(false);
+
+
   const handleBook = () => {
+
     if (type === "written_exam") {
+
       if (!selectedSlot) {
         setShowSlots(true);
         return;
       }
+
+    }
+
+    setShowBookingModal(true);
+  };
+
+
+  const handleConfirmBooking = () => {
+
+    if (type === "written_exam") {
 
       onBook(
         schedule._id,
         selectedSlot
       );
 
-      return;
+    } else {
+
+      onBook(
+        schedule._id
+      );
+
     }
 
-    onBook(schedule._id);
+    setShowBookingModal(false);
   };
+
+
+  const selectedSlotData =
+    type === "written_exam"
+      ? schedule.slots.find(
+          (slot) =>
+            slot._id === selectedSlot
+        )
+      : null;
+
 
   return (
     <div className="schedule-card">
@@ -55,19 +87,28 @@ export default function ScheduleCard({
         </span>
       </div>
 
+
       {type === "biometric" && (
         <div className="capacity-info">
-          <span>Available Seats</span>
+
+          <span>
+            Available Seats
+          </span>
 
           <strong>
-            {schedule.biometricCapacity.capacity -
-              schedule.biometricCapacity.booked}
+            {
+              schedule.biometricCapacity.capacity -
+              schedule.biometricCapacity.booked
+            }
           </strong>
+
         </div>
       )}
 
+
       {type === "practical_exam" && (
         <div className="capacity-info">
+
           <span>
             Category{" "}
             {Object.keys(
@@ -75,9 +116,13 @@ export default function ScheduleCard({
             ).join(", ")}
           </span>
 
-          <strong>Available</strong>
+          <strong>
+            Available
+          </strong>
+
         </div>
       )}
+
 
       {type === "written_exam" && (
         <WrittenExamSlotSelector
@@ -87,6 +132,8 @@ export default function ScheduleCard({
           visible={showSlots}
         />
       )}
+
+
 
       <button
         type="button"
@@ -101,6 +148,28 @@ export default function ScheduleCard({
           ? "Select Time Slot"
           : "Book Schedule"}
       </button>
+
+
+
+      {showBookingModal && (
+        <BookScheduleModal
+
+          schedule={schedule}
+
+          type={type}
+
+          slot={selectedSlotData}
+
+          loading={bookingLoading}
+
+          onConfirm={handleConfirmBooking}
+
+          onClose={() =>
+            setShowBookingModal(false)
+          }
+
+        />
+      )}
 
     </div>
   );

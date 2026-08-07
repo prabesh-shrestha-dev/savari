@@ -38,6 +38,18 @@
   z-index: 0;
 }
 
+.progress-steps::after {
+  content: "";
+  position: absolute;
+  top: 17px;
+  left: 8%;
+  height: 2px;
+  background: #16a34a;
+  z-index: 0;
+
+  width: var(--progress-width);
+}
+
 .progress-step {
   position: relative;
   z-index: 1;
@@ -92,12 +104,28 @@
   }
 
   .progress-steps::before {
+    content: "";
+    position: absolute;
     top: 17px;
     bottom: 17px;
     left: 17px;
-    right: auto;
     width: 2px;
-    height: auto;
+    background: #e2e8f0;
+    z-index: 0;
+  }
+
+  .progress-steps::after {
+    content: "";
+    position: absolute;
+    top: 17px;
+    left: 17px;
+    width: 2px;
+
+    /* Height based on current progress */
+    height: var(--progress-height);
+
+    background: #16a34a;
+    z-index: 0;
   }
 
   .progress-step {

@@ -1,0 +1,195 @@
+.book-modal-overlay {
+  position: fixed;
+  
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 287px;
+
+  background: rgba(15, 23, 42, 0.45);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  z-index: 1000;
+}
+
+
+.book-modal {
+  width: 420px;
+
+  background: white;
+
+  border-radius: 16px;
+
+  border: 1px solid #e2e8f0;
+
+  overflow: hidden;
+
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+
+.book-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 20px;
+
+  border-bottom: 1px solid #e2e8f0;
+}
+
+
+.book-modal-header h2 {
+  margin: 0;
+
+  font-size: 18px;
+
+  color: #0f172a;
+}
+
+
+.close-button {
+  border: none;
+
+  background: transparent;
+
+  font-size: 24px;
+
+  cursor: pointer;
+
+  color: #64748b;
+}
+
+
+.book-modal-body {
+  padding: 20px;
+}
+
+
+.booking-info {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 14px;
+}
+
+
+.info-row {
+  display: flex;
+
+  justify-content: space-between;
+
+  gap: 20px;
+
+  font-size: 14px;
+}
+
+
+.info-row span {
+  color: #64748b;
+}
+
+
+.info-row strong {
+  color: #0f172a;
+
+  text-align: right;
+}
+
+
+.warning-box {
+  margin-top: 20px;
+
+  padding: 14px;
+
+  background: #f8fafc;
+
+  border-radius: 10px;
+
+  border: 1px solid #e2e8f0;
+}
+
+
+.warning-box p {
+  margin: 0 0 6px;
+
+  color: #334155;
+
+  font-size: 14px;
+
+  font-weight: 600;
+}
+
+
+.warning-box small {
+  color: #64748b;
+}
+
+
+.book-modal-actions {
+  display: flex;
+
+  justify-content: flex-end;
+
+  gap: 12px;
+
+  padding: 16px 20px;
+
+  border-top: 1px solid #e2e8f0;
+}
+
+
+.cancel-btn,
+.confirm-btn {
+
+  padding: 10px 18px;
+
+  border-radius: 8px;
+
+  border: none;
+
+  cursor: pointer;
+
+  font-weight: 600;
+}
+
+
+.cancel-btn {
+  background: #f1f5f9;
+
+  color: #475569;
+}
+
+
+.confirm-btn {
+  background: #2563eb;
+
+  color: white;
+}
+
+
+.confirm-btn:disabled,
+.cancel-btn:disabled {
+  opacity: 0.6;
+
+  cursor: not-allowed;
+}
+
+
+@media(max-width: 500px){
+
+  .book-modal {
+    width: calc(100% - 32px);
+  }
+
+
+  .info-row {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+}

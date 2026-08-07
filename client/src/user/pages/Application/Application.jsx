@@ -1,71 +1,87 @@
-import { useState } from 'react';
-import PaymentModal from '../../components/PaymentModal/PaymentModal';
-import useAxiosPrivate from '../../../shared/hooks/useAxiosPrivate';
-import './Application.css';
+import { useState } from "react";
+import ApplicationConfirmModal from "./ApplicationConfirmModal";
+import useAxiosPrivate from "../../../shared/hooks/useAxiosPrivate";
+import "./Application.css";
 
 export default function Application() {
   const axiosPrivate = useAxiosPrivate();
 
-  const [showPaymentModal, setShowPaymentModal] = useState(false); 
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const [formData, setFormData] = useState({
-    fullName: '',
-    dateOfBirth: '',
-    identityNumber: '',
-    bloodGroup: '',
-    permanentAddress: '',
-    temporaryAddress: '',
-    licenseCategory: 'A',
+    fullName: "",
+    dateOfBirth: "",
+    identityNumber: "",
+    bloodGroup: "",
+    permanentAddress: "",
+    temporaryAddress: "",
+    licenseCategory: "A",
   });
 
   const categories = [
-    { id: 'A', label: 'A', description: 'Motorcycle / scooter' },
-    { id: 'B', label: 'B', description: 'Car / jeep / van' },
-    { id: 'K', label: 'K', description: 'Small scooter (100cc)' },
-    { id: 'H', label: 'H', description: 'Heavy vehicle' },
+    {
+      id: "A",
+      label: "A",
+      description: "Motorcycle / Scooter",
+    },
+    {
+      id: "B",
+      label: "B",
+      description: "Car / Jeep / Van",
+    },
+    {
+      id: "K",
+      label: "K",
+      description: "Small Scooter (100cc)",
+    },
+    {
+      id: "H",
+      label: "H",
+      description: "Heavy Vehicle",
+    },
   ];
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
   const handleCategorySelect = (categoryId) => {
-    setFormData((prev) => ({ ...prev, licenseCategory: categoryId }));
+    setFormData((prev) => ({
+      ...prev,
+      licenseCategory: categoryId,
+    }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
-    setShowPaymentModal(true);
+
+    setShowConfirmModal(true);
   };
 
-  const handlePaymentSuccess = async (paymentData) => {
+  const handleConfirmApplication = async () => {
     try {
       setIsSubmitting(true);
 
       const response = await axiosPrivate.post(
         "/applications",
-        {
-          ...formData,
-
-          payment: {
-            status: paymentData.status,
-            transactionId: paymentData.transactionId,
-          },
-        }
+        formData
       );
 
-      console.log("Application created: ", response.data);
+      console.log(response.data);
 
-      setShowPaymentModal(false);
+      alert("Application submitted successfully.");
 
-      alert("Payment successful! Your application has been submitted.");
+      setShowConfirmModal(false);
 
     } catch (error) {
       console.error(
-        "Application submission error: ",
+        "Application submission error:",
         error.response?.data?.message || error.message
       );
 
@@ -73,7 +89,6 @@ export default function Application() {
         error.response?.data?.message ||
           "Failed to submit application."
       );
-
     } finally {
       setIsSubmitting(false);
     }
@@ -85,26 +100,36 @@ export default function Application() {
 
         <div className="form-header">
           <div>
-            <h3>Apply For License</h3>
-            <p>
-              Fill in your details to begin your driving license application.
-            </p>
-          </div>
+            <h3>Apply for a Driving License</h3>
 
-          <div className="application-fee-badge">
-            Application Fee: <strong>Rs. 500</strong>
+            <p>
+              Fill in your details to begin your driving
+              license application.
+            </p>
           </div>
         </div>
 
-        <form onSubmit={handleSubmit} className="form-body">
+        <form
+          onSubmit={handleSubmit}
+          className="form-body"
+        >
+
+          {/* PERSONAL INFORMATION */}
 
           <div className="form-section">
             <div className="section-heading">
-              <span className="section-number">1</span>
+              <span className="section-number">
+                1
+              </span>
 
               <div>
                 <h4>Personal Information</h4>
-                <p>Enter your personal details exactly as shown on your identification document.</p>
+
+                <p>
+                  Enter your personal details exactly
+                  as shown on your identification
+                  document.
+                </p>
               </div>
             </div>
 
@@ -112,16 +137,16 @@ export default function Application() {
 
               <div className="form-group">
                 <label className="form-label">
-                  Full name
+                  Full Name
                   <span className="required">*</span>
                 </label>
 
                 <input
                   type="text"
                   name="fullName"
-                  placeholder="Prabesh Shrestha"
                   value={formData.fullName}
                   onChange={handleChange}
+                  placeholder="Prabesh Shrestha"
                   className="form-input"
                   required
                 />
@@ -129,7 +154,7 @@ export default function Application() {
 
               <div className="form-group">
                 <label className="form-label">
-                  Date of birth
+                  Date of Birth
                   <span className="required">*</span>
                 </label>
 
@@ -152,9 +177,9 @@ export default function Application() {
                 <input
                   type="text"
                   name="identityNumber"
-                  placeholder="XX-XX-XX-XXXXX"
                   value={formData.identityNumber}
                   onChange={handleChange}
+                  placeholder="XX-XX-XX-XXXXX"
                   className="form-input"
                   required
                 />
@@ -162,7 +187,7 @@ export default function Application() {
 
               <div className="form-group">
                 <label className="form-label">
-                  Blood group
+                  Blood Group
                   <span className="required">*</span>
                 </label>
 
@@ -177,27 +202,35 @@ export default function Application() {
                     Select Blood Group
                   </option>
 
-                  <option value="A+">A+</option>
-                  <option value="A-">A-</option>
-                  <option value="B+">B+</option>
-                  <option value="B-">B-</option>
-                  <option value="O+">O+</option>
-                  <option value="O-">O-</option>
-                  <option value="AB+">AB+</option>
-                  <option value="AB-">AB-</option>
+                  <option>A+</option>
+                  <option>A-</option>
+                  <option>B+</option>
+                  <option>B-</option>
+                  <option>O+</option>
+                  <option>O-</option>
+                  <option>AB+</option>
+                  <option>AB-</option>
                 </select>
               </div>
 
             </div>
           </div>
 
+          {/* ADDRESS */}
+
           <div className="form-section">
             <div className="section-heading">
-              <span className="section-number">2</span>
+              <span className="section-number">
+                2
+              </span>
 
               <div>
                 <h4>Address Information</h4>
-                <p>Provide your permanent and current residential addresses.</p>
+
+                <p>
+                  Provide your permanent and temporary
+                  addresses.
+                </p>
               </div>
             </div>
 
@@ -205,14 +238,14 @@ export default function Application() {
 
               <div className="form-group">
                 <label className="form-label">
-                  Permanent address
+                  Permanent Address
                   <span className="required">*</span>
                 </label>
 
                 <input
                   type="text"
                   name="permanentAddress"
-                  placeholder="Sworgadwari Municipality - 4, Pyuthan"
+                  placeholder="Sworgadwari Municipality -4, Pyuthan"
                   value={formData.permanentAddress}
                   onChange={handleChange}
                   className="form-input"
@@ -222,14 +255,14 @@ export default function Application() {
 
               <div className="form-group">
                 <label className="form-label">
-                  Temporary address
+                  Temporary Address
                   <span className="required">*</span>
                 </label>
 
                 <input
                   type="text"
                   name="temporaryAddress"
-                  placeholder="Sworgadwari Municipality - 4, Pyuthan"
+                  placeholder="Sworgadwari Municipality -4, Pyuthan"
                   value={formData.temporaryAddress}
                   onChange={handleChange}
                   className="form-input"
@@ -240,24 +273,36 @@ export default function Application() {
             </div>
           </div>
 
+          {/* CATEGORY */}
+
           <div className="form-section">
             <div className="section-heading">
-              <span className="section-number">3</span>
+              <span className="section-number">
+                3
+              </span>
 
               <div>
                 <h4>License Category</h4>
-                <p>Select the type of vehicle you want to apply for.</p>
+
+                <p>
+                  Select the vehicle category you wish
+                  to apply for.
+                </p>
               </div>
             </div>
 
             <div className="category-grid">
               {categories.map((cat) => (
                 <button
-                  type="button"
                   key={cat.id}
-                  onClick={() => handleCategorySelect(cat.id)}
+                  type="button"
+                  onClick={() =>
+                    handleCategorySelect(cat.id)
+                  }
                   className={`category-card ${
-                    formData.licenseCategory === cat.id ? 'selected' : ''
+                    formData.licenseCategory === cat.id
+                      ? "selected"
+                      : ""
                   }`}
                 >
                   <span className="category-letter">
@@ -275,12 +320,16 @@ export default function Application() {
                   </div>
 
                   <span className="category-check">
-                    {formData.licenseCategory === cat.id ? '✓' : ''}
+                    {formData.licenseCategory === cat.id
+                      ? "✓"
+                      : ""}
                   </span>
                 </button>
               ))}
             </div>
           </div>
+
+          {/* FOOTER */}
 
           <div className="form-footer">
 
@@ -288,8 +337,9 @@ export default function Application() {
               <span className="notice-icon">ⓘ</span>
 
               <p>
-                You will be asked to complete the <strong>Rs. 500</strong> application
-                fee payment before your application is submitted.
+                Please ensure all information is
+                accurate before submitting your
+                application.
               </p>
             </div>
 
@@ -299,8 +349,10 @@ export default function Application() {
                 className="apply-btn"
                 disabled={isSubmitting}
               >
-                Continue to Payment
-                <span className="button-arrow">→</span>
+                Apply for License
+                <span className="button-arrow">
+                  →
+                </span>
               </button>
             </div>
 
@@ -309,15 +361,14 @@ export default function Application() {
         </form>
       </div>
 
-      {showPaymentModal && (
-        <PaymentModal
-          amount={500}
-          title="Application Fee"
-          description="Complete your payment to submit your license application."
-          onClose={() => setShowPaymentModal(false)}
-          onPaymentSuccess={handlePaymentSuccess}
-        />
-      )}
+      <ApplicationConfirmModal
+        open={showConfirmModal}
+        loading={isSubmitting}
+        onClose={() =>
+          setShowConfirmModal(false)
+        }
+        onConfirm={handleConfirmApplication}
+      />
     </div>
   );
 }

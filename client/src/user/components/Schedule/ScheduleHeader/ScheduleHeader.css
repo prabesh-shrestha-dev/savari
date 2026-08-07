@@ -2,16 +2,6 @@
   margin-bottom: 32px;
 }
 
-.schedule-eyebrow {
-  display: inline-block;
-  margin-bottom: 8px;
-  color: #2563eb;
-  font-size: 13px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-}
-
 .schedule-header h1 {
   margin: 0 0 8px;
   color: #0f172a;

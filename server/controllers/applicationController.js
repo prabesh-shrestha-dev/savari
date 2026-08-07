@@ -15,24 +15,7 @@ const createApplication = async (req, res) => {
       permanentAddress,
       temporaryAddress,
       licenseCategory,
-      payment,
     } = req.body;
-
-    if (!payment) {
-      return res.status(400).json({
-        success: false,
-        message: "Payment information is required.",
-      });
-    }
-
-    if (payment.status !== "completed") {
-      return res.status(400).json({
-        success: false,
-        message: "Payment was not completed.",
-      });
-    }
-
-    const APPLICATION_FEE = 500;
 
     const existingApplication = await Application.findOne({
       user: userId,
@@ -84,22 +67,10 @@ const createApplication = async (req, res) => {
       closed: false,
     });
 
-    const newPayment = await Payment.create({
-      user: userId,
-      application: application._id,
-
-      type: "application_fee",
-      amount: APPLICATION_FEE,
-      status: "completed",
-      transactionId: payment.transactionId,
-      paidAt: new Date(),
-    });
-
     return res.status(201).json({
       success: true,
       message: "Application submitted successfully.",
       application,
-      payment: newPayment
     });
 
   } catch (err) {

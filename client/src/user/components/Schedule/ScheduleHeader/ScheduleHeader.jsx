@@ -4,9 +4,6 @@ export default function ScheduleHeader() {
   return (
     <div className="schedule-header">
       <div>
-        <span className="schedule-eyebrow">
-          Examination Management
-        </span>
 
         <h1>My Examination Schedule</h1>
 

@@ -68,7 +68,13 @@ export default function ApplicationProgress({
         </div>
       </div>
 
-      <div className="progress-steps">
+      <div
+        className="progress-steps"
+        style={{
+          "--progress-width": `${(currentIndex / (steps.length - 1)) * 84}%`,
+          "--progress-height": `${(currentIndex / (steps.length - 1)) * 84}%`,
+        }}
+      >
         {steps.map((step, index) => {
           const completed = index < currentIndex;
           const active = index === currentIndex;
