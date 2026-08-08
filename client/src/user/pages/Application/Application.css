@@ -127,6 +127,8 @@
 
   margin-top: 1px;
 
+  border: 2px solid #0048FF;
+
   border-radius: 50%;
 
   background: #eff6ff;
@@ -189,56 +191,83 @@
 
 .form-input,
 .form-select {
-  width: 100%;
+  width: 100% !important;
 
-  min-height: 44px;
+  min-height: 44px !important;
 
-  padding: 0.7rem 0.85rem;
+  padding: 0.7rem 0.85rem !important;
 
-  box-sizing: border-box;
+  box-sizing: border-box !important;
 
-  border: 1px solid #d1d5db;
+  border: 1px solid #d1d5db !important;
 
-  border-radius: 8px;
+  border-radius: 8px !important;
 
-  outline: none;
+  outline: none !important;
 
-  background: #ffffff;
+  background: #ffffff !important;
 
-  color: #1f2937;
+  color: #1f2937 !important;
 
-  font-family: inherit;
+  font-family: inherit !important;
 
-  font-size: 0.85rem;
+  font-size: 0.85rem !important;
 
   transition:
     border-color 0.2s ease,
     box-shadow 0.2s ease,
-    background-color 0.2s ease;
+    background-color 0.2s ease !important;
 }
 
+
 .form-input::placeholder {
-  color: #9ca3af;
+  color: #9ca3af !important;
 }
+
 
 .form-input:hover,
 .form-select:hover {
-  border-color: #9ca3af;
+  border-color: #9ca3af !important;
+
+  background: #ffffff !important;
 }
+
 
 .form-input:focus,
 .form-select:focus {
-  border-color: #2563eb;
+  border-color: #2563eb !important;
+
+  background: #ffffff !important;
+
+  color: #1f2937 !important;
 
   box-shadow:
-    0 0 0 3px rgba(37, 99, 235, 0.1);
+    0 0 0 3px rgba(37, 99, 235, 0.1) !important;
 }
 
 
 .form-select {
-  cursor: pointer;
+  cursor: pointer !important;
 
-  appearance: auto;
+  appearance: auto !important;
+
+  background-color: #ffffff !important;
+}
+
+
+/* Chrome autofill fix */
+.form-input:-webkit-autofill,
+.form-input:-webkit-autofill:hover,
+.form-input:-webkit-autofill:focus {
+
+  -webkit-box-shadow:
+    0 0 0 1000px #ffffff inset !important;
+
+  -webkit-text-fill-color:
+    #1f2937 !important;
+
+  background-color:
+    #ffffff !important;
 }
 
 

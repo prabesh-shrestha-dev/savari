@@ -100,7 +100,9 @@ export default function Application() {
 
         <div className="form-header">
           <div>
-            <h3>Apply for a Driving License</h3>
+            <h3>Apply for a <span style={{
+              color: "#0048FF"
+            }}>Driving License</span></h3>
 
             <p>
               Fill in your details to begin your driving
@@ -146,7 +148,7 @@ export default function Application() {
                   name="fullName"
                   value={formData.fullName}
                   onChange={handleChange}
-                  placeholder="Prabesh Shrestha"
+                  placeholder="Enter Your Full Name"
                   className="form-input"
                   required
                 />
@@ -245,7 +247,7 @@ export default function Application() {
                 <input
                   type="text"
                   name="permanentAddress"
-                  placeholder="Sworgadwari Municipality -4, Pyuthan"
+                  placeholder="Enter Your Permanent Address"
                   value={formData.permanentAddress}
                   onChange={handleChange}
                   className="form-input"
@@ -262,7 +264,7 @@ export default function Application() {
                 <input
                   type="text"
                   name="temporaryAddress"
-                  placeholder="Sworgadwari Municipality -4, Pyuthan"
+                  placeholder="Enter Your Temporary Address"
                   value={formData.temporaryAddress}
                   onChange={handleChange}
                   className="form-input"
@@ -289,6 +291,12 @@ export default function Application() {
                   to apply for.
                 </p>
               </div>
+
+              <span style={{
+                margin: "15px 0 0 300px",
+                fontSize: "0.8rem",
+                color: "#0048FF"
+              }}>See More</span>
             </div>
 
             <div className="category-grid">

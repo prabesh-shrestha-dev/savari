@@ -5,7 +5,9 @@ export default function ScheduleHeader() {
     <div className="schedule-header">
       <div>
 
-        <h1>My Examination Schedule</h1>
+        <h1>My Examination <span style={{
+          color: "#0048FF"
+        }}>Schedule</span></h1>
 
         <p>
           View your upcoming examinations and book available

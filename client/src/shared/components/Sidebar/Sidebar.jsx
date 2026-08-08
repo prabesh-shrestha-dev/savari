@@ -5,6 +5,7 @@ import UserMenu from "./UserMenu";
 import { useAuth } from "../../contexts/authContext";
 import useLogout from "../../hooks/useLogout";
 import "./Sidebar.css";
+import { ArrowRight } from "lucide-react";
 
 export default function Sidebar({ role }) {
   const { auth } = useAuth();
@@ -24,16 +25,35 @@ export default function Sidebar({ role }) {
     }
   };
 
-  return (
-    <aside className="sidebar">
-      <LogoBox />
+return (
+  <aside className="sidebar">
+    <LogoBox role={role} />
 
-      <SidebarNav role={role} />
+    <SidebarNav role={role} />
 
-      <UserMenu
-        user={auth.user}
-        onLogout={handleLogout}
-      />
-    </aside>
-  );
+    <div className="support-box">
+
+      <h4>
+        Need Assistance?
+      </h4>
+
+      <p>
+        Our support is here to help.
+      </p>
+
+      <button className="support-link">
+        Contact support
+        <ArrowRight size={15} />
+      </button>
+
+    </div>
+
+
+    <UserMenu
+      user={auth.user}
+      onLogout={handleLogout}
+    />
+
+  </aside>
+);
 }

@@ -1,50 +1,25 @@
 .logo-box {
+  width: 200px;
+  height: 200px;  
+
   display: flex;
   align-items: center;
-  gap: 0.9rem;
-
-  padding: 1.5rem;
-  border-bottom: 1px solid #e5e7eb;
-
-  background: #ffffff;
-}
-
-.logo-icon {
-  width: 56px;
-  height: 56px;
-
-  display: flex;
   justify-content: center;
-  align-items: center;
 
-  border-radius: 14px;
+  align-self: center;
 
-  background: #2563eb;
-  color: #ffffff;
+  margin-top: -30px;
+  margin-bottom: -50px;
 
-  flex-shrink: 0;
+  overflow: hidden;
 }
 
-.logo-content {
-  display: flex;
-  flex-direction: column;
-}
 
-.logo-title {
-  margin: 0;
+.logo-box img {
+  width: 100%;
+  height: 100%;
 
-  font-size: 1.05rem;
-  font-weight: 700;
-
-  color: #111827;
-  line-height: 1.2;
-}
-
-.logo-tagline {
-  margin-top: 0.25rem;
-
-  font-size: 0.8rem;
-  color: #6b7280;
-
-  line-height: 1.3;
+  object-fit: contain;
+  
+  cursor: pointer;
 }

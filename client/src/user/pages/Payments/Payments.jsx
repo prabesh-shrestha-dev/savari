@@ -39,6 +39,10 @@ export default function Payments() {
           My <span>Payments</span>
         </h1>
 
+        <p>
+          View your payment history.
+        </p>
+
 
 
         {/* Payment Card */}
@@ -193,11 +197,6 @@ export default function Payments() {
 
 
         </div>
-
-
-
-
-        <div className="payment-divider"></div>
 
 
       </div>

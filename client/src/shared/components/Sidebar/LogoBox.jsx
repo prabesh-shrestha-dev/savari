@@ -1,22 +1,24 @@
+import { useNavigate } from "react-router-dom";
+import logo from "../../../assets/876.png";
 import "./LogoBox.css";
 import { ShieldCheck } from "lucide-react";
 
-export default function LogoBox() {
+export default function LogoBox({ role }) {
+  const navigate = useNavigate();
+
   return (
     <div className="logo-box">
-      <div className="logo-icon">
-        <ShieldCheck size={34} strokeWidth={2.2} />
-      </div>
-
-      <div className="logo-content">
-        <h2 className="logo-title">
-          SAVARI
-        </h2>
-
-        <p className="logo-tagline">
-          LESS WAIT, DRIVE MORE
-        </p>
-      </div>
+      <img
+        src={logo}
+        alt="Savari Logo"
+        onClick={() => {
+          if (role === "user") {
+            navigate("/user/dashboard");
+          } else if (role === "admin") {
+            navigate("/admin/dashboard");
+          }
+        }}
+      />
     </div>
   );
 }

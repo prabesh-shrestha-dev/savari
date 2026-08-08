@@ -1,17 +1,13 @@
 .payments-page {
 
-  width:100%;
+  width: calc(100% - 2rem);
+  margin: 1rem;
+  padding: 2rem;
+  box-sizing: border-box;
 
-  padding:2rem;
-
-  box-sizing:border-box;
-
-  background:#f8fafc;
-
-  font-family:Inter, Arial, sans-serif;
-
-  color:#0f172a;
-
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  background: #ffffff;
 }
 
 
@@ -24,14 +20,17 @@
 
 }
 
+.payments-container p {
+  color: #64748b;
+  margin-bottom: 2rem;
+}
+
 
 
 /* TITLE */
 
 
 .page-title {
-
-  margin:0 0 2rem;
 
   font-size:32px;
 
@@ -48,8 +47,6 @@
   color:#2563eb;
 
 }
-
-
 
 
 /* COMMON CARD */

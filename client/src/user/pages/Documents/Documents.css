@@ -27,8 +27,8 @@
 
   color: #111827;
 
-  font-size: 1.8rem;
-  font-weight: 600;
+  font-size: 2rem;
+  font-weight: bold;
 }
 
 .documents-page-header p {
@@ -407,6 +407,8 @@
 
   font-size: 0.8rem;
 
+  font-weight: bold;
+
   line-height: 1.5;
 }
 
@@ -440,6 +442,60 @@
 
 .approved-info p {
   color: #166534;
+}
+
+.document-requirements-box {
+
+  margin-top: 2rem;
+
+  padding: 1.5rem 1.8rem;
+
+  background: #ffffff;
+
+  border: 1px solid #e2e8f0;
+
+  border-radius: 16px;
+
+}
+
+
+.document-requirements-box h3 {
+
+  margin: 0 0 1rem;
+
+  font-size: 1rem;
+
+  font-weight: 700;
+
+  color: #1f2937;
+
+}
+
+
+.document-requirements-box ul {
+
+  margin: 0;
+
+  padding-left: 1.2rem;
+
+}
+
+
+.document-requirements-box li {
+
+  margin-bottom: 0.6rem;
+
+  color: #64748b;
+
+  font-size: 0.9rem;
+
+}
+
+
+.document-requirements-box li:last-child {
+
+  margin-bottom: 0;
+
 }
 
 

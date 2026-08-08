@@ -332,7 +332,9 @@ export default function Documents() {
 
       <div className="documents-page-header">
         <div>
-          <h1>My Documents</h1>
+          <h1>My <span style={{
+            color: "#0048FF"
+          }}>Documents</span></h1>
 
           <p>
             Upload and manage the documents
@@ -366,6 +368,27 @@ export default function Documents() {
             {renderDocumentCard(document)}
           </div>
         ))}
+      </div>
+
+      <div className="document-requirements-box">
+
+        <h3>
+          Please make sure you have the following documents before applying:
+        </h3>
+
+        <ul>
+          <li>Original Citizenship Certificate</li>
+          <li>Photocopy of Citizenship Certificate</li>
+          <li>Printed Online Application Form</li>
+          <li>Blood Group Certificate/Card</li>
+          <li>Passport-size Photographs (2–4 copies)</li>
+          <li>Medical Fitness Certificate (if required)</li>
+          <li>Original ID for Verification</li>
+          <li>
+            Previous Driving License (only for category addition or renewal)
+          </li>
+        </ul>
+
       </div>
 
     </div>

@@ -18,14 +18,14 @@ export default function SidebarNav({ role }) {
       icon: LayoutDashboard,
     },
     {
-      label: "Apply for License",
-      to: "/user/apply",
-      icon: FilePlus,
-    },
-    {
       label: "Documents",
       to: "/user/documents",
       icon: FileText,
+    },
+    {
+      label: "Apply for License",
+      to: "/user/apply",
+      icon: FilePlus,
     },
     {
       label: "Schedule",
@@ -51,14 +51,14 @@ export default function SidebarNav({ role }) {
       icon: LayoutDashboard,
     },
     {
-      label: "Review Applications",
-      to: "/admin/applications",
-      icon: FilePlus,
-    },
-    {
       label: "Review Documents",
       to: "/admin/documents",
       icon: FileText,
+    },
+    {
+      label: "Review Applications",
+      to: "/admin/applications",
+      icon: FilePlus,
     },
     {
       label: "Manage Schedules",

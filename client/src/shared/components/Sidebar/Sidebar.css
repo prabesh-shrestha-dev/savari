@@ -24,3 +24,64 @@
   background: #d1d5db;
   border-radius: 999px;
 }
+
+.support-box {
+  margin: 1rem;
+  padding: 1rem;
+
+  border-radius: 14px;
+
+  background: #EDF3FF;
+
+  margin-top: auto;
+}
+
+
+.support-box h4 {
+  margin: 0 0 6px;
+
+  font-size: 14px;
+
+  font-weight: 700;
+
+  color: #111827;
+}
+
+
+.support-box p {
+  margin: 0 0 12px;
+
+  font-size: 12px;
+
+  color: #64748b;
+}
+
+
+.support-link {
+  display: flex;
+
+  align-items: center;
+
+  gap: 6px;
+
+  padding: 0;
+
+  border: none;
+
+  background: transparent;
+
+  color: #0048FF;
+
+  font-size: 13px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: gap 0.2s ease;
+}
+
+
+.support-link:hover {
+  gap: 10px;
+}

@@ -100,11 +100,6 @@ export default function ScheduleCard({
                       {slot.startTime} -{" "}
                       {slot.endTime}
                     </strong>
-
-                    <span>
-                      {slot.booked}/
-                      {slot.capacity} seats
-                    </span>
                   </div>
 
                   <CapacityBar
@@ -143,11 +138,6 @@ export default function ScheduleCard({
                         <strong>
                           Category {category}
                         </strong>
-
-                        <span>
-                          {data.booked}/
-                          {data.capacity}
-                        </span>
                       </div>
 
                       <CapacityBar
