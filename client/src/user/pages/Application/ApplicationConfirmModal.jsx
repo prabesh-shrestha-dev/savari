@@ -9,7 +9,13 @@ export default function ApplicationConfirmModal({
   if (!open) return null;
 
   return (
-    <div className="confirm-overlay">
+    <div
+      className="confirm-overlay"
+      style={{
+        backdropFilter: "blur(6px)",
+        WebkitBackdropFilter: "blur(6px)",
+      }}
+    >
       <div className="confirm-card">
         <h2>Apply for License?</h2>
 
