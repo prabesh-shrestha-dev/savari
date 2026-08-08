@@ -278,7 +278,9 @@ export default function Application() {
           {/* CATEGORY */}
 
           <div className="form-section">
-            <div className="section-heading">
+          <div className="section-heading">
+
+            <div className="section-left">
               <span className="section-number">
                 3
               </span>
@@ -291,13 +293,14 @@ export default function Application() {
                   to apply for.
                 </p>
               </div>
-
-              <span style={{
-                margin: "15px 0 0 300px",
-                fontSize: "0.8rem",
-                color: "#0048FF"
-              }}>See More</span>
             </div>
+
+
+            <button className="see-more">
+              See More
+            </button>
+
+          </div>
 
             <div className="category-grid">
               {categories.map((cat) => (
@@ -357,7 +360,7 @@ export default function Application() {
                 className="apply-btn"
                 disabled={isSubmitting}
               >
-                Apply for License
+                Continue
                 <span className="button-arrow">
                   →
                 </span>
