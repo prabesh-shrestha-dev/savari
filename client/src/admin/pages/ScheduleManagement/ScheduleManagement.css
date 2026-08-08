@@ -1,8 +1,12 @@
 .schedule-management {
-  width: 100%;
-  min-height: 100%;
-  padding: 30px;
+  width: calc(100% - 2rem);
+  margin: 1rem;
+  padding: 2rem;
   box-sizing: border-box;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  background: #ffffff;
 }
 
 .schedule-management-header {

@@ -1,3 +1,7 @@
+import { useState } from "react";
+
+import ExaminationPassOrFailModal from "./ExaminationPassOrFailModal";
+
 import "./ExaminationCard.css";
 
 const STAGE_LABELS = {
@@ -16,6 +20,12 @@ export default function ExaminationCard({
   onLicenseReady,
   onLicenseCollected,
 }) {
+  const [showResultModal, setShowResultModal] =
+    useState(false);
+
+  const [selectedResult, setSelectedResult] =
+    useState(null);
+
   const applicationId = application._id;
 
   const user = application.user || {};
@@ -41,6 +51,21 @@ export default function ExaminationCard({
   const isActionLoading =
     actionLoading === applicationId;
 
+  const handleResultClick = (result) => {
+    setSelectedResult(result);
+    setShowResultModal(true);
+  };
+
+  const handleConfirmResult = () => {
+    onResult(
+      applicationId,
+      selectedResult
+    );
+
+    setShowResultModal(false);
+    setSelectedResult(null);
+  };
+
   const renderActions = () => {
     if (
       selectedStage === "biometric_pending" ||
@@ -57,7 +82,7 @@ export default function ExaminationCard({
               isActionLoading
             }
             onClick={() =>
-              onResult(applicationId, true)
+              handleResultClick(true)
             }
           >
             {actionLoading ===
@@ -74,7 +99,7 @@ export default function ExaminationCard({
               isActionLoading
             }
             onClick={() =>
-              onResult(applicationId, false)
+              handleResultClick(false)
             }
           >
             {actionLoading ===
@@ -184,6 +209,19 @@ export default function ExaminationCard({
       </div>
 
       {renderActions()}
+
+      {showResultModal && (
+        <ExaminationPassOrFailModal
+          application={application}
+          result={selectedResult}
+          loading={isResultLoading}
+          onClose={() => {
+            setShowResultModal(false);
+            setSelectedResult(null);
+          }}
+          onConfirm={handleConfirmResult}
+        />
+      )}
     </div>
   );
 }

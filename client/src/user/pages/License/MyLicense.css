@@ -1,7 +1,12 @@
 .license-page{
-    max-width:900px;
-    margin:auto;
-    padding:2rem;
+  width: calc(100% - 2rem);
+  margin: 1rem;
+  padding: 2rem;
+  box-sizing: border-box;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  background: #ffffff;
 }
 
 .page-header{

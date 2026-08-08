@@ -7,19 +7,29 @@ export default function ApplicationsReview() {
   const axiosPrivate = useAxiosPrivate();
 
   const [applications, setApplications] = useState([]);
+  const [filteredApplications, setFilteredApplications] = useState([]);
+  const [search, setSearch] = useState("");
+
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
 
-  const [selectedApplication, setSelectedApplication] = useState(null);
+  const [selectedApplication, setSelectedApplication] =
+    useState(null);
+
 
   const fetchApplications = async () => {
     try {
       setIsLoading(true);
       setError("");
 
-      const response = await axiosPrivate.get("/applications/review");
+      const response = await axiosPrivate.get(
+        "/applications/review"
+      );
 
-      setApplications(response.data?.applications);
+      const data = response.data?.applications || [];
+
+      setApplications(data);
+      setFilteredApplications(data);
 
     } catch (err) {
       console.error(
@@ -29,25 +39,46 @@ export default function ApplicationsReview() {
 
       setError(
         err.response?.data?.message ||
-          "Failed to load applications."
+        "Failed to load applications."
       );
+
     } finally {
       setIsLoading(false);
     }
   };
 
+
   useEffect(() => {
     fetchApplications();
   }, []);
 
+
+  useEffect(() => {
+    const value = search.toLowerCase().trim();
+
+    if (!value) {
+      setFilteredApplications(applications);
+      return;
+    }
+
+    const filtered = applications.filter(
+      (application) =>
+        application.fullName
+          ?.toLowerCase()
+          .includes(value) ||
+        application.user?.identifier
+          ?.toLowerCase()
+          .includes(value)
+    );
+
+    setFilteredApplications(filtered);
+
+  }, [search, applications]);
+
+
   if (isLoading) {
     return (
       <div className="applications-review">
-        <div className="review-header">
-          <h2>Review Applications</h2>
-          <p>Review pending license applications.</p>
-        </div>
-
         <div className="review-loading">
           Loading applications...
         </div>
@@ -55,13 +86,10 @@ export default function ApplicationsReview() {
     );
   }
 
+
   if (error) {
     return (
       <div className="applications-review">
-        <div className="review-header">
-          <h2>Review Applications</h2>
-          <p>Review pending license applications.</p>
-        </div>
 
         <div className="review-error">
           <p>{error}</p>
@@ -70,88 +98,168 @@ export default function ApplicationsReview() {
             Try Again
           </button>
         </div>
+
       </div>
     );
   }
 
+
   return (
     <div className="applications-review">
+
       <div className="review-header">
+
         <div>
-          <h2>Review Applications</h2>
+          <h2>
+            Review Applications
+          </h2>
+
           <p>
             Review and process pending license applications.
           </p>
         </div>
 
-        <div className="application-count">
-          {applications.length} Pending
+
+        <div className="review-tools">
+
+          <input
+            type="text"
+            placeholder="Search name or email..."
+            value={search}
+            onChange={(e) =>
+              setSearch(e.target.value)
+            }
+          />
+
+          <div className="application-count">
+            {filteredApplications.length} Pending
+          </div>
+
         </div>
+
+
       </div>
 
-      {applications.length === 0 ? (
+
+
+      {filteredApplications.length === 0 ? (
+
         <div className="empty-applications">
-          <h3>No Pending Applications</h3>
+
+          <h3>
+            No Applications Found
+          </h3>
+
           <p>
-            There are currently no applications waiting
-            for review.
+            No matching applications available.
           </p>
+
         </div>
+
       ) : (
+
         <div className="applications-list">
-          {applications.map((application) => (
+
+          {filteredApplications.map((application) => (
+
             <div
               key={application._id}
               className="application-card"
             >
+
+              <div className="applicant-photo">
+
+                {application.documents?.passportSizePhoto?.url ? (
+
+                  <img
+                    src={
+                      application.documents.passportSizePhoto.url
+                    }
+                    alt="Applicant"
+                  />
+
+                ) : (
+
+                  <div className="photo-placeholder">
+                    No Photo
+                  </div>
+
+                )}
+
+              </div>
+
+
               <div className="application-info">
-                <h3>{application.fullName}</h3>
 
-                <p>
-                  <strong>Category:</strong>{" "}
-                  {application.licenseCategory}
+                <h3>
+                  {application.fullName}
+                </h3>
+
+                <p className="identifier">
+                  {application.user?.identifier}
                 </p>
 
-                <p>
-                  <strong>Identity Number:</strong>{" "}
-                  {application.identityNumber}
-                </p>
-
-                <p>
-                  <strong>Submitted:</strong>{" "}
+                <p className="submitted-date">
+                  Submitted:{" "}
                   {new Date(
                     application.createdAt
                   ).toLocaleDateString()}
                 </p>
+
               </div>
 
+
               <div className="application-status">
+
                 <span className="pending-badge">
                   Pending Review
                 </span>
 
+
                 <button
                   className="review-btn"
-                  onClick={() => setSelectedApplication(application)}
+                  onClick={() =>
+                    setSelectedApplication(application)
+                  }
                 >
                   Review
                 </button>
+
               </div>
+
+
             </div>
+
           ))}
+
         </div>
+
       )}
 
+
+
       {selectedApplication && (
+
         <ApplicationReviewModal
+
           application={selectedApplication}
-          onClose={() => setSelectedApplication(null)}
+
+          onClose={() =>
+            setSelectedApplication(null)
+          }
+
           onReviewSuccess={() => {
+
             setSelectedApplication(null);
+
             fetchApplications();
+
           }}
+
         />
+
       )}
+
     </div>
   );
 }

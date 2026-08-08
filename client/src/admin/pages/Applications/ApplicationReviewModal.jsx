@@ -313,28 +313,6 @@ export default function ApplicationReviewModal({
 
               <button
                 type="button"
-                className={`decision-btn approve ${
-                  decision === "approved"
-                    ? "selected"
-                    : ""
-                }`}
-                onClick={() =>
-                  handleDecisionSelect("approved")
-                }
-                disabled={isSubmitting}
-              >
-                <span className="decision-icon">
-                  ✓
-                </span>
-
-                <span>
-                  Approve Application
-                </span>
-              </button>
-
-
-              <button
-                type="button"
                 className={`decision-btn reject ${
                   decision === "rejected"
                     ? "selected"
@@ -351,6 +329,27 @@ export default function ApplicationReviewModal({
 
                 <span>
                   Reject Application
+                </span>
+              </button>
+
+              <button
+                type="button"
+                className={`decision-btn approve ${
+                  decision === "approved"
+                    ? "selected"
+                    : ""
+                }`}
+                onClick={() =>
+                  handleDecisionSelect("approved")
+                }
+                disabled={isSubmitting}
+              >
+                <span className="decision-icon">
+                  ✓
+                </span>
+
+                <span>
+                  Approve Application
                 </span>
               </button>
 

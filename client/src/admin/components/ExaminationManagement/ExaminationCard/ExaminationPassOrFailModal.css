@@ -1,0 +1,193 @@
+.exam-result-overlay {
+  position: fixed;
+
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 287px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(0,0,0,0.35);
+
+  z-index: 1000;
+}
+
+
+.exam-result-modal {
+  width: 420px;
+  max-width: calc(100% - 2rem);
+
+  background: #ffffff;
+
+  border-radius: 14px;
+
+  border: 1px solid #e5e7eb;
+
+  padding: 1.5rem;
+
+  box-shadow:
+    0 20px 40px rgba(0,0,0,0.12);
+}
+
+
+.exam-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 1.25rem;
+}
+
+
+.exam-modal-header h2 {
+  margin: 0;
+
+  font-size: 1.1rem;
+
+  color: #111827;
+}
+
+
+.exam-modal-header button {
+  border: none;
+
+  background: transparent;
+
+  font-size: 1.5rem;
+
+  color: #6b7280;
+
+  cursor: pointer;
+}
+
+
+.exam-modal-content p {
+  margin: 0;
+
+  color: #6b7280;
+
+  font-size: 0.85rem;
+}
+
+
+.exam-modal-content h3 {
+  margin: 0.3rem 0 1rem;
+
+  color: #111827;
+
+  font-size: 1.1rem;
+}
+
+
+.exam-info {
+  display: flex;
+
+  gap: 1rem;
+
+  margin-bottom: 1rem;
+}
+
+
+.exam-info div {
+  flex: 1;
+
+  padding: 0.8rem;
+
+  border-radius: 10px;
+
+  background: #f8fafc;
+
+  border: 1px solid #e5e7eb;
+}
+
+
+.exam-info span {
+  display: block;
+
+  color: #6b7280;
+
+  font-size: 0.75rem;
+
+  margin-bottom: 0.3rem;
+}
+
+
+.exam-info strong {
+  font-size: 0.85rem;
+
+  color: #111827;
+}
+
+
+.pass-text {
+  color: #15803d !important;
+}
+
+
+.fail-text {
+  color: #b91c1c !important;
+}
+
+
+.confirmation-text {
+  margin-top: 1rem !important;
+
+  line-height: 1.5;
+}
+
+
+.exam-modal-actions {
+  display: flex;
+
+  gap: 0.75rem;
+
+  margin-top: 1.5rem;
+}
+
+
+.exam-modal-actions button {
+  flex: 1;
+
+  padding: 0.65rem;
+
+  border-radius: 8px;
+
+  border: none;
+
+  cursor: pointer;
+
+  font-weight: 600;
+
+  font-size: 0.85rem;
+}
+
+
+.cancel-button {
+  background: #f3f4f6;
+
+  color: #374151;
+}
+
+
+.confirm-pass-button {
+  background: #16a34a;
+
+  color: white;
+}
+
+
+.confirm-fail-button {
+  background: #dc2626;
+
+  color: white;
+}
+
+
+.exam-modal-actions button:disabled {
+  opacity: 0.6;
+
+  cursor: not-allowed;
+}
