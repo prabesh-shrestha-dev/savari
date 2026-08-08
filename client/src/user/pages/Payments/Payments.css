@@ -1,0 +1,362 @@
+.payments-page {
+
+  width:100%;
+
+  padding:2rem;
+
+  box-sizing:border-box;
+
+  background:#f8fafc;
+
+  font-family:Inter, Arial, sans-serif;
+
+  color:#0f172a;
+
+}
+
+
+
+.payments-container {
+
+  width:100%;
+
+  margin:auto;
+
+}
+
+
+
+/* TITLE */
+
+
+.page-title {
+
+  margin:0 0 2rem;
+
+  font-size:32px;
+
+  font-weight:800;
+
+  letter-spacing:-0.5px;
+
+}
+
+
+
+.page-title span {
+
+  color:#2563eb;
+
+}
+
+
+
+
+/* COMMON CARD */
+
+
+.payment-card,
+.history-card {
+
+  background:white;
+
+  border:1px solid #e2e8f0;
+
+  border-radius:20px;
+
+  padding:2rem;
+
+  margin-bottom:1.5rem;
+
+}
+
+
+
+/* PAYMENT */
+
+
+.payment-header h2 {
+
+  margin:0 0 4px;
+
+  font-size:24px;
+
+  font-weight:700;
+
+}
+
+
+
+.payment-header p {
+
+  margin:0;
+
+  color:#64748b;
+
+  font-size:13px;
+
+}
+
+
+
+.payment-body {
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:flex-end;
+
+  margin-top:24px;
+
+}
+
+
+
+.amount-label {
+
+  display:block;
+
+  color:#475569;
+
+  font-size:13px;
+
+  margin-bottom:4px;
+
+}
+
+
+
+.amount {
+
+  margin:0;
+
+  font-size:32px;
+
+  font-weight:800;
+
+  color:#2563eb;
+
+}
+
+
+
+.pay-button {
+
+
+  display:flex;
+
+  align-items:center;
+
+  gap:8px;
+
+
+  border:none;
+
+  padding:12px 22px;
+
+  border-radius:8px;
+
+
+  background:#1d4ed8;
+
+  color:white;
+
+
+  font-weight:600;
+
+  cursor:pointer;
+
+
+  transition:.2s;
+
+}
+
+
+
+.pay-button:hover {
+
+  background:#1e40af;
+
+}
+
+
+
+/* HISTORY */
+
+
+.history-card h2 {
+
+  margin:0 0 24px;
+
+  font-size:22px;
+
+}
+
+
+
+.table-wrapper {
+
+  width:100%;
+
+  overflow-x:auto;
+
+}
+
+
+
+table {
+
+  width:100%;
+
+  border-collapse:collapse;
+
+  text-align:left;
+
+}
+
+
+
+th {
+
+  padding-bottom:16px;
+
+  border-bottom:1px solid #e2e8f0;
+
+
+  color:#475569;
+
+  font-size:14px;
+
+  font-weight:500;
+
+}
+
+
+
+td {
+
+  padding:20px 0;
+
+  border-bottom:1px solid #f1f5f9;
+
+  font-size:14px;
+
+  color:#1e293b;
+
+}
+
+
+
+tr:last-child td {
+
+  border-bottom:none;
+
+}
+
+
+
+
+.badge {
+
+  display:inline-flex;
+
+  justify-content:center;
+
+  align-items:center;
+
+
+  padding:6px 24px;
+
+  border-radius:20px;
+
+  font-size:13px;
+
+  font-weight:500;
+
+}
+
+
+
+.paid {
+
+  background:#bbf7d0;
+
+  color:#166534;
+
+}
+
+
+
+.due {
+
+  background:#fed7aa;
+
+  color:#9a3412;
+
+}
+
+
+
+/* FOOTER */
+
+
+.payment-divider {
+
+  height:1px;
+
+  background:#cbd5e1;
+
+  margin:40px 0;
+
+}
+
+
+
+.payment-footer {
+
+  text-align:center;
+
+  font-size:11px;
+
+  color:#94a3b8;
+
+}
+
+
+
+
+/* RESPONSIVE */
+
+
+@media(max-width:700px){
+
+
+  .payments-page {
+
+    padding:1rem;
+
+  }
+
+
+  .payment-body {
+
+    flex-direction:column;
+
+    align-items:flex-start;
+
+    gap:1.5rem;
+
+  }
+
+
+  .pay-button {
+
+    width:100%;
+
+    justify-content:center;
+
+  }
+
+
+}

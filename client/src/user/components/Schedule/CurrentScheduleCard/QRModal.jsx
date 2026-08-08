@@ -27,10 +27,7 @@ export default function QRModal({
               applicationId: "APP-2026-001245",
               examination: schedule.type,
               date: schedule.date,
-              slot: schedule.slot
-                ? `${schedule.slot.startTime}-${schedule.slot.endTime}`
-                : null,
-              issuedBy: "Savari",
+              issuedBy: "Prabesh Shrestha",
             }, null, 2)}
             size={180}
             bgColor="#FFFFFF"

@@ -12,6 +12,8 @@
   justify-content: center;
   padding: 20px;
   background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
 }
 
 .edit-schedule-modal {

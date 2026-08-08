@@ -5,6 +5,8 @@ import Documents from "../pages/Documents/Documents";
 import Application from "../pages/Application/Application";
 import Schedule from "../pages/Schedule/Schedule";
 import MyLicense from "../pages/License/MyLicense";
+import UserDashboard from "../pages/Dashboard/UserDashboard";
+import Payments from "../pages/Payments/Payments";
 
 export default function UserRoutes() {
   const { auth } = useAuth();
@@ -14,7 +16,7 @@ export default function UserRoutes() {
   return (
     <Routes>
       <Route element={<UserLayout />}>
-        <Route path="dashboard" element={<h1>User Dashboard {accessToken}, {user}</h1>} />
+        <Route path="dashboard" element={<UserDashboard />} />
 
         <Route path="apply" element={<Application />} />
 
@@ -22,7 +24,7 @@ export default function UserRoutes() {
 
         <Route path="schedule" element={<Schedule />} />
 
-        <Route path="payments" element={<h1>User Payments</h1>} />
+        <Route path="payments" element={<Payments />} />
 
         <Route path="license" element={<MyLicense />} />
       </Route>
