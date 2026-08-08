@@ -14,8 +14,6 @@
   padding: 1.5rem;
 
   background-color: rgba(0, 0, 0, 0.45);
-
-  backdrop-filter: blur(3px);
 }
 
 .review-modal {

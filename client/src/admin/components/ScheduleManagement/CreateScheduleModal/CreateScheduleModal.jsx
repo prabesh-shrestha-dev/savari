@@ -62,7 +62,13 @@ export default function CreateScheduleModal({
   };
 
   return (
-    <div className="schedule-modal-overlay">
+    <div 
+      className="schedule-modal-overlay"
+      style={{
+        backdropFilter: "blur(6px)",
+        WebkitBackdropFilter: "blur(6px)",
+      }}
+    >
       <div className="create-schedule-modal">
         <div className="modal-header">
           <div>

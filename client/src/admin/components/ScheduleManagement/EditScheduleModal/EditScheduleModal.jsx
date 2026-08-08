@@ -85,7 +85,13 @@ export default function EditScheduleModal({
   };
 
   return (
-    <div className="edit-modal-overlay">
+    <div 
+      className="edit-modal-overlay"
+      style={{
+        backdropFilter: "blur(6px)",
+        WebkitBackdropFilter: "blur(6px)",
+      }}
+    >
       <div className="edit-schedule-modal">
         <div className="edit-modal-header">
           <div>

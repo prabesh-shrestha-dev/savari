@@ -19,7 +19,13 @@ export default function ExaminationPassOrFailModal({
   }[application.currentStep];
 
   return (
-    <div className="exam-result-overlay">
+    <div 
+      className="exam-result-overlay"
+      style={{
+        backdropFilter: "blur(6px)",
+        WebkitBackdropFilter: "blur(6px)",
+      }}
+    >
       <div className="exam-result-modal">
 
         <div className="exam-modal-header">

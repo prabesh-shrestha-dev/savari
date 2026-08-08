@@ -72,7 +72,13 @@ export default function ApplicationReviewModal({
   };
 
   return (
-    <div className="review-modal-overlay">
+    <div 
+      className="review-modal-overlay"
+      style={{
+        backdropFilter: "blur(6px)",
+        WebkitBackdropFilter: "blur(6px)",
+      }}
+    >
       <div className="review-modal">
 
         {/* Header */}

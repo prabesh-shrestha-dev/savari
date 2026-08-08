@@ -38,7 +38,13 @@ export default function BookScheduleModal({
 
 
   return (
-    <div className="book-modal-overlay">
+    <div 
+      className="book-modal-overlay" 
+      style={{
+        backdropFilter: "blur(6px)",
+        WebkitBackdropFilter: "blur(6px)",
+      }}
+    >
 
       <div className="book-modal">
 

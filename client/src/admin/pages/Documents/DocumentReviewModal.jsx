@@ -163,7 +163,13 @@ export default function DocumentReviewModal({
 
 
   return (
-    <div className="document-modal-overlay">
+    <div 
+      className="document-modal-overlay"
+      style={{
+        backdropFilter: "blur(6px)",
+        WebkitBackdropFilter: "blur(6px)",
+      }}
+    >
 
       <div className="document-modal">
 
