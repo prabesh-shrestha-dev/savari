@@ -1,10 +1,16 @@
-import transporter from "../config/nodemailer.js";
+import resend from "../config/resend.js";
 
 export const sendOTPEmail = async (email, otp) => {
-  await transporter.sendMail({
-    from: '"LicenseHub" <prabeshshrestha0112@gmail.com>',
-    to: email,
+  const { data, error } = await resend.emails.send({
+    from: "Savari <onboarding@resend.dev>", 
+    to: ["prabeshshrestha0112@gmail.com"],
     subject: "Verify your account",
-    html: `<h2>Your OTP is ${otp}</h2>`,
+    html: `<h2>Your OTP is <strong>${otp}</strong></h2>`,
   });
+
+  if (error) {
+    throw new Error(`Resend Error: ${error.message}`);
+  }
+
+  return data;
 };
