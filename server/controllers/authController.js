@@ -10,7 +10,7 @@ const handleRegister = async (req, res) => {
 
     const identifier = req.body.identifier?.trim();
 
-    if (!fullname | !identifier | !password) {
+    if (!fullname || !identifier || !password) {
       return res.status(400).json({
         success: false,
         message: "Missing Fields!"
@@ -44,7 +44,14 @@ const handleRegister = async (req, res) => {
       user.otp = otp;
       user.otpExpiresAt = new Date(Date.now() + 5 * 60 * 1000);
       await user.save();
-      await sendOTPEmail(user.identifier, otp);
+      try {
+        await sendOTPEmail(user.identifier, otp);
+        console.log("OTP email sent successfully");
+        
+      } catch(err) {
+        console.log("EMAIL ERROR:", err);
+        throw err;
+      }
     }
 
     return res.status(201).json({ 
