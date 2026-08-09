@@ -91,7 +91,7 @@
 .sawari-landing .btn-primary:hover{transform:translateY(-2px); box-shadow:0 16px 30px -10px rgba(47,111,237,.6);}
 .sawari-landing .btn-ghost{
   background:transparent;
-  color:var(--ink-900);
+  color:white;
   border:1.5px solid var(--line);
 }
 .sawari-landing .btn-ghost:hover{border-color:var(--blue-600); color:var(--blue-600);}

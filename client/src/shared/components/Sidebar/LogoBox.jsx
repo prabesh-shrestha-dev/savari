@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import logo from "../../../assets/876.png";
+import logo from "../../../assets/logo.png";
 import "./LogoBox.css";
 import { ShieldCheck } from "lucide-react";
 
