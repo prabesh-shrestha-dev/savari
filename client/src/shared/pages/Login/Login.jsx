@@ -1,6 +1,6 @@
 import React from "react";
 import LoginForm from "./LoginForm";
-import LoginLogo from "../../../assets/grow.png";
+import LoginLogo from "../../../assets/Grow.png";
 import "./Login.css";
 
 export default function Login() {

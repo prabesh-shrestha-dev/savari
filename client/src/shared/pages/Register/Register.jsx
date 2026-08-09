@@ -1,6 +1,6 @@
 import React from "react";
 import RegisterForm from "./RegisterForm";
-import RegisterVideo from "../../../assets/grow.mp4"
+import RegisterVideo from "../../../assets/Grow.mp4";
 import "./Register.css";
 
 export default function Register() {
