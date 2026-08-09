@@ -95,13 +95,10 @@ export default function LoginForm() {
 
   return (
    <div className="login-form-content">
-      <div className="avatar-wrapper">
-        <div className="avatar-placeholder"></div>
-      </div>
 
       <div className="login-header">
         <h1 className="login-header-title">Login</h1>
-        <p className="login-header-subtitle">Welcome to LMS - Login</p>
+        <p className="login-header-subtitle">Welcome to Savari - Login</p>
         <hr className="header-divider" />
       </div>
 
@@ -139,7 +136,9 @@ export default function LoginForm() {
           />
         </div>
 
-        <button type="submit" className="submit-btn" disabled={loading}>
+        <button type="submit" className="submit-btn" disabled={loading} style={{
+          backgroundColor: "#287EFF"
+        }}>
           {loading ? "Logging in..." : "Login"}
         </button>
 

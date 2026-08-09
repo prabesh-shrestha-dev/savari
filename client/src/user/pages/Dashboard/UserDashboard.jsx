@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import {
   Fingerprint,
   QrCode,
@@ -11,9 +11,14 @@ import {
 import "./UserDashboard.css";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../../shared/contexts/authContext";
+import useAxiosPrivate from "../../../shared/hooks/useAxiosPrivate";
 
 export default function UserDashboard() {
   const navigate = useNavigate();
+
+  const [userName, setUserName] = useState("");
+
+  const axiosPrivate = useAxiosPrivate();
 
   const steps = [
     {
@@ -94,6 +99,26 @@ export default function UserDashboard() {
     },
   ];
 
+  const fetchUserInfo = useCallback(async () => {
+    try {
+
+      const response = await axiosPrivate.get(
+        `/users/me`
+      );
+
+      setUserName(response.data?.user?.fullname || "Prabesh");
+    } catch (err) {
+      console.error(
+        "Failed to fetch user info:",
+        err
+      );
+    }
+  }, [axiosPrivate]);
+
+  useEffect(() => {
+    fetchUserInfo();
+  }, [fetchUserInfo])
+
 
   return (
     <div className="user-dashboard">
@@ -109,7 +134,10 @@ export default function UserDashboard() {
           </span>
 
           <h1>
-            Good Morning, <span>Prabesh.</span>
+            Good Morning, {" "} 
+            <span>
+              {userName?.split(" ")[0] || "User"}.
+            </span>
           </h1>
 
           <p>

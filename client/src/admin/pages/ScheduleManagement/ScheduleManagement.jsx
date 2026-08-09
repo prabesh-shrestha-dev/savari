@@ -120,7 +120,9 @@ export default function ScheduleManagement() {
 
       <div className="schedule-management-header">
         <div>
-          <h1>Schedule Management</h1>
+          <h1>Manage <span style={{
+            color: "#0048FF"
+          }}>Schedules</span></h1>
 
           <p>
             Create and manage biometric,
@@ -128,16 +130,6 @@ export default function ScheduleManagement() {
             examination schedules.
           </p>
         </div>
-
-        <button
-          type="button"
-          className="create-schedule-btn"
-          onClick={() =>
-            setShowCreateModal(true)
-          }
-        >
-          + Create Schedule
-        </button>
       </div>
 
       {/* FILTERS */}
@@ -147,6 +139,9 @@ export default function ScheduleManagement() {
         statusFilter={statusFilter}
         onTypeChange={setTypeFilter}
         onStatusChange={setStatusFilter}
+        onCreateSchedule={() => {
+          setShowCreateModal(true)
+        }}
       />
 
       {error && (

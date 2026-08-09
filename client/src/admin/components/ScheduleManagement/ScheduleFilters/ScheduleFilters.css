@@ -36,6 +36,12 @@
   border-color: #2563eb;
 }
 
+.schedule-filters button {
+  align-self: flex-end;
+  margin-left: auto;
+  min-width: 100px;
+}
+
 @media (max-width: 600px) {
   .schedule-filters {
     flex-direction: column;

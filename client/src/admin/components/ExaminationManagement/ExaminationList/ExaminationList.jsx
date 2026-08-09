@@ -1,5 +1,7 @@
+import { Search } from "lucide-react";
 import ExaminationCard from "../ExaminationCard/ExaminationCard";
 import "./ExaminationList.css";
+import { useState } from "react";
 
 export default function ExaminationList({
   applications,
@@ -10,6 +12,8 @@ export default function ExaminationList({
   onLicenseReady,
   onLicenseCollected,
 }) {
+  const [search, setSearch] = useState("");
+
   if (loading) {
     return (
       <div className="examination-list-state">
@@ -37,6 +41,17 @@ export default function ExaminationList({
         <h2>
           Candidates
         </h2>
+
+        <div className="candidate-search">
+          <Search size={16} />
+
+          <input
+            type="text"
+            placeholder="User Name / Email"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+        </div>
 
         <span className="candidate-count">
           {applications.length} candidate

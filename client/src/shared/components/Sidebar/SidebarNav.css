@@ -20,7 +20,7 @@
 
   font-weight: 500;
 
-  transition: all 0.2s ease;
+  transition: all 0s ease;
 }
 
 .sidebar-link:hover {
@@ -29,8 +29,11 @@
 }
 
 .sidebar-link.active {
-  background: #2563eb;
-  color: #ffffff;
+  background: #E4EDFF;
+  color: #287EFF;
+  font-weight: bold;
+
+  transition: all 0s ease;
 }
 
 .sidebar-link svg {

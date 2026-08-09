@@ -61,7 +61,10 @@
 }
 
 .role-badge {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+
+  width: fit-content;
 
   padding: .35rem .8rem;
 

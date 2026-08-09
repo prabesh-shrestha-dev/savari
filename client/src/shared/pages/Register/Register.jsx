@@ -1,5 +1,6 @@
 import React from "react";
 import RegisterForm from "./RegisterForm";
+import RegisterVideo from "../../../assets/grow.mp4"
 import "./Register.css";
 
 export default function Register() {
@@ -9,10 +10,16 @@ export default function Register() {
       <div className="register-card">
         <div className="register-hero-container">
           <div className="placeholder-image-box">
-            <svg viewBox="0 0 100 100">
-              {/* <line x1="0" y1="0" x2="100" y2="100" stroke="currentColor" strokeWidth="2" />
-              <line x1="100" y1="0" x2="0" y2="100" stroke="currentColor" strokeWidth="2" /> */}
-            </svg>
+            <video 
+              src={RegisterVideo} 
+              autoPlay
+              muted
+              loop
+              playsInline
+              style={{
+                borderRadius: "20px"
+              }}
+            />
           </div>
         </div>
 

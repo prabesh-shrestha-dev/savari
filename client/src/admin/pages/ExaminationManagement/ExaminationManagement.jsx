@@ -164,7 +164,9 @@ export default function ExaminationManagement() {
     <div className="examination-management">
       <div className="examination-header">
         <div>
-          <h1>Examination Management</h1>
+          <h1>Manage <span style={{
+            color: "#0048FF"
+          }}>Examinations</span></h1>
           <p>
             Review examination candidates and update their
             examination results.

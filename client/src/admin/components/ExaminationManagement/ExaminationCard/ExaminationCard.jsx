@@ -37,7 +37,7 @@ export default function ExaminationCard({
 
   const identifier =
     user.identifier ||
-    application.identityNumber ||
+    application.user?.identifier ||
     "N/A";
 
   const category =
@@ -74,22 +74,6 @@ export default function ExaminationCard({
     ) {
       return (
         <div className="examination-actions">
-          <button
-            type="button"
-            className="pass-button"
-            disabled={
-              isResultLoading ||
-              isActionLoading
-            }
-            onClick={() =>
-              handleResultClick(true)
-            }
-          >
-            {actionLoading ===
-            `${applicationId}-true`
-              ? "Processing..."
-              : "Pass"}
-          </button>
 
           <button
             type="button"
@@ -107,6 +91,24 @@ export default function ExaminationCard({
               ? "Processing..."
               : "Fail"}
           </button>
+
+          <button
+            type="button"
+            className="pass-button"
+            disabled={
+              isResultLoading ||
+              isActionLoading
+            }
+            onClick={() =>
+              handleResultClick(true)
+            }
+          >
+            {actionLoading ===
+            `${applicationId}-true`
+              ? "Processing..."
+              : "Pass"}
+          </button>
+
         </div>
       );
     }
@@ -177,7 +179,10 @@ export default function ExaminationCard({
             License Category
           </span>
 
-          <span className="detail-value category-badge">
+          <span className="detail-value category-badge" style={{
+            backgroundColor: "#E4EDFF",
+            color: "#287EFF",
+          }}>
             {category}
           </span>
         </div>

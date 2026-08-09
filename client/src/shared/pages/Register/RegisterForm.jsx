@@ -69,7 +69,7 @@ export default function RegisterForm() {
       {/* Header Titles */}
       <div className="register-header">
         <h1 className="register-header-title">Get Started</h1>
-        <p className="register-header-subtitle">Welcome to LMS - Let’s get started</p>
+        <p className="register-header-subtitle">Welcome to Savari - Let’s get started</p>
         <hr className="header-divider" />
       </div>
 
@@ -129,13 +129,13 @@ export default function RegisterForm() {
         {/* Confirm Password */}
         <div className="form-group">
           <label htmlFor="confirm-password-input" className="form-label">
-            Password
+            Confirm Password
           </label>
           <input
             id="confirm-password-input"
             className="form-input confirm-password-input"
             type="password"
-            placeholder="Enter Your Password"
+            placeholder="Confirm Your Password"
             required
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
@@ -143,7 +143,9 @@ export default function RegisterForm() {
         </div>
 
         {/* Action Button */}
-        <button type="submit" className="submit-btn" disabled={loading}>
+        <button type="submit" className="submit-btn" disabled={loading} style={{
+          backgroundColor: "#287EFF"
+        }}>
           {loading ? "Registering..." : "Create new account"}
         </button>
 

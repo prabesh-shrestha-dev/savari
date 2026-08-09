@@ -157,16 +157,6 @@ export default function ScheduleCard({
         )}
 
       <div className="schedule-card-actions">
-        <button
-          type="button"
-          className="edit-btn"
-          onClick={() =>
-            onEdit(schedule)
-          }
-          disabled={isCancelled}
-        >
-          Edit
-        </button>
 
         <button
           type="button"
@@ -185,6 +175,21 @@ export default function ScheduleCard({
             ? "Cancelling..."
             : "Cancel Schedule"}
         </button>
+
+        <button
+            type="button"
+            className="edit-btn"
+            onClick={() =>
+              onEdit(schedule)
+            }
+            disabled={isCancelled}
+            style={{
+              backgroundColor: "#287EFF",
+              color: "#FFFFFF",
+            }}
+          >
+            Edit
+          </button>
       </div>
     </div>
   );

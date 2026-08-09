@@ -6,7 +6,7 @@
 
 .otp-page-container {
   min-height: 100vh;
-  background-color: #3f3f3f;
+  background-color: rgb(2, 2, 37);
   display: flex;
   align-items: center;
   justify-content: center;

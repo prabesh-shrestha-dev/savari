@@ -144,12 +144,12 @@
 }
 
 .collected-button {
-  background: #7c3aed;
+  background: #2563eb;
   color: white;
 }
 
 .collected-button:hover:not(:disabled) {
-  background: #6d28d9;
+  background: #1d4ed8;
 }
 
 @media (max-width: 450px) {

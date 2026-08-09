@@ -5,6 +5,7 @@ export default function ScheduleFilters({
   statusFilter,
   onTypeChange,
   onStatusChange,
+  onCreateSchedule
 }) {
   return (
     <div className="schedule-filters">
@@ -69,6 +70,14 @@ export default function ScheduleFilters({
           </option>
         </select>
       </div>
+
+      <button
+        type="button"
+        className="create-schedule-btn"
+        onClick={onCreateSchedule}
+      >
+        + Create Schedule
+      </button>
     </div>
   );
 }

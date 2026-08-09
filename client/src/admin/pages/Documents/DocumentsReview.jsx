@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Search } from "lucide-react";
 import useAxiosPrivate from "../../../shared/hooks/useAxiosPrivate";
 import DocumentReviewModal from "./DocumentReviewModal";
 
@@ -110,8 +111,12 @@ export default function DocumentsReview() {
       <div className="documents-header">
 
         <div>
-          <h1>
-            Documents Review
+          <h1 style={{
+            fontWeight: "700"
+          }}>
+            Review <span style={{
+              color: "#0048FF",
+            }}>Documents</span>
           </h1>
 
           <p>
@@ -122,14 +127,18 @@ export default function DocumentsReview() {
 
         <div className="header-actions">
 
-          <input
-            type="text"
-            placeholder="Search applicant..."
-            value={search}
-            onChange={(e) =>
-              setSearch(e.target.value)
-            }
-          />
+          <div className="search-box">
+            <Search size={18} className="search-icon" />
+
+            <input
+              type="text"
+              placeholder="User Name / Email"
+              value={search}
+              onChange={(e) =>
+                setSearch(e.target.value)
+              }
+            />
+          </div>
 
           <span>
             {filteredDocuments.length} Applicants
@@ -181,17 +190,6 @@ export default function DocumentsReview() {
                   key={document._id}
                 >
 
-                  <div className="applicant-avatar">
-
-                    {
-                      document.user?.fullname
-                        ?.charAt(0)
-                        ?.toUpperCase()
-                    }
-
-                  </div>
-
-
                   <h3>
                     {
                       document.user?.fullname
@@ -223,7 +221,7 @@ export default function DocumentsReview() {
                       )
                     }
                   >
-                    Review Documents
+                    Review
                   </button>
 
                 </div>

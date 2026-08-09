@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Search } from "lucide-react";
 import useAxiosPrivate from "../../../shared/hooks/useAxiosPrivate";
 import ApplicationReviewModal from "./ApplicationReviewModal";
 import "./ApplicationsReview.css";
@@ -111,7 +112,9 @@ export default function ApplicationsReview() {
 
         <div>
           <h2>
-            Review Applications
+            Review <span style={{
+              color: "#0048FF"
+            }}>Applications</span>
           </h2>
 
           <p>
@@ -122,14 +125,18 @@ export default function ApplicationsReview() {
 
         <div className="review-tools">
 
-          <input
-            type="text"
-            placeholder="Search name or email..."
-            value={search}
-            onChange={(e) =>
-              setSearch(e.target.value)
-            }
-          />
+          <div className="search-box">
+            <Search size={18} className="search-icon" />
+
+            <input
+              type="text"
+              placeholder="User Name / Email"
+              value={search}
+              onChange={(e) =>
+                setSearch(e.target.value)
+              }
+            />
+          </div>
 
           <div className="application-count">
             {filteredApplications.length} Pending
@@ -212,7 +219,7 @@ export default function ApplicationsReview() {
               <div className="application-status">
 
                 <span className="pending-badge">
-                  Pending Review
+                  Pending
                 </span>
 
 

@@ -125,6 +125,9 @@ export default function OTP() {
                 type="submit"
                 className="submit-btn"
                 disabled={loading}
+                style={{
+                  backgroundColor: "#287EFF"
+                }}
               >
                 {loading ? "Verifying..." : "Verify"}
               </button>
@@ -135,6 +138,9 @@ export default function OTP() {
                 className="resend-btn"
                 disabled={loading}
                 onClick={handleResendOTP}
+                style={{
+                  color: "#287EFF"
+                }}
               >
                 Resend OTP
               </button>
