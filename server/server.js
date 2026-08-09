@@ -1,4 +1,10 @@
+import dns from "dns";
 import dotenv from 'dotenv';
+
+dns.setDefaultResultOrder("ipv4first");
+
+dotenv.config();
+
 import express from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
@@ -11,8 +17,6 @@ import scheduleRouter from './routes/schedule.js';
 import examinationRouter from './routes/examination.js';
 import licenseRouter from "./routes/license.js";
 import connectDB from './config/dbConn.js';
-
-dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
