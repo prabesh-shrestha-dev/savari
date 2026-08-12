@@ -15,7 +15,7 @@ const useLogout = () => {
       console.error(err.response?.data || err.message);
     } finally {
       setAuth({});
-      navigate('/login', { replace: true });
+      navigate('/', { replace: true });
     }
   }
 

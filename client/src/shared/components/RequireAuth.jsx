@@ -6,11 +6,11 @@ const RequireAuth = ({ allowedRoles}) => {
   const { auth } = useAuth();
 
   if (!auth.accessToken) {
-    return <Navigate to="/login" replace />
+    return <Navigate to="/" replace />
   }
 
   if (!allowedRoles.includes(auth.user.role)) {
-    return <Navigate to="/login" replace />
+    return <Navigate to="/" replace />
   }
 
   return <Outlet />

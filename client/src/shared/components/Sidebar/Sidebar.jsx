@@ -22,7 +22,7 @@ export default function Sidebar({ role }) {
     try {
       await logout();
 
-      navigate("/login", {
+      navigate("/", {
         replace: true,
       });
 
