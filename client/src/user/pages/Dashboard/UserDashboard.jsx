@@ -117,7 +117,18 @@ export default function UserDashboard() {
 
   useEffect(() => {
     fetchUserInfo();
-  }, [fetchUserInfo])
+  }, [fetchUserInfo]);
+
+  function Greeting() {
+    const hour = new Date().getHours();
+
+    const greeting =
+      hour < 12 ? "Good morning" :
+      hour < 18 ? "Good afternoon" :
+      "Good evening";
+
+    return <h1>{greeting}</h1>;
+  }
 
 
   return (
@@ -134,7 +145,7 @@ export default function UserDashboard() {
           </span>
 
           <h1>
-            Good Morning, {" "} 
+            {Greeting()}, {" "} 
             <span>
               {userName?.split(" ")[0] || "User"}.
             </span>

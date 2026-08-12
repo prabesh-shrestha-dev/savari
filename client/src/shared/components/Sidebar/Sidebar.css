@@ -13,7 +13,9 @@
   position: sticky;
   top: 0;
 
-  overflow-y: auto;
+  overflow-y: visible;
+
+  z-index: 1000;
 }
 
 .sidebar::-webkit-scrollbar {
@@ -41,7 +43,6 @@
   margin: 0 0 6px;
 
   font-size: 14px;
-
   font-weight: 700;
 
   color: #111827;
@@ -73,7 +74,6 @@
   color: #0048FF;
 
   font-size: 13px;
-
   font-weight: 600;
 
   cursor: pointer;
@@ -84,4 +84,119 @@
 
 .support-link:hover {
   gap: 10px;
+}
+
+.mobile-menu-btn {
+  display: none;
+
+  position: fixed;
+
+  top: 10px;
+  left: 10px;
+
+  width: 36px;
+  height: 36px;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 10px;
+
+  background-color: #ffffff;
+
+  border: 1px solid #e5e7eb;
+
+  color: #111827;
+
+  cursor: pointer;
+
+  z-index: 1100;
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.mobile-close-btn {
+  display: none;
+}
+
+@media (max-width: 768px) {
+
+  .mobile-menu-btn {
+    display: flex;
+  }
+
+  .mobile-close-btn {
+    display: flex;
+  }
+
+  .sidebar {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 280px;
+    min-width: 280px;
+    height: 100vh;
+
+    transform: translateX(-100%);
+
+    transition: transform 0.3s ease;
+
+    box-shadow: 8px 0 25px rgba(0, 0, 0, 0.12);
+  }
+
+  .sidebar.sidebar-open {
+    transform: translateX(0);
+  }
+
+  .mobile-close-btn {
+    display: flex;
+
+    position: absolute;
+
+    top: 16px;
+    right: 16px;
+
+    width: 38px;
+    height: 38px;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 9px;
+
+    background: #f1f5f9;
+
+    color: #111827;
+
+    cursor: pointer;
+
+    z-index: 10;
+  }
+
+  .mobile-close-btn:hover {
+    background: #e2e8f0;
+  }
+
+}
+
+.sidebar-overlay {
+  display: none;
+}
+
+@media (max-width: 768px) {
+
+  .sidebar-overlay {
+    display: block;
+
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.35);
+
+    z-index: 999;
+  }
+
 }

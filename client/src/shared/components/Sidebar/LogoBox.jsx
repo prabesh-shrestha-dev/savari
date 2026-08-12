@@ -3,7 +3,7 @@ import logo from "../../../assets/logo.png";
 import "./LogoBox.css";
 import { ShieldCheck } from "lucide-react";
 
-export default function LogoBox({ role }) {
+export default function LogoBox({ role, onNavigate }) {
   const navigate = useNavigate();
 
   return (
@@ -12,6 +12,7 @@ export default function LogoBox({ role }) {
         src={logo}
         alt="Savari Logo"
         onClick={() => {
+          onNavigate()
           if (role === "user") {
             navigate("/user/dashboard");
           } else if (role === "admin") {

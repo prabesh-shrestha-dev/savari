@@ -10,6 +10,8 @@
     0 2px 8px rgba(0,0,0,.05);
 
   border: 1px solid #D6D6D6;
+
+  z-index: 9999;
 }
 
 .user-card-header {

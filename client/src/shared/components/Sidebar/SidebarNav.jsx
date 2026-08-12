@@ -10,7 +10,7 @@ import {
 import { NavLink } from "react-router-dom";
 import "./SidebarNav.css";
 
-export default function SidebarNav({ role }) {
+export default function SidebarNav({ role, onNavigate }) {
   const userLinks = [
     {
       label: "Dashboard",
@@ -88,6 +88,7 @@ export default function SidebarNav({ role }) {
                 ? "sidebar-link active"
                 : "sidebar-link"
             }
+            onClick={onNavigate}
           >
             <Icon size={20} />
 

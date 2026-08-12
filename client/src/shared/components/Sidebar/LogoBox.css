@@ -1,7 +1,3 @@
-* {
-  scrollbar-width: none;
-}
-
 .logo-box {
   width: 280px;
   height: 280px;
@@ -21,4 +17,6 @@
   height: 80%;
 
   object-fit: contain;
+
+  cursor: pointer;
 }

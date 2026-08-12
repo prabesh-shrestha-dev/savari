@@ -1,16 +1,22 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { ArrowRight, Menu } from "lucide-react";
+
 import LogoBox from "./LogoBox";
 import SidebarNav from "./SidebarNav";
 import UserMenu from "./UserMenu";
+
 import { useAuth } from "../../contexts/authContext";
 import useLogout from "../../hooks/useLogout";
+
 import "./Sidebar.css";
-import { ArrowRight } from "lucide-react";
 
 export default function Sidebar({ role }) {
   const { auth } = useAuth();
   const logout = useLogout();
   const navigate = useNavigate();
+
+  const [isOpen, setIsOpen] = useState(false);
 
   const handleLogout = async () => {
     try {
@@ -25,35 +31,66 @@ export default function Sidebar({ role }) {
     }
   };
 
-return (
-  <aside className="sidebar">
-    <LogoBox role={role} />
+  const closeSidebar = () => {
+    setIsOpen(false);
+  };
 
-    <SidebarNav role={role} />
+  return (
+    <>
+      {!isOpen && (
+        <button
+          className="mobile-menu-btn"
+          onClick={() => setIsOpen(true)}
+          aria-label="Open sidebar"
+        >
+          <Menu size={18} />
+        </button>
+        )}
 
-    <div className="support-box">
+      {isOpen && (
+        <div 
+          className="sidebar-overlay"
+          onClick={closeSidebar}
+        />
+      )}
 
-      <h4>
-        Need Assistance?
-      </h4>
+      <aside
+        className={`sidebar ${isOpen ? "sidebar-open" : ""}`}
+      >        
+        <LogoBox 
+          role={role} 
+          onNavigate={closeSidebar} 
+        />
 
-      <p>
-        Our support is here to help.
-      </p>
+        <SidebarNav 
+          role={role} 
+          onNavigate={closeSidebar}
+        />
 
-      <button className="support-link">
-        Contact support
-        <ArrowRight size={15} />
-      </button>
+        <div className="support-box">
 
-    </div>
+          <h4>
+            Need Assistance?
+          </h4>
+
+          <p>
+            Our support is here to help.
+          </p>
+
+          <button className="support-link">
+            Contact support
+            <ArrowRight size={15} />
+          </button>
+
+        </div>
 
 
-    <UserMenu
-      user={auth.user}
-      onLogout={handleLogout}
-    />
+        <UserMenu
+          user={auth.user}
+          onLogout={handleLogout}
+        />
 
-  </aside>
-);
+      </aside>
+    </>
+  );
 }
