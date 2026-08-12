@@ -127,7 +127,7 @@ export default function UserDashboard() {
       hour < 18 ? "Good afternoon" :
       "Good evening";
 
-    return <h1>{greeting}</h1>;
+    return greeting;
   }
 
 

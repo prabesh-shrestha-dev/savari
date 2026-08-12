@@ -102,6 +102,12 @@
   color: #475569;
 }
 
+.user-info-row span {
+  width: 100%;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
 .user-info-row svg {
   color: #2563eb;
 
