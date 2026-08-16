@@ -320,40 +320,126 @@ tr:last-child td {
 
 }
 
+.table-wrapper {
+  overflow-x: auto;
+}
 
+.history-card .table-wrapper table th,
+.history-card .table-wrapper table td {
+  padding: 1rem;
+  text-align: left;
+}
 
 
 /* RESPONSIVE */
 
-
-@media(max-width:700px){
-
-
-  .payments-page {
-
-    padding:1rem;
-
-  }
-
-
-  .payment-body {
-
-    flex-direction:column;
-
-    align-items:flex-start;
-
-    gap:1.5rem;
-
-  }
-
+@media (max-width: 900px) and (min-width: 768px) {
 
   .pay-button {
+    width: 50%;
+    justify-content: center;
+    box-sizing: border-box;
+    font-size: 0.8rem;
+  }
+}
 
-    width:100%;
 
-    justify-content:center;
-
+@media (max-width: 768px) {
+  .payments-page {
+    width: calc(100% - 1.5rem);
+    margin: 0.75rem;
+    padding: 1.25rem;
+    border-radius: 12px;
   }
 
+  .payments-container > p {
+    margin-bottom: 1.5rem;
+    font-size: 0.85rem;
+  }
 
+  .page-title {
+    margin: 0 0 0.5rem;
+    font-size: 1.6rem;
+  }
+
+  .payment-card,
+  .history-card {
+    padding: 1.25rem;
+    border-radius: 14px;
+  }
+
+  .payment-header h2 {
+    font-size: 1.15rem;
+  }
+
+  .payment-body {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin-top: 1.25rem;
+  }
+
+  .amount {
+    font-size: 1.75rem;
+  }
+
+  .pay-button {
+    width: 100%;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+
+  .history-card h2 {
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+  }
+
+  .table-wrapper {
+    margin: 0 -0.25rem;
+  }
+
+  table {
+    min-width: 600px;
+  }
+
+  th,
+  td {
+    white-space: nowrap;
+    font-size: 0.8rem;
+  }
+
+  th {
+    padding-bottom: 0.75rem;
+  }
+
+  td {
+    padding: 0.9rem 0;
+  }
+
+  .badge {
+    padding: 0.35rem 0.8rem;
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .payments-page {
+    width: calc(100% - 1rem);
+    margin: 0.5rem;
+    padding: 1rem;
+  }
+
+  .payment-card,
+  .history-card {
+    padding: 1rem;
+  }
+
+  .page-title {
+    font-size: 1.4rem;
+  }
+
+  .pay-button {
+    padding: 0.75rem 1rem;
+    font-size: 0.85rem;
+  }
 }
