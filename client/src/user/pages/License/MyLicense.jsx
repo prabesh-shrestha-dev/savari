@@ -84,13 +84,7 @@ export default function MyLicense() {
 
 
 
-      <div style={{
-        display: "flex",
-        justifyContent: "space-around",
-        alignItems: "center",
-        gap: "40px",
-        flexWrap: "wrap",
-      }}>
+      <div className="license-cards">
         <div className="license-card" style={{
           backgroundImage: `url(${licenseBackground})`
         }}>
@@ -277,11 +271,7 @@ export default function MyLicense() {
 
         <div className="notice-card">
 
-          <div style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-          }}>
+          <div className="notice-header">
             <p className="prototype-note">
               This is not the original copy, this is just a prototype so not
               needed for real use.

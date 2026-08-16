@@ -47,9 +47,16 @@
 
 
 
-
-
 /* CARD */
+
+.license-cards {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  gap: 2.5rem;
+}
+
 
 .license-card {
 
@@ -321,6 +328,13 @@
 
 }
 
+.notice-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
 
 .prototype-note {
 
@@ -430,4 +444,152 @@
 
   justify-content:center;
 
+}
+
+@media (min-width: 1200px) {
+  .license-cards {
+    flex-wrap: nowrap;
+  }
+}
+
+@media (min-width: 1000px) {
+
+  .license-card {
+    width: min(500px, 100%);
+    height: auto;
+    aspect-ratio: 450 / 280;
+    box-sizing: border-box;
+  }
+}
+
+@media (max-width: 950px) and (min-width: 768px) {
+  .license-card {
+    width: min(450px, 100%);
+    height: auto;
+    aspect-ratio: 450 / 280;
+    box-sizing: border-box;
+  }
+}
+
+@media (max-width: 768px) {
+  .license-page {
+    width: calc(100% - 1.5rem);
+    margin: 0.75rem;
+    padding: 1.25rem;
+  }
+
+  .page-header {
+    margin-bottom: 1.5rem;
+  }
+
+  .page-header h1 {
+    margin: 0 0 0.5rem;
+    font-size: 1.5rem;
+  }
+
+  .page-header p {
+    font-size: 0.85rem;
+  }
+
+  .license-cards {
+    gap: 1.5rem;
+  }
+
+  .license-card {
+    width: min(450px, 100%);
+    height: auto;
+    aspect-ratio: 450 / 280;
+    box-sizing: border-box;
+  }
+
+  .notice-card {
+    margin-top: 1.5rem;
+    padding: 1.25rem;
+    border-radius: 12px;
+  }
+}
+
+@media (max-width: 500px) {
+  .license-page {
+    width: calc(100% - 1rem);
+    margin: 0.5rem;
+    padding: 1rem;
+    border-radius: 12px;
+  }
+
+  .license-cards {
+    gap: 1rem;
+  }
+
+  .license-card {
+    padding: 0.75rem;
+    border-radius: 10px;
+  }
+
+  .card-header h2 {
+    font-size: 0.7rem;
+  }
+
+  .card-header p {
+    font-size: 0.5rem;
+  }
+
+  .card-header h3 {
+    font-size: 0.65rem;
+  }
+
+  .card-body {
+    gap: 0.6rem;
+  }
+
+  .profile-photo {
+    width: 62px;
+    height: 78px;
+  }
+
+  .details-grid {
+    gap: 2px 5px;
+    font-size: 0.5rem;
+    min-width: 0;
+  }
+
+  .value {
+    overflow-wrap: anywhere;
+  }
+
+  .categories {
+    padding: 2px 5px;
+    font-size: 0.55rem;
+  }
+
+  .qr-code {
+    width: 32px;
+    height: 32px;
+  }
+
+  .notice-header {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .prototype-note {
+    margin: 0;
+    font-size: 0.8rem;
+  }
+
+  .renew-button {
+    width: 100%;
+  }
+
+  .notice-card {
+    padding: 1rem;
+  }
+
+  .notice-card h3 {
+    font-size: 0.9rem;
+  }
+
+  .notice-card li {
+    font-size: 0.8rem;
+  }
 }
