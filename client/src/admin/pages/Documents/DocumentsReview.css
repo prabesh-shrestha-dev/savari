@@ -50,7 +50,7 @@
 .search-box {
   position: relative;
   width: 100%;
-  max-width: 320px;
+  max-width: none;
 }
 
 .search-icon {
@@ -298,7 +298,7 @@
     grid-template-columns: minmax(0, 1fr);
   }
 
-  .search-box {
+  .header-actions .search-box {
     width: 100%;
     max-width: none;
     align-self: stretch;

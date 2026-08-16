@@ -121,6 +121,9 @@
   display: flex;
   align-items: center;
 
+  min-width: 0;
+  overflow: hidden;
+
   gap: 20px;
 
   background: white;
@@ -175,6 +178,8 @@
 
 .application-info {
   flex: 1;
+  min-width: 0;
+  max-width: 100%;
 }
 
 .application-info h3 {
@@ -362,8 +367,15 @@
   font-size: 0.9rem;
 }
 
-@media (max-width: 768px) {
+.application-info h3,
+.identifier,
+.submitted-date {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
 
+@media (max-width: 768px) {
   .applications-review {
     padding: 1rem;
   }
@@ -371,54 +383,117 @@
   .review-header {
     align-items: flex-start;
     flex-direction: column;
+    margin-bottom: 1.5rem;
+  }
+
+  .review-header h2 {
+    font-size: 1.35rem;
+  }
+
+  .review-header p {
+    font-size: 0.8rem;
   }
 
   .review-tools {
     width: 100%;
-
     flex-direction: column;
-
     align-items: stretch;
   }
 
-  .review-tools input {
+  .search-box {
     width: 100%;
+    max-width: none;
+  }
 
+  .search-box input {
+    width: 100%;
     box-sizing: border-box;
+    font-size: 0.85rem;
+  }
+
+  .application-count {
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
   }
 
   .application-card {
-    align-items: flex-start;
-
+    align-items: center;
     flex-direction: column;
-
     gap: 1rem;
+    padding: 1rem;
+  }
+
+  .applicant-photo {
+    margin: 0 auto;
+  }
+
+  .application-info {
+    width: 100%;
+    min-width: 0;
+    text-align: center;
+  }
+
+  .application-info h3,
+  .identifier {
+    overflow-wrap: anywhere;
   }
 
   .application-status {
     width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    gap: 1rem;
+  }
 
-    justify-content: space-between;
+  .pending-badge,
+  .review-btn {
+    flex: 1;
+    box-sizing: border-box;
+  }
+
+  .pending-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .review-btn {
-    flex: 1;
+    width: auto;
   }
 }
 
 @media (max-width: 480px) {
+  .application-card {
+    align-items: center;
+  }
+
+  .applicant-photo {
+    margin: 0 auto;
+  }
+
+  .application-info {
+    text-align: center;
+  }
 
   .application-status {
-    align-items: stretch;
-
+    width: 100%;
+    align-items: center;
     flex-direction: column;
   }
 
   .pending-badge {
+    width: fit-content;
     text-align: center;
   }
 
   .review-btn {
     width: 100%;
+  }
+
+  .empty-applications,
+  .review-error {
+    padding: 1rem;
   }
 }
