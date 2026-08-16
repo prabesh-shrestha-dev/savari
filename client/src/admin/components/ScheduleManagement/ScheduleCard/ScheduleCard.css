@@ -189,9 +189,62 @@
   cursor: not-allowed;
 }
 
+@media (max-width: 700px) {
+  .schedule-card {
+    min-width: 0;
+    padding: 1rem;
+  }
+
+  .schedule-card-header {
+    gap: 0.75rem;
+    padding-bottom: 1rem;
+  }
+
+  .schedule-card-header h2 {
+    font-size: 1rem;
+    overflow-wrap: anywhere;
+  }
+
+  .capacity-wrapper {
+    min-width: 0;
+  }
+
+  .capacity-bar {
+    min-width: 0;
+  }
+
+  .written-slot,
+  .practical-category {
+    min-width: 0;
+    padding: 0.75rem;
+  }
+
+  .written-slot strong,
+  .practical-category strong {
+    overflow-wrap: anywhere;
+  }
+
+  .schedule-card-actions {
+    margin-top: 1rem;
+    padding-top: 1rem;
+  }
+
+  .schedule-card-actions button {
+    min-width: 0;
+  }
+}
+
 @media (max-width: 450px) {
+  .schedule-card {
+    padding: 0.9rem;
+  }
+
   .schedule-card-header {
     flex-direction: column;
+  }
+
+  .schedule-status {
+    align-self: flex-start;
   }
 
   .practical-categories {
@@ -200,5 +253,9 @@
 
   .schedule-card-actions {
     flex-direction: column;
+  }
+
+  .schedule-card-actions button {
+    width: 100%;
   }
 }
