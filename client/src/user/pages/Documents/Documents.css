@@ -45,7 +45,7 @@
 /* Documents Grid */
 /* ============================== */
 
-.documents-grid {
+.user-documents-grid {
   display: grid;
 
   grid-template-columns:
@@ -649,36 +649,112 @@
 /* ============================== */
 
 @media (max-width: 900px) {
-  .documents-grid {
-    grid-template-columns:
-      repeat(2, minmax(0, 1fr));
+  .user-documents-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
-
 
 @media (max-width: 650px) {
   .documents-page {
+    width: calc(100% - 1.5rem);
+    margin: 0.75rem;
     padding: 1.25rem;
+    border-radius: 12px;
   }
 
-  .documents-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-
-@media (max-width: 400px) {
-  .documents-page {
-    padding: 1rem;
+  .documents-page-header {
+    margin-bottom: 1.5rem;
   }
 
   .documents-page-header h1 {
-    font-size: 1.5rem;
+    font-size: 1.55rem;
+  }
+
+  .documents-page-header p {
+    font-size: 0.85rem;
+  }
+
+  .user-documents-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1rem;
   }
 
   .document-card {
-    min-height: 320px;
+    min-height: 0;
+    padding: 1rem;
+  }
 
+  .document-card h2 {
+    font-size: 1rem;
+  }
+
+  .document-description {
+    margin-bottom: 1rem;
+    font-size: 0.8rem;
+  }
+
+  .document-requirements-box {
+    margin-top: 1.5rem;
+    padding: 1.25rem;
+    border-radius: 12px;
+  }
+
+  .document-requirements-box h3 {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .document-requirements-box li {
+    font-size: 0.8rem;
+    line-height: 1.5;
+  }
+
+  .success-message,
+  .error-message {
+    align-items: flex-start;
+    margin-bottom: 1rem;
+    padding: 0.8rem;
+  }
+
+  .success-message p,
+  .error-message p {
+    overflow-wrap: anywhere;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .documents-page {
+    width: calc(100% - 1rem);
+    margin: 0.5rem;
+    padding: 1rem;
+    border-radius: 10px;
+  }
+
+  .documents-page-header h1 {
+    font-size: 1.35rem;
+  }
+
+  .documents-page-header p {
+    font-size: 0.8rem;
+  }
+
+  .document-card {
+    padding: 0.9rem;
+  }
+
+  .document-info,
+  .rejection-message {
+    padding: 0.75rem;
+  }
+
+  .file-input-label,
+  .upload-btn,
+  .view-document-btn {
+    font-size: 0.8rem;
+  }
+
+  .document-requirements-box {
     padding: 1rem;
   }
 }

@@ -362,7 +362,7 @@ export default function Documents() {
       )}
 
 
-      <div className="documents-grid">
+      <div className="user-documents-grid">
         {documentConfig.map((document) => (
           <div key={document.fieldName}>
             {renderDocumentCard(document)}
@@ -381,7 +381,7 @@ export default function Documents() {
           <li>Photocopy of Citizenship Certificate</li>
           <li>Printed Online Application Form</li>
           <li>Blood Group Certificate/Card</li>
-          <li>Passport-size Photographs (2–4 copies)</li>
+          <li>Passport-size Photographs (2-4 copies)</li>
           <li>Medical Fitness Certificate (if required)</li>
           <li>Original ID for Verification</li>
           <li>
