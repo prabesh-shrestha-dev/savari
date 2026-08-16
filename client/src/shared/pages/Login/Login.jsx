@@ -9,9 +9,7 @@ export default function Login() {
       <div className="login-card">
         <div className="login-hero-container">
           <div className="placeholder-image-box">
-            <img src={LoginLogo} style={{
-              borderRadius: "20px"
-            }} />
+            <img src={LoginLogo} alt="Login" />
           </div>
         </div>
 

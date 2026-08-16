@@ -136,9 +136,7 @@ export default function LoginForm() {
           />
         </div>
 
-        <button type="submit" className="submit-btn" disabled={loading} style={{
-          backgroundColor: "#287EFF"
-        }}>
+        <button type="submit" className="submit-btn" disabled={loading}>
           {loading ? "Logging in..." : "Login"}
         </button>
 

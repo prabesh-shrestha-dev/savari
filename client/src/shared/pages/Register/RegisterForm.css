@@ -63,6 +63,7 @@
   font-size: 0.9rem;
   box-sizing: border-box;
   outline: none;
+  letter-spacing: normal;
 }
 
 .form-input::placeholder {
@@ -110,7 +111,7 @@
   text-underline-offset: 2px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 500px) {
   .register-card {
     flex-direction: column;
     padding: 1.25rem;
@@ -118,5 +119,56 @@
 
   .register-hero-container {
     min-height: 250px;
+  }
+}
+
+.register-form-content {
+  width: 100%;
+  max-width: 360px;
+}
+
+.register-form {
+  width: 100%;
+}
+
+.register-form .form-group {
+  width: 100%;
+}
+
+.register-form .form-input {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.register-form .submit-btn {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .register-form-content {
+    max-width: none;
+  }
+
+  .register-header-title {
+    font-size: 1.5rem;
+  }
+
+  .register-header-subtitle {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .register-header-title {
+    font-size: 1.3rem;
+  }
+
+  .register-header-subtitle,
+  .register-form .form-label,
+  .register-form .form-input,
+  .register-form .submit-btn,
+  .login-text {
+    font-size: 0.8rem;
   }
 }
