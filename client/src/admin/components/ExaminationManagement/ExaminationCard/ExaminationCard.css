@@ -152,22 +152,76 @@
   background: #1d4ed8;
 }
 
+@media (max-width: 768px) {
+  .examination-card {
+    min-width: 0;
+    padding: 1rem;
+  }
+
+  .candidate-title {
+    flex: 1;
+  }
+
+  .candidate-title h3,
+  .candidate-title p {
+    max-width: 100%;
+  }
+
+  .detail-item {
+    min-width: 0;
+  }
+
+  .detail-value {
+    min-width: 0;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+}
+
 @media (max-width: 450px) {
   .examination-card {
-    padding: 16px;
+    padding: 0.9rem;
+  }
+
+  .candidate-header {
+    gap: 0.75rem;
+    padding-bottom: 0.9rem;
+  }
+
+  .candidate-avatar {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+
+  .candidate-title h3 {
+    font-size: 0.9rem;
+  }
+
+  .candidate-title p {
+    font-size: 0.75rem;
+  }
+
+  .candidate-details {
+    gap: 0.75rem;
+    padding: 0.9rem 0;
+  }
+
+  .detail-item {
+    align-items: flex-start;
+    flex-direction: row;
+    gap: 0.25rem;
+  }
+
+  .detail-value {
+    text-align: left;
   }
 
   .examination-actions {
     flex-direction: column;
   }
 
-  .detail-item {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 4px;
-  }
-
-  .detail-value {
-    text-align: left;
+  .examination-actions button {
+    width: 100%;
   }
 }
