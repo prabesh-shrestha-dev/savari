@@ -71,10 +71,7 @@ export default function CurrentScheduleCard({
           const slot = data.slot;
 
           return (
-            <div
-              className="scheduled-item"
-              key={item.key}
-            >
+            <div className="scheduled-item" key={item.key}>
               <div className="scheduled-icon">
                 {item.key === "biometric"
                   ? "B"
@@ -86,9 +83,7 @@ export default function CurrentScheduleCard({
               <div className="scheduled-details">
                 <h3>{item.label}</h3>
 
-                <p>
-                  {formatDate(data.schedule.date)}
-                </p>
+                <p>{formatDate(data.schedule.date)}</p>
 
                 {slot && (
                   <p>
@@ -97,20 +92,25 @@ export default function CurrentScheduleCard({
                 )}
               </div>
 
-              <span className="scheduled-status">
-                Scheduled
-              </span>
+              <div className="scheduled-meta">
+                <span className="scheduled-status">
+                  Scheduled
+                </span>
 
-              <button
-                className="qr-button"
-                onClick={() => setSelectedSchedule({
-                  type: item.label,
-                  date: data.schedule.date,
-                  slot,
-                })}
-              >
-                <QrCode size={22} />
-              </button>
+                <button
+                  type="button"
+                  className="qr-button"
+                  onClick={() =>
+                    setSelectedSchedule({
+                      type: item.label,
+                      date: data.schedule.date,
+                      slot,
+                    })
+                  }
+                >
+                  <QrCode size={22} />
+                </button>
+              </div>
             </div>
           );
         })}

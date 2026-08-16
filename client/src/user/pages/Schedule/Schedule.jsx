@@ -123,41 +123,43 @@ export default function Schedule() {
   return (
     <div className="schedule-page">
 
-      <ScheduleHeader />
+      <div className="schedule-card">
+        <ScheduleHeader />
 
-      {error && (
-        <div className="schedule-alert error">
-          {error}
-        </div>
-      )}
+        {error && (
+          <div className="schedule-alert error">
+            {error}
+          </div>
+        )}
 
-      {successMessage && (
-        <div className="schedule-alert success">
-          {successMessage}
-        </div>
-      )}
+        {successMessage && (
+          <div className="schedule-alert success">
+            {successMessage}
+          </div>
+        )}
 
-      {application && (
-        <ApplicationProgress
-          application={application}
-        />
-      )}
+        {application && (
+          <ApplicationProgress
+            application={application}
+          />
+        )}
 
-      {mySchedules && (
-        <CurrentScheduleCard
-          schedules={mySchedules}
-          application={application}
-        />
-      )}
+        {mySchedules && (
+          <CurrentScheduleCard
+            schedules={mySchedules}
+            application={application}
+          />
+        )}
 
-      {application && (
-        <ScheduleBookingSection
-          application={application}
-          mySchedules={mySchedules}
-          onBookingSuccess={handleBookingSuccess}
-          bookingLoading={bookingLoading}
-        />
-      )}
+        {application && (
+          <ScheduleBookingSection
+            application={application}
+            mySchedules={mySchedules}
+            onBookingSuccess={handleBookingSuccess}
+            bookingLoading={bookingLoading}
+          />
+        )}
+      </div>
 
     </div>
   );

@@ -180,16 +180,71 @@
 }
 
 
-@media(max-width: 500px){
-
-  .book-modal {
-    width: calc(100% - 32px);
+@media (max-width: 768px) {
+  .book-modal-overlay {
+    left: 0;
+    padding: 1rem;
+    box-sizing: border-box;
   }
 
+  .book-modal {
+    width: 100%;
+    max-width: 420px;
+    box-sizing: border-box;
+  }
+}
+
+@media (max-width: 400px) {
+  .book-modal-overlay {
+    align-items: flex-start;
+    overflow-y: auto;
+    padding: 0.75rem;
+  }
+
+  .book-modal {
+    width: 100%;
+    border-radius: 12px;
+  }
+
+  .book-modal-header,
+  .book-modal-body {
+    padding: 1rem;
+  }
+
+  .book-modal-header h2 {
+    font-size: 1rem;
+  }
+
+  .book-modal-actions {
+    flex-direction: column-reverse;
+    gap: 0.75rem;
+    padding: 1rem;
+  }
+
+  .cancel-btn,
+  .confirm-btn {
+    width: 100%;
+    box-sizing: border-box;
+  }
 
   .info-row {
     flex-direction: column;
-    gap: 4px;
+    gap: 0.25rem;
+    font-size: 0.85rem;
   }
 
+  .info-row strong {
+    text-align: left;
+    overflow-wrap: anywhere;
+  }
+
+  .warning-box {
+    margin-top: 1rem;
+    padding: 0.85rem;
+  }
+
+  .warning-box p,
+  .warning-box small {
+    font-size: 0.8rem;
+  }
 }

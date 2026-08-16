@@ -1,15 +1,30 @@
 .schedule-page {
+  position: relative;
+  
   width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 32px 24px 60px;
+  min-height: 100%;
+
+  padding: 2rem;
+
   box-sizing: border-box;
+}
 
-  border: 1px solid #e2e8f0;
+.schedule-card {
+  width: 100%;
+  max-width: 900px;
+
+  margin: 0 auto;
+
+  background: #ffffff;
+
+  border: 1px solid #e5e7eb;
+
   border-radius: 16px;
-  padding: 24px;
 
-  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.04);
+
+  overflow: hidden;
 }
 
 .schedule-alert {
@@ -94,6 +109,46 @@
 
 @media (max-width: 768px) {
   .schedule-page {
-    padding: 24px 16px 40px;
+    padding: 1rem;
+  }
+
+  .schedule-card {
+    border-radius: 12px;
+  }
+
+  .schedule-alert {
+    margin-bottom: 1rem;
+    padding: 0.8rem 1rem;
+    font-size: 0.85rem;
+    overflow-wrap: anywhere;
+  }
+
+  .schedule-error-card {
+    margin: 2rem auto;
+    padding: 1.5rem 1rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .schedule-page {
+    padding: 0.75rem;
+  }
+
+  .schedule-error-card {
+    margin: 1rem auto;
+    padding: 1.25rem 0.85rem;
+    border-radius: 12px;
+  }
+
+  .schedule-error-card h2 {
+    font-size: 1.15rem;
+  }
+
+  .schedule-error-card p {
+    font-size: 0.85rem;
+  }
+
+  .retry-button {
+    width: 100%;
   }
 }

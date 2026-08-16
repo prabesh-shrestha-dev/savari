@@ -30,3 +30,44 @@
   border: 1px solid #fecaca;
   font-size: 14px;
 }
+
+@media (max-width: 768px) {
+  .booking-section {
+    padding: 1.25rem;
+    border-radius: 12px;
+  }
+
+  .booking-section-header {
+    margin-bottom: 1.25rem;
+  }
+
+  .booking-section-header h2 {
+    font-size: 1rem;
+  }
+
+  .booking-section-header p {
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+
+  .booking-error {
+    margin: 1rem 0;
+    padding: 0.85rem;
+    font-size: 0.85rem;
+    overflow-wrap: anywhere;
+  }
+}
+
+@media (max-width: 400px) {
+  .booking-section {
+    padding: 1rem;
+  }
+
+  .booking-section-header h2 {
+    font-size: 0.95rem;
+  }
+
+  .booking-section-header p {
+    font-size: 0.8rem;
+  }
+}

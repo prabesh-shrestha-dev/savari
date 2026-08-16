@@ -45,8 +45,34 @@
   text-transform: capitalize;
 }
 
+@media (max-width: 1000px) and (min-width: 768px) {
+  .schedule-type-tabs {
+    grid-template-columns: 1fr;
+  }
+
+  .schedule-type-tab span {
+    font-size: 0.9rem;
+  }
+
+  .schedule-type-tab small {
+    font-size: 0.7rem;
+  }
+}
+
 @media (max-width: 700px) {
   .schedule-type-tabs {
     grid-template-columns: 1fr;
+  }
+
+  .schedule-type-tab {
+    padding: 0.85rem;
+  }
+
+  .schedule-type-tab span {
+    font-size: 0.85rem;
+  }
+
+  .schedule-type-tab small {
+    font-size: 0.68rem;
   }
 }

@@ -97,41 +97,71 @@
   color: #16a34a;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 768px) {
+  .application-progress-card {
+    margin-bottom: 1.25rem;
+    padding: 1.25rem;
+    border-radius: 12px;
+  }
+
+  .progress-header h2 {
+    font-size: 1rem;
+  }
+
+  .progress-header p {
+    font-size: 0.8rem;
+    line-height: 1.5;
+  }
+
   .progress-steps {
     flex-direction: column;
-    gap: 18px;
+    gap: 1rem;
+    margin-top: 1.5rem;
   }
 
   .progress-steps::before {
-    content: "";
-    position: absolute;
     top: 17px;
     bottom: 17px;
     left: 17px;
+    right: auto;
     width: 2px;
-    background: #e2e8f0;
-    z-index: 0;
+    height: auto;
   }
 
   .progress-steps::after {
-    content: "";
-    position: absolute;
     top: 17px;
     left: 17px;
+    right: auto;
     width: 2px;
-
-    /* Height based on current progress */
     height: var(--progress-height);
-
-    background: #16a34a;
-    z-index: 0;
   }
 
   .progress-step {
-    width: auto;
+    width: 100%;
     flex-direction: row;
     justify-content: flex-start;
+    gap: 0.75rem;
     text-align: left;
+  }
+}
+
+@media (max-width: 400px) {
+  .application-progress-card {
+    padding: 1rem;
+  }
+
+  .progress-step {
+    font-size: 0.75rem;
+  }
+
+  .progress-circle {
+    width: 30px;
+    height: 30px;
+    font-size: 0.75rem;
+  }
+
+  .progress-steps::before,
+  .progress-steps::after {
+    left: 15px;
   }
 }

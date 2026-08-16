@@ -49,40 +49,45 @@
 }
 
 .scheduled-item {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-template-areas: "icon details meta";
   align-items: center;
-  gap: 16px;
-  padding: 16px;
+  gap: 1rem;
+  padding: 1rem;
   border: 1px solid #e2e8f0;
   border-radius: 12px;
 }
 
 .scheduled-icon {
+  grid-area: icon;
   width: 42px;
   height: 42px;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
+  border-radius: 10px;
   background: #eff6ff;
   color: #2563eb;
-  border-radius: 10px;
   font-weight: 700;
 }
 
 .scheduled-details {
-  flex: 1;
+  grid-area: details;
+  min-width: 0;
 }
 
-.scheduled-details h3 {
-  margin: 0 0 5px;
-  color: #0f172a;
-  font-size: 15px;
-}
-
+.scheduled-details h3,
 .scheduled-details p {
-  margin: 2px 0;
-  color: #64748b;
-  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+
+.scheduled-meta {
+  grid-area: meta;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
 }
 
 .scheduled-status {
@@ -116,4 +121,94 @@
 .qr-button:hover {
   background: #2563eb;
   color: white;
+}
+
+@media (max-width: 900px) and (min-width: 768px) {
+  .scheduled-item {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .scheduled-icon {
+    align-self: center;
+  }
+
+  .scheduled-details {
+    font-size: 0.9rem;
+    width: 100%;
+    text-align: center;
+  }
+
+  .scheduled-meta {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 768px) and (min-width: 600px) {
+  .scheduled-details {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .scheduled-item {
+    grid-template-columns: auto minmax(0, 1fr);
+    grid-template-areas:
+      "icon details"
+      "meta meta";
+    align-items: start;
+    gap: 0.85rem;
+  }
+
+  .scheduled-details {
+    font-size: 0.8rem;
+    justify-self: end;
+    text-align: right;
+  }
+
+  .scheduled-meta {
+    width: 100%;
+    justify-content: space-between;
+    padding-top: 0.25rem;
+  }
+
+  .current-schedule-card.empty h2 {
+    font-size: 1rem;
+  }
+
+  .current-schedule-card.empty p {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .scheduled-item {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .scheduled-icon {
+    align-self: center;
+  }
+
+  .scheduled-details {
+    width: 100%;
+    text-align: center;
+  }
+
+  .scheduled-meta {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .current-schedule-card.empty h2 {
+    font-size: 1rem;
+  }
+
+  .current-schedule-card.empty p {
+    font-size: 0.9rem;
+  }
 }
