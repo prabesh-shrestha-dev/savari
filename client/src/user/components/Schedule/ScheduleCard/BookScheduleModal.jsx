@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "./BookScheduleModal.css";
 
 const formatDate = (date) => {
@@ -24,6 +25,21 @@ export default function BookScheduleModal({
   onClose,
 }) {
 
+  const [isOpen, setIsOpen] = useState(false);
+  const [isClosing, setIsClosing] = useState(false);
+
+  const closeModal = async () => {
+    setIsClosing(true);
+
+    setTimeout(() => {
+      setIsOpen(false);
+      setIsClosing(false);
+    }, 300)
+
+    await new Promise(resolve => setTimeout(resolve, 301));
+    onClose();
+  }
+
   const getExamName = () => {
     if (type === "biometric") {
       return "Biometric Verification";
@@ -39,7 +55,7 @@ export default function BookScheduleModal({
 
   return (
     <div 
-      className="book-modal-overlay" 
+      className={`book-modal-overlay ${isClosing ? "fade-out" : "fade-in"}`}
       style={{
         backdropFilter: "blur(6px)",
         WebkitBackdropFilter: "blur(6px)",
@@ -55,7 +71,8 @@ export default function BookScheduleModal({
 
           <button
             className="close-button"
-            onClick={onClose}
+            onClick={closeModal}
+            
           >
             ×
           </button>
@@ -123,7 +140,7 @@ export default function BookScheduleModal({
 
           <button
             className="cancel-btn"
-            onClick={onClose}
+            onClick={closeModal}
             disabled={loading}
           >
             Cancel
