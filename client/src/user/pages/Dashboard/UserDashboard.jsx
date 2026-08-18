@@ -13,6 +13,7 @@ import {
 import "./UserDashboard.css";
 import { useNavigate } from "react-router-dom";
 import useAxiosPrivate from "../../../shared/hooks/useAxiosPrivate";
+import WelcomeModal from "./WelcomeModal";
 
 export default function UserDashboard() {
   const navigate = useNavigate();
@@ -759,6 +760,7 @@ const activities = [
   */
 
   return (
+    <>
     <div className="user-dashboard">
 
       {/* Header */}
@@ -1207,5 +1209,8 @@ const activities = [
 
 
     </div>
+
+    <WelcomeModal />
+    </>
   );
 }

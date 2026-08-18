@@ -16,6 +16,7 @@ const useLogout = () => {
     } finally {
       setAuth({});
       navigate('/', { replace: true });
+      localStorage.removeItem("hasSeenWelcome");
     }
   }
 

@@ -1,0 +1,1451 @@
+/* =========================================================
+   WELCOME MODAL
+   Scoped to .welcome-overlay to avoid LandingPage conflicts
+========================================================= */
+
+.welcome-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+
+  background: rgba(15, 23, 42, .45);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+
+  animation: welcomeOverlayIn 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+.welcome-overlay .welcome-modal {
+  position: relative;
+
+  width: min(620px, calc(100vw - 40px));
+  height: auto;
+  max-height: calc(100vh - 40px);
+
+  overflow: hidden;
+
+  padding: 30px;
+
+  border-radius: 28px;
+
+  background: rgba(255, 255, 255, 0.98);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+
+  box-shadow:
+    0 40px 120px rgba(0, 0, 0, 0.4),
+    0 10px 40px rgba(0, 0, 0, 0.15);
+
+  transform-origin: center center;
+
+  animation:
+    welcomeFullToPopup
+    1.4s
+    cubic-bezier(0.16, 1, 0.3, 1)
+    forwards;
+}
+
+
+/* Decorative glow */
+
+.welcome-overlay .welcome-modal::before {
+  content: "";
+
+  position: absolute;
+
+  width: 340px;
+  height: 340px;
+
+  right: -190px;
+  top: -190px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(59, 130, 246, 0.14),
+      transparent 68%
+    );
+
+  pointer-events: none;
+}
+
+.welcome-overlay .welcome-modal::after {
+  content: "";
+
+  position: absolute;
+
+  width: 220px;
+  height: 220px;
+
+  left: -150px;
+  bottom: -140px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(37, 99, 235, 0.06),
+      transparent 68%
+    );
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   LOADER
+========================================================= */
+
+.welcome-overlay .fullscreen-loader {
+  position: absolute;
+  inset: 0;
+
+  z-index: 50;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #f8fafc;
+
+  border-radius: 28px;
+
+  overflow: hidden;
+
+  animation:
+    welcomeLoaderFadeOut
+    0.6s
+    0.8s
+    cubic-bezier(0.16, 1, 0.3, 1)
+    forwards;
+}
+
+.welcome-overlay .driving-loader-stage {
+  position: relative;
+
+  width: 220px;
+  height: 100px;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+}
+
+
+/* Road */
+
+.welcome-overlay .loader-road {
+  position: absolute;
+
+  bottom: 20px;
+
+  width: 100%;
+  height: 4px;
+
+  background: rgba(37, 99, 235, 0.15);
+
+  border-radius: 4px;
+
+  overflow: hidden;
+}
+
+.welcome-overlay .loader-road::after {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent 0 15px,
+      #2563eb 15px 35px
+    );
+
+  animation: welcomeRoadDash 0.4s linear infinite;
+}
+
+
+/* Loader car */
+
+.welcome-overlay .loader-car {
+  position: relative;
+
+  z-index: 2;
+
+  margin-bottom: 12px;
+
+  color: #2563eb;
+
+  animation:
+    welcomeLoaderCarBounce
+    0.4s
+    ease-in-out
+    infinite alternate;
+
+  filter:
+    drop-shadow(
+      0 4px 10px rgba(37, 99, 235, 0.25)
+    );
+}
+
+
+/* Speed lines */
+
+.welcome-overlay .speed-lines {
+  position: absolute;
+
+  width: 100%;
+  height: 100%;
+
+  pointer-events: none;
+}
+
+.welcome-overlay .speed-line {
+  position: absolute;
+
+  height: 2px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(37, 99, 235, 0.4),
+      transparent
+    );
+
+  border-radius: 2px;
+
+  animation:
+    welcomeSpeedLineMove
+    0.6s
+    linear
+    infinite;
+}
+
+.welcome-overlay .speed-line.l1 {
+  top: 25%;
+  width: 60px;
+  animation-delay: 0s;
+}
+
+.welcome-overlay .speed-line.l2 {
+  top: 45%;
+  width: 90px;
+  animation-delay: -0.2s;
+}
+
+.welcome-overlay .speed-line.l3 {
+  top: 65%;
+  width: 40px;
+  animation-delay: -0.4s;
+}
+
+
+/* =========================================================
+   CLOSE BUTTON
+========================================================= */
+
+.welcome-overlay .close-btn {
+  position: absolute;
+
+  top: 14px;
+  right: 14px;
+
+  z-index: 100;
+
+  width: 38px;
+  height: 38px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: none;
+  border-radius: 50%;
+
+  background: rgba(0, 0, 0, 0.055);
+
+  color: #666;
+
+  font-family: Arial, sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+
+  line-height: 1;
+
+  cursor: pointer;
+
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.welcome-overlay .close-btn:hover {
+  background: rgba(0, 0, 0, 0.1);
+
+  color: #222;
+
+  transform: scale(1.06);
+}
+
+.welcome-overlay .close-btn:active {
+  transform: scale(0.9);
+}
+
+.welcome-overlay .close-btn:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 3px;
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.welcome-overlay .heros {
+  position: relative;
+
+  height: 220px;
+
+  margin: -30px -30px 24px;
+
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      180deg,
+      #fff 0%,
+      #f0f7ff 72%,
+      #fff 100%
+    );
+
+  border-radius: 28px 28px 0 0;
+}
+
+
+/* Sun */
+
+.welcome-overlay .sun {
+  position: absolute;
+
+  width: 72px;
+  height: 72px;
+
+  right: 58px;
+  top: 38px;
+
+  border-radius: 50%;
+
+  background: #e0f2fe;
+
+  box-shadow:
+    0 0 55px rgba(59, 130, 246, 0.17);
+
+  animation:
+    welcomeFloat
+    4s
+    ease-in-out
+    infinite;
+}
+
+
+/* Clouds */
+
+.welcome-overlay .cloud {
+  position: absolute;
+
+  width: 78px;
+  height: 23px;
+
+  border-radius: 30px;
+
+  background: rgba(255, 255, 255, 0.85);
+
+  filter: blur(1px);
+
+  animation:
+    welcomeCloudMove
+    12s
+    linear
+    infinite;
+}
+
+.welcome-overlay .cloud::before,
+.welcome-overlay .cloud::after {
+  content: "";
+
+  position: absolute;
+
+  background: inherit;
+
+  border-radius: 50%;
+}
+
+.welcome-overlay .cloud::before {
+  width: 34px;
+  height: 34px;
+
+  left: 12px;
+  bottom: 0;
+}
+
+.welcome-overlay .cloud::after {
+  width: 28px;
+  height: 28px;
+
+  right: 12px;
+  bottom: 0;
+}
+
+.welcome-overlay .cloud.one {
+  top: 40px;
+  left: 45px;
+
+  transform: scale(0.75);
+
+  animation-delay: -5s;
+}
+
+.welcome-overlay .cloud.two {
+  top: 80px;
+  left: 260px;
+
+  transform: scale(0.55);
+
+  animation-delay: -9s;
+}
+
+
+/* =========================================================
+   FLOATING CARDS
+========================================================= */
+
+.welcome-overlay .float-card {
+  position: absolute;
+
+  z-index: 6;
+
+  background: rgba(255, 255, 255, 0.88);
+
+  border: 1px solid rgba(255, 255, 255, 0.95);
+
+  box-shadow:
+    0 14px 35px rgba(0, 0, 0, 0.1);
+
+  backdrop-filter: blur(12px);
+
+  border-radius: 14px;
+
+  padding: 10px 12px;
+}
+
+.welcome-overlay .license-card {
+  left: 32px;
+  top: 24px;
+
+  width: 146px;
+
+  animation:
+    welcomeCardFloat
+    4.5s
+    ease-in-out
+    infinite;
+}
+
+.welcome-overlay .exam-card {
+  right: 34px;
+  top: 102px;
+
+  width: 135px;
+
+  animation:
+    welcomeCardFloat
+    5s
+    0.5s
+    ease-in-out
+    infinite;
+}
+
+.welcome-overlay .payment-card {
+  left: 100px;
+  top: 122px;
+
+  width: 130px;
+
+  animation:
+    welcomeCardFloat
+    5.5s
+    1s
+    ease-in-out
+    infinite;
+}
+
+.welcome-overlay .card-head {
+  display: flex;
+  align-items: center;
+
+  gap: 7px;
+
+  font-size: 10px;
+  font-weight: 800;
+
+  color: #444;
+}
+
+.welcome-overlay .mini-icon {
+  width: 23px;
+  height: 23px;
+
+  border-radius: 7px;
+
+  background: #dbeafe;
+
+  color: #2563eb;
+
+  display: grid;
+  place-items: center;
+
+  font-size: 11px;
+}
+
+.welcome-overlay .card-line {
+  height: 5px;
+
+  border-radius: 10px;
+
+  background: #ededed;
+
+  margin-top: 8px;
+}
+
+.welcome-overlay .card-line.short {
+  width: 58%;
+}
+
+.welcome-overlay .check {
+  color: #16a34a;
+
+  font-weight: 900;
+
+  margin-left: auto;
+}
+
+
+/* =========================================================
+   ROAD + CAR
+========================================================= */
+
+.welcome-overlay .road {
+  position: absolute;
+
+  left: -5%;
+  right: -5%;
+
+  bottom: 0;
+
+  height: 58px;
+
+  background: #29292b;
+
+  transform: skewY(-2deg);
+}
+
+.welcome-overlay .road::before {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  right: 0;
+
+  top: 25px;
+
+  height: 5px;
+
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent 0 35px,
+      #fff 35px 72px
+    );
+
+  animation:
+    welcomeRoadMove
+    1.2s
+    linear
+    infinite;
+}
+
+
+/* Car */
+
+.welcome-overlay .car {
+  position: absolute;
+
+  z-index: 10;
+
+  left: -180px;
+  bottom: 35px;
+
+  width: 170px;
+  height: 80px;
+
+  animation:
+    welcomeDriveIn
+    2s
+    1.2s
+    cubic-bezier(0.22, 1, 0.36, 1)
+    forwards,
+
+    welcomeCarFloat
+    2.8s
+    3.2s
+    ease-in-out
+    infinite;
+}
+
+.welcome-overlay .shadow {
+  position: absolute;
+
+  left: 22px;
+  bottom: 6px;
+
+  width: 132px;
+  height: 11px;
+
+  border-radius: 50%;
+
+  background: rgba(0, 0, 0, 0.22);
+
+  filter: blur(5px);
+
+  animation:
+    welcomeShadowPulse
+    2.8s
+    ease-in-out
+    infinite;
+}
+
+.welcome-overlay .car-body {
+  position: absolute;
+
+  left: 15px;
+  bottom: 16px;
+
+  width: 135px;
+  height: 39px;
+
+  border-radius: 18px 25px 10px 10px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #3b82f6,
+      #1d4ed8
+    );
+
+  box-shadow:
+    0 9px 12px rgba(29, 78, 216, 0.25);
+}
+
+.welcome-overlay .car-top {
+  position: absolute;
+
+  left: 45px;
+  bottom: 47px;
+
+  width: 70px;
+  height: 32px;
+
+  background: #2563eb;
+
+  border-radius: 30px 30px 5px 5px;
+
+  transform: skewX(-10deg);
+}
+
+.welcome-overlay .window {
+  position: absolute;
+
+  bottom: 52px;
+
+  width: 29px;
+  height: 18px;
+
+  background: #eff6ff;
+
+  border-radius: 11px 11px 3px 3px;
+
+  border: 2px solid rgba(255, 255, 255, 0.7);
+}
+
+.welcome-overlay .window.a {
+  left: 50px;
+}
+
+.welcome-overlay .window.b {
+  left: 84px;
+}
+
+.welcome-overlay .headlight {
+  position: absolute;
+
+  right: 11px;
+  bottom: 29px;
+
+  width: 9px;
+  height: 9px;
+
+  border-radius: 50%;
+
+  background: #fff8cc;
+
+  box-shadow:
+    0 0 15px #fff2a6;
+}
+
+.welcome-overlay .tail {
+  position: absolute;
+
+  left: 13px;
+  bottom: 29px;
+
+  width: 7px;
+  height: 9px;
+
+  border-radius: 4px;
+
+  background: #1e3a8a;
+}
+
+.welcome-overlay .wheel {
+  position: absolute;
+
+  bottom: 4px;
+
+  width: 31px;
+  height: 31px;
+
+  border-radius: 50%;
+
+  background: #151515;
+
+  border: 7px solid #333;
+
+  animation:
+    welcomeWheelSpin
+    0.7s
+    linear
+    infinite;
+}
+
+.welcome-overlay .wheel::after {
+  content: "";
+
+  position: absolute;
+
+  inset: 6px;
+
+  border-radius: 50%;
+
+  background: #aaa;
+}
+
+.welcome-overlay .wheel.a {
+  left: 32px;
+}
+
+.welcome-overlay .wheel.b {
+  right: 24px;
+}
+
+
+/* =========================================================
+   MAP PIN
+========================================================= */
+
+.welcome-overlay .pin {
+  position: absolute;
+
+  z-index: 12;
+
+  left: 305px;
+  bottom: 96px;
+
+  width: 32px;
+  height: 40px;
+
+  animation:
+    welcomePinDrop
+    1s
+    2.4s
+    cubic-bezier(0.34, 1.56, 0.64, 1)
+    both;
+}
+
+.welcome-overlay .pin::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: 4px;
+
+  width: 24px;
+  height: 24px;
+
+  border-radius: 50% 50% 50% 0;
+
+  background: #2563eb;
+
+  transform: rotate(-45deg);
+
+  box-shadow:
+    0 6px 14px rgba(37, 99, 235, 0.25);
+}
+
+.welcome-overlay .pin::after {
+  content: "";
+
+  position: absolute;
+
+  top: 8px;
+  left: 12px;
+
+  width: 8px;
+  height: 8px;
+
+  border-radius: 50%;
+
+  background: #fff;
+}
+
+
+/* =========================================================
+   BRAND + CONTENT
+========================================================= */
+
+.welcome-overlay .brand {
+  position: relative;
+
+  z-index: 10;
+
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  margin-bottom: 18px;
+
+  opacity: 0;
+
+  animation:
+    welcomeContentFadeIn
+    0.6s
+    1.3s
+    ease
+    forwards;
+}
+
+.welcome-overlay .logo {
+  width: 46px;
+  height: 46px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 14px;
+
+  color: #fff;
+
+  font-size: 21px;
+  font-weight: 800;
+
+  box-shadow:
+    0 10px 22px rgba(37, 99, 235, 0.22);
+}
+
+.logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.welcome-overlay .brand-name {
+  font-size: 19px;
+
+  font-weight: 800;
+
+  letter-spacing: -0.5px;
+}
+
+.welcome-overlay .brand-subtitle {
+  font-size: 11px;
+
+  color: #888;
+
+  margin-top: 2px;
+}
+
+
+/* Title */
+
+.welcome-overlay .welcome-title {
+  position: relative;
+
+  z-index: 10;
+
+  margin: 0 0 10px;
+
+  font-size: clamp(28px, 4vw, 38px);
+
+  line-height: 1.08;
+
+  letter-spacing: -1.5px;
+
+  opacity: 0;
+
+  animation:
+    welcomeContentFadeIn
+    0.6s
+    1.4s
+    ease
+    forwards;
+}
+
+
+/* Description */
+
+.welcome-overlay .welcome-description {
+  position: relative;
+
+  z-index: 10;
+
+  margin: 0 0 20px;
+
+  color: #666;
+
+  font-size: 14.5px;
+
+  line-height: 1.6;
+
+  opacity: 0;
+
+  animation:
+    welcomeContentFadeIn
+    0.6s
+    1.5s
+    ease
+    forwards;
+}
+
+
+/* =========================================================
+   FEATURES
+========================================================= */
+
+.welcome-overlay .features {
+  position: relative;
+
+  z-index: 10;
+
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 9px;
+
+  margin-bottom: 22px;
+
+  opacity: 0;
+
+  animation:
+    welcomeContentFadeIn
+    0.6s
+    1.6s
+    ease
+    forwards;
+}
+
+.welcome-overlay .feature {
+  display: flex;
+
+  align-items: center;
+
+  gap: 9px;
+
+  padding: 10px 12px;
+
+  border-radius: 12px;
+
+  background: #f7f7f8;
+
+  border: 1px solid rgba(0, 0, 0, 0.025);
+
+  font-size: 12px;
+
+  font-weight: 650;
+
+  color: #333;
+}
+
+.welcome-overlay .feature-icon {
+  width: 26px;
+  height: 26px;
+
+  flex-shrink: 0;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 7px;
+
+  background: #dbeafe;
+
+  color: #2563eb;
+
+  font-weight: 800;
+}
+
+
+/* =========================================================
+   ACTION
+========================================================= */
+
+.welcome-overlay .actions {
+  position: relative;
+
+  z-index: 10;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  opacity: 0;
+
+  animation:
+    welcomeContentFadeIn
+    0.6s
+    1.7s
+    ease
+    forwards;
+}
+
+.welcome-overlay .primary-btn {
+  flex: 1;
+
+  min-height: 48px;
+
+  border: 0;
+
+  border-radius: 14px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #3b82f6,
+      #2563eb
+    );
+
+  color: #fff;
+
+  font-size: 15px;
+
+  font-weight: 750;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 10px 28px rgba(37, 99, 235, 0.22);
+
+  transition:
+    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.3s ease;
+}
+
+.welcome-overlay .primary-btn:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 14px 32px rgba(37, 99, 235, 0.32);
+}
+
+.welcome-overlay .primary-btn:active {
+  transform: translateY(0);
+}
+
+
+/* Tagline */
+
+.welcome-overlay .tagline {
+  position: relative;
+
+  z-index: 10;
+
+  margin-top: 14px;
+
+  text-align: center;
+
+  color: #aaa;
+
+  font-size: 10.5px;
+
+  opacity: 0;
+
+  animation:
+    welcomeContentFadeIn
+    0.6s
+    1.8s
+    ease
+    forwards;
+}
+
+
+/* =========================================================
+   OPEN ANIMATIONS
+========================================================= */
+
+@keyframes welcomeOverlayIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes welcomeFullToPopup {
+
+  0% {
+    width: 100vw;
+    height: 100vh;
+    max-height: 100vh;
+
+    border-radius: 0;
+
+    transform: scale(1);
+
+    filter: blur(8px);
+
+    opacity: 1;
+  }
+
+  35% {
+    width: 100vw;
+    height: 100vh;
+    max-height: 100vh;
+
+    border-radius: 0;
+
+    filter: blur(0);
+
+    opacity: 1;
+  }
+
+  100% {
+    width: min(620px, calc(100vw - 40px));
+
+    height: auto;
+
+    max-height: calc(100vh - 40px);
+
+    border-radius: 28px;
+
+    transform: scale(1);
+
+    filter: blur(0);
+
+    opacity: 1;
+  }
+}
+
+@keyframes welcomeLoaderFadeOut {
+  0% {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  100% {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+}
+
+@keyframes welcomeRoadDash {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: -35px 0;
+  }
+}
+
+@keyframes welcomeLoaderCarBounce {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(-3px);
+  }
+}
+
+@keyframes welcomeSpeedLineMove {
+  0% {
+    left: -100px;
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    left: 220px;
+    opacity: 0;
+  }
+}
+
+@keyframes welcomeContentFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes welcomeDriveIn {
+  0% {
+    left: -180px;
+  }
+
+  100% {
+    left: calc(50% - 75px);
+  }
+}
+
+@keyframes welcomeCarFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+@keyframes welcomeWheelSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes welcomeRoadMove {
+  to {
+    background-position: 72px 0;
+  }
+}
+
+@keyframes welcomeShadowPulse {
+  0%,
+  100% {
+    transform: scaleX(1);
+    opacity: 0.22;
+  }
+
+  50% {
+    transform: scaleX(0.88);
+    opacity: 0.15;
+  }
+}
+
+@keyframes welcomePinDrop {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.5);
+  }
+
+  70% {
+    opacity: 1;
+    transform: translateY(3px) scale(1.08);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes welcomeFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes welcomeCardFloat {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0);
+  }
+
+  50% {
+    transform: translateY(-5px) rotate(0.5deg);
+  }
+}
+
+@keyframes welcomeCloudMove {
+  0%,
+  100% {
+    margin-left: -20px;
+  }
+
+  50% {
+    margin-left: 20px;
+  }
+}
+
+
+/* =========================================================
+   EXIT ANIMATION
+========================================================= */
+
+.welcome-overlay.closing {
+  animation:
+    welcomeOverlayOut
+    0.35s
+    cubic-bezier(0.4, 0, 1, 1)
+    forwards;
+}
+
+.welcome-overlay.closing .welcome-modal {
+  animation:
+    welcomeModalOut
+    0.35s
+    cubic-bezier(0.4, 0, 1, 1)
+    forwards;
+}
+
+@keyframes welcomeOverlayOut {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes welcomeModalOut {
+  to {
+    opacity: 0;
+
+    transform:
+      scale(0.95)
+      translateY(10px);
+
+    filter: blur(4px);
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 560px) {
+
+  .welcome-overlay {
+    padding: 12px;
+  }
+
+  .welcome-overlay .welcome-modal {
+    width: calc(100vw - 24px);
+
+    max-height: calc(100vh - 24px);
+
+    padding: 20px;
+
+    border-radius: 22px;
+  }
+
+  .welcome-overlay .heros {
+    height: 190px;
+
+    margin: -20px -20px 20px;
+
+    border-radius: 22px 22px 0 0;
+  }
+
+  .welcome-overlay .features {
+    grid-template-columns: 1fr;
+  }
+
+  .welcome-overlay .license-card {
+    left: 18px;
+  }
+
+  .welcome-overlay .payment-card {
+    left: 60px;
+  }
+
+  .welcome-overlay .exam-card {
+    right: 18px;
+  }
+
+  .welcome-overlay .pin {
+    left: 50%;
+  }
+
+  .welcome-overlay .close-btn {
+    top: 10px;
+    right: 10px;
+
+    width: 36px;
+    height: 36px;
+  }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .welcome-overlay *,
+  .welcome-overlay {
+    animation: none !important;
+    transition: none !important;
+  }
+
+}
