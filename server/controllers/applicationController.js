@@ -2,6 +2,7 @@ import Application from "../models/Application.js";
 import Payment from "../models/Payment.js";
 import Document from "../models/Document.js";
 import { application, response } from "express";
+import License from "../models/Licnese.js";
 
 const createApplication = async (req, res) => {
   try {
@@ -50,6 +51,21 @@ const createApplication = async (req, res) => {
         success: false,
         message: "All required documents must be approved before applying."
       })
+    }
+
+    const existingLicense = await License.findOne({
+      user: userId,
+    });
+
+    if (existingLicense) {
+      const categoryExists = existingLicense.licenseCategory.includes(licenseCategory);
+
+      if (categoryExists) {
+        return res.status(409).json({
+          success: false,
+          message: `You already have a license for category ${licenseCategory}.`,
+        });
+      }
     }
 
     const application = await Application.create({

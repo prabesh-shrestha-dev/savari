@@ -7,8 +7,7 @@ const getMyLicense = async (req, res) => {
 
     const license = await License.findOne({
       user: userId,
-    })
-      .populate("application", "currentStep licenseCategory");
+    }).lean();
 
     if (!license) {
       return res.status(404).json({
@@ -19,7 +18,7 @@ const getMyLicense = async (req, res) => {
 
     const document = await Document.findOne({
       user: userId,
-    });
+    }).lean();
 
     if (!document) {
       return res.status(404).json({
@@ -28,15 +27,13 @@ const getMyLicense = async (req, res) => {
       });
     }
 
-    const licenseData = license.toObject();
-
-    licenseData.passportSizePhoto = document?.passportSizePhoto?.url || null;
+    license.passportSizePhoto =
+      document.passportSizePhoto?.url || null;
 
     return res.status(200).json({
       success: true,
-      license: licenseData,
+      license,
     });
-
   } catch (err) {
     console.error("Get my license error: ", err);
 

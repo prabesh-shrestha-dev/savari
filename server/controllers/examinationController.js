@@ -182,21 +182,51 @@ const markLicenseCardReady = async (req, res) => {
       });
     }
 
+    const issueDate = new Date();
+
     const existingLicense = await License.findOne({
-      application: application._id,
+      user: application.user,
     });
 
     if (existingLicense) {
-      return res.status(409).json({
-        success: false,
-        message: "License has already been issued.",
+      const category = application.licenseCategory;
+
+      if (existingLicense.licenseCategory.includes(category)) {
+        return res.status(409).json({
+          success: false,
+          message: `License category ${category} already exists.`,
+          license: existingLicense,
+        });
+      }
+
+      existingLicense.licenseCategory.push(category);
+
+      existingLicense.issueDate = issueDate;
+
+      const expiryDate = new Date(issueDate);
+      expiryDate.setFullYear(
+        expiryDate.getFullYear() + 5
+      );
+
+      existingLicense.expiryDate = expiryDate;
+
+      await existingLicense.save();
+
+      application.licenseCard.readyAt = issueDate;
+      application.currentStep = "license_card_ready";
+
+      await application.save();
+
+      return res.status(200).json({
+        success: true,
+        message: `License category ${category} added successfully.`,
         license: existingLicense,
+        application,
       });
     }
 
-    const issueDate = new Date();
-
     const expiryDate = new Date(issueDate);
+
     expiryDate.setFullYear(
       expiryDate.getFullYear() + 5
     );
@@ -206,25 +236,15 @@ const markLicenseCardReady = async (req, res) => {
     const license = await License.create({
       application: application._id,
       user: application.user,
-
       licenseNumber,
-
       fullName: application.fullName,
-
       dateOfBirth: application.dateOfBirth,
-
       bloodGroup: application.bloodGroup,
-
       identityNumber: application.identityNumber,
-
       permanentAddress: application.permanentAddress,
-
-      licenseCategory: application.licenseCategory,
-
+      licenseCategory: [application.licenseCategory],
       issueDate,
-
       expiryDate,
-
       status: "active",
     });
 
@@ -232,12 +252,6 @@ const markLicenseCardReady = async (req, res) => {
     application.currentStep = "license_card_ready";
 
     await application.save();
-
-
-
-    if (!existingLicense) {
-
-    }
 
     return res.status(200).json({
       success: true,
@@ -247,7 +261,7 @@ const markLicenseCardReady = async (req, res) => {
     });
 
   } catch (err) {
-    console.error("License card ready marking error: ", err);
+    console.error("License card ready marking error:", err);
 
     return res.status(500).json({
       success: false,

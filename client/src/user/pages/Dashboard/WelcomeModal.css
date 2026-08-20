@@ -1415,11 +1415,11 @@
   }
 
   .welcome-overlay .payment-card {
-    left: 60px;
+    display: none;
   }
 
   .welcome-overlay .exam-card {
-    right: 18px;
+    display: none;
   }
 
   .welcome-overlay .pin {

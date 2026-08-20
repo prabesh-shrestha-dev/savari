@@ -36,8 +36,6 @@ export default function MyLicense() {
     }
   };
 
-  console.log(license);
-
 
   if (loading) {
     return (
@@ -233,10 +231,11 @@ export default function MyLicense() {
 
               <div className="categories">
 
-                Category: {" "}
-                <span>
-                  {license.licenseCategory}
-                </span>
+                Category:{"  "}
+
+                {Array.isArray(license.licenseCategory)
+                  ? <span>{license.licenseCategory.join(", ")}</span>
+                  : <span>{license.licenseCategory}</span>}
 
               </div>
 

@@ -31,7 +31,11 @@ const licenseSchema = new Schema(
 
     identityNumber: String,
 
-    licenseCategory: String,
+    licenseCategory: {
+      type: [String],
+      required: true,
+      default: []
+    },
 
     permanentAddress: String,
 
