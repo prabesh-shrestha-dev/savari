@@ -1,6 +1,7 @@
 const allowedOrigins = [
   'http://localhost:5173',
-  'http://192.168.16.101:5173'
+  'http://192.168.16.101:5173',
+  'https://savari-alpha.vercel.app'
 ];
 
 if (process.env.FRONTEND_URL) {
