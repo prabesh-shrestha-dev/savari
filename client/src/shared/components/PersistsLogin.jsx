@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useAuth } from "../contexts/authContext";
 import { Outlet } from "react-router-dom";
 import useRefreshToken from "../hooks/useRefreshToken";
+import AuthLoader from "./AuthLoader/AuthLoader";
 
 
 const PersistLogin = () => {
@@ -33,7 +34,7 @@ const PersistLogin = () => {
   }, [auth.accessToken, refresh])
 
   if (isLoading) {
-    return <div>Loading...</div>
+    return <AuthLoader />
   }
 
   return <Outlet />

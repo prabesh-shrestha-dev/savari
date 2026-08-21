@@ -36,6 +36,11 @@
   background: #EDF3FF;
 
   margin-top: auto;
+
+}
+
+.sidebar-footer {
+  margin-top: auto;
 }
 
 
@@ -143,6 +148,11 @@
 
     transition: transform 0.3s ease;
 
+    /* The desktop entrance animation also animates transform, so it must not
+       run on mobile where transform controls the collapsed drawer state. */
+    animation: none;
+    overflow-y: auto;
+
     box-shadow: 8px 0 25px rgba(0, 0, 0, 0.12);
   }
 
@@ -199,4 +209,285 @@
     z-index: 999;
   }
 
+}
+/* =========================================================
+   SIDEBAR APPLE STYLE ANIMATION
+========================================================= */
+
+
+/* Sidebar entrance */
+
+.sidebar {
+
+  animation:
+    sidebarEnter
+    .6s
+    cubic-bezier(.16,1,.3,1)
+    both;
+
+}
+
+
+@keyframes sidebarEnter {
+
+  from {
+
+    opacity: 0;
+
+    transform:
+      translateX(-30px);
+
+    filter:
+      blur(8px);
+
+  }
+
+
+  to {
+
+    opacity: 1;
+
+    transform:
+      translateX(0);
+
+    filter:
+      blur(0);
+
+  }
+
+}
+
+
+
+
+
+/* Menu items smooth movement */
+
+.sidebar a,
+.sidebar button {
+
+  transition:
+
+    transform .25s cubic-bezier(.16,1,.3,1),
+    background .25s ease,
+    color .25s ease;
+
+}
+
+
+.sidebar a:hover,
+.sidebar button:hover {
+
+  transform:
+    translateX(6px);
+
+}
+
+
+
+
+
+/* Support card entrance */
+
+.support-box {
+
+  animation:
+
+    supportAppear
+    .7s
+    .25s
+    cubic-bezier(.16,1,.3,1)
+    both;
+
+}
+
+
+@keyframes supportAppear {
+
+  from {
+
+    opacity:0;
+
+    transform:
+      translateY(25px)
+      scale(.96);
+
+  }
+
+
+  to {
+
+    opacity:1;
+
+    transform:
+      translateY(0)
+      scale(1);
+
+  }
+
+}
+
+
+
+
+
+/* Mobile sidebar smooth opening */
+
+@media (max-width:768px){
+
+  .sidebar {
+
+    transition:
+
+      transform .45s cubic-bezier(.16,1,.3,1),
+      box-shadow .3s ease;
+
+  }
+
+
+  .sidebar.sidebar-open {
+
+    box-shadow:
+
+      20px 0 50px rgba(0,0,0,.18);
+
+  }
+
+}
+
+
+
+
+
+/* Overlay fade */
+
+.sidebar-overlay {
+
+  animation:
+
+    overlayFade
+    .3s
+    ease
+    both;
+
+}
+
+
+@keyframes overlayFade {
+
+  from {
+
+    opacity:0;
+
+  }
+
+  to {
+
+    opacity:1;
+
+  }
+
+}
+
+
+
+
+
+/* Mobile menu button pop */
+
+.mobile-menu-btn {
+
+  transition:
+
+    transform .25s ease,
+    box-shadow .25s ease;
+
+}
+
+
+.mobile-menu-btn:hover {
+
+  transform:
+    scale(1.08);
+
+  box-shadow:
+
+    0 8px 20px rgba(0,0,0,.15);
+
+}
+
+
+
+
+
+/* Reduced motion */
+
+@media(prefers-reduced-motion:reduce){
+
+  .sidebar,
+  .support-box,
+  .sidebar-overlay,
+  .mobile-menu-btn {
+
+    animation:none!important;
+    transition:none!important;
+
+  }
+
+}
+/* =================================
+   ACTIVE NAV ICON ANIMATION
+================================= */
+
+.sidebar a.active svg,
+.sidebar button.active svg {
+
+  animation:
+    navIconPop
+    .35s
+    cubic-bezier(.16,1,.3,1);
+
+}
+
+
+@keyframes navIconPop {
+
+  0% {
+
+    transform:
+      scale(.7)
+      rotate(-10deg);
+
+    opacity:0;
+
+  }
+
+
+  60% {
+
+    transform:
+      scale(1.15)
+      rotate(5deg);
+
+  }
+
+
+  100% {
+
+    transform:
+      scale(1)
+      rotate(0);
+
+    opacity:1;
+
+  }
+
+}
+
+/* Keep this after the desktop animation rules: mobile drawer state uses transform. */
+@media (max-width: 768px) {
+  .sidebar {
+    animation: none;
+    overflow-y: auto;
+  }
 }
