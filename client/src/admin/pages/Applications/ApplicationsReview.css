@@ -497,3 +497,157 @@
     padding: 1rem;
   }
 }
+/* =========================================================
+   CARD ANIMATION
+========================================================= */
+
+.application-card {
+  opacity:0;
+  transform:translateY(25px) scale(.96);
+
+  animation:
+    applicationsreview__cardReveal
+    .6s
+    cubic-bezier(.16,1,.3,1)
+    forwards;
+}
+
+
+.application-card:nth-child(1){
+  animation-delay:.1s;
+}
+
+.application-card:nth-child(2){
+  animation-delay:.2s;
+}
+
+.application-card:nth-child(3){
+  animation-delay:.3s;
+}
+
+.application-card:nth-child(4){
+  animation-delay:.4s;
+}
+
+.application-card:nth-child(5){
+  animation-delay:.5s;
+}
+
+.application-card:nth-child(6){
+  animation-delay:.6s;
+}
+
+.application-card:nth-child(7){
+  animation-delay:.7s;
+}
+
+.application-card:nth-child(8){
+  animation-delay:.8s;
+}
+
+.application-card:nth-child(9){
+  animation-delay:.9s;
+}
+
+.application-card:nth-child(10){
+  animation-delay:1s;
+}
+
+
+@keyframes applicationsreview__cardReveal {
+
+  from {
+    opacity:0;
+    transform:
+      translateY(30px)
+      scale(.96);
+    filter:blur(6px);
+  }
+
+
+  to {
+    opacity:1;
+    transform:
+      translateY(0)
+      scale(1);
+    filter:blur(0);
+  }
+
+}
+
+
+/* =========================================================
+   STOP MODAL FROM INHERITING PAGE ANIMATION
+========================================================= */
+
+.application-review-modal,
+.application-review-modal-overlay {
+  animation:none !important;
+  opacity:1;
+  transform:none;
+  filter:none;
+}
+/* =========================================================
+   HEADER APPLE STYLE ANIMATION
+========================================================= */
+
+.review-header {
+  opacity:0;
+  transform:translateY(20px) scale(.98);
+  animation:
+    applicationsreview__headerReveal
+    .6s
+    cubic-bezier(.16,1,.3,1)
+    forwards;
+}
+
+
+@keyframes applicationsreview__headerReveal {
+
+  from {
+    opacity:0;
+    transform:
+      translateY(20px)
+      scale(.98);
+    filter:blur(5px);
+  }
+
+  to {
+    opacity:1;
+    transform:
+      translateY(0)
+      scale(1);
+    filter:blur(0);
+  }
+
+}
+
+
+/* Search + Pending badge slight delay */
+
+.review-tools {
+  opacity:0;
+  transform:translateY(15px);
+
+  animation:
+    toolsReveal
+    .6s
+    .15s
+    cubic-bezier(.16,1,.3,1)
+    forwards;
+}
+
+
+@keyframes toolsReveal {
+
+  from {
+    opacity:0;
+    transform:translateY(15px);
+  }
+
+  to {
+    opacity:1;
+    transform:translateY(0);
+  }
+
+}

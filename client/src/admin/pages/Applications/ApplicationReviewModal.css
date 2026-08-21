@@ -497,7 +497,7 @@
   background-color: #fafafa;
 }
 
-.cancel-btn {
+.review-modal-cancel {
   padding: 0.65rem 1.1rem;
 
   border: 1px solid #d1d5db;
@@ -518,7 +518,7 @@
     border-color 0.2s ease;
 }
 
-.cancel-btn:hover:not(:disabled) {
+.review-modal-cancel:hover:not(:disabled) {
   background-color: #f3f4f6;
 
   border-color: #9ca3af;
@@ -558,7 +558,7 @@
 
 .decision-btn:disabled,
 .modal-close-btn:disabled,
-.cancel-btn:disabled {
+.review-modal-cancel:disabled {
   opacity: 0.6;
 
   cursor: not-allowed;
@@ -656,7 +656,7 @@
     padding: 0.85rem;
   }
 
-  .cancel-btn,
+  .review-modal-cancel,
   .submit-review-btn {
     width: 100%;
   }
@@ -664,4 +664,464 @@
   .document-card {
     min-height: 130px;
   }
+}
+/* =========================================================
+   REVIEW MODAL PREMIUM ANIMATION
+   DOCUMENT CARDS EXCLUDED
+========================================================= */
+
+
+/* Overlay */
+
+.review-modal-overlay {
+
+  animation:
+  overlayReveal
+  .35s
+  ease
+  forwards;
+
+  backdrop-filter: blur(0px);
+
+}
+
+
+
+@keyframes overlayReveal {
+
+  from {
+
+    opacity:0;
+
+    backdrop-filter:blur(0px);
+
+  }
+
+
+  to {
+
+    opacity:1;
+
+    backdrop-filter:blur(6px);
+
+  }
+
+}
+
+
+
+
+
+/* Main popup */
+
+.review-modal {
+
+
+  animation:
+
+  modalReveal
+  .45s
+  cubic-bezier(.16,1,.3,1)
+  forwards;
+
+
+  transform-origin:center;
+
+
+}
+
+
+
+@keyframes modalReveal {
+
+
+from {
+
+
+opacity:0;
+
+
+transform:
+
+translateY(35px)
+scale(.96);
+
+
+filter:blur(8px);
+
+
+}
+
+
+
+to {
+
+
+opacity:1;
+
+
+transform:
+
+translateY(0)
+scale(1);
+
+
+filter:blur(0);
+
+
+}
+
+
+}
+
+
+
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+
+.review-modal-header {
+
+
+opacity:0;
+
+
+animation:
+
+sectionReveal
+.5s
+.15s
+cubic-bezier(.16,1,.3,1)
+forwards;
+
+
+}
+
+
+
+
+
+/* BODY SECTIONS */
+
+.review-section {
+
+
+opacity:0;
+
+
+transform:
+
+translateY(20px);
+
+
+animation:
+
+sectionReveal
+.45s
+cubic-bezier(.16,1,.3,1)
+forwards;
+
+
+}
+
+
+
+.review-section:nth-child(1){
+
+animation-delay:.15s;
+
+}
+
+
+.review-section:nth-child(2){
+
+animation-delay:.25s;
+
+}
+
+
+.review-section:nth-child(3){
+
+animation-delay:.35s;
+
+}
+
+
+.review-section:nth-child(4){
+
+animation-delay:.45s;
+
+}
+
+
+
+@keyframes sectionReveal {
+
+
+from {
+
+
+opacity:0;
+
+
+transform:
+
+translateY(20px);
+
+
+filter:blur(5px);
+
+
+}
+
+
+to {
+
+
+opacity:1;
+
+
+transform:
+
+translateY(0);
+
+
+filter:blur(0);
+
+
+}
+
+
+}
+
+
+
+
+
+/* =========================================================
+   DETAILS BOXES
+========================================================= */
+
+
+.review-detail,
+.address-details > div {
+
+
+transition:
+
+transform .25s ease,
+box-shadow .25s ease,
+border-color .25s ease;
+
+
+}
+
+
+
+.review-detail:hover,
+.address-details > div:hover {
+
+
+transform:
+
+translateY(-3px);
+
+
+border-color:#bfdbfe;
+
+
+box-shadow:
+
+0 12px 30px rgba(15,23,42,.08);
+
+
+}
+
+
+
+
+
+/* =========================================================
+   DECISION BUTTONS
+========================================================= */
+
+
+.decision-btn {
+
+
+transition:
+
+transform .25s ease,
+box-shadow .25s ease;
+
+
+}
+
+
+
+.decision-btn:hover {
+
+
+transform:
+
+translateY(-3px);
+
+
+box-shadow:
+
+0 10px 25px rgba(15,23,42,.08);
+
+
+}
+
+
+
+
+
+/* =========================================================
+   FOOTER BUTTONS
+========================================================= */
+
+
+.review-modal-footer {
+
+
+opacity:0;
+
+
+animation:
+
+footerReveal
+.45s
+.45s
+cubic-bezier(.16,1,.3,1)
+forwards;
+
+
+}
+
+
+
+@keyframes footerReveal {
+
+
+from {
+
+
+opacity:0;
+
+
+transform:
+
+translateY(20px);
+
+
+}
+
+
+to {
+
+
+opacity:1;
+
+
+transform:
+
+translateY(0);
+
+
+}
+
+
+}
+
+
+
+
+
+/* =========================================================
+   CLOSE BUTTON
+========================================================= */
+
+
+.modal-close-btn {
+
+
+transition:
+
+transform .25s ease,
+background .25s ease;
+
+
+}
+
+
+
+.modal-close-btn:hover {
+
+
+transform:
+
+rotate(90deg);
+
+
+}
+
+
+
+
+
+/* =========================================================
+   IMPORTANT
+   KEEP DOCUMENT ANIMATION UNTOUCHED
+========================================================= */
+
+
+.review-modal .document-card,
+.review-modal .document-status,
+.review-modal .view-document-btn {
+
+
+animation:none !important;
+
+
+}
+/* =========================================================
+   REMOVE ANIMATION FROM SUBMITTED DOCUMENTS ONLY
+========================================================= */
+
+
+/* Document cards */
+
+.review-modal .documents-grid .document-card,
+.review-modal .documents-grid .document-card *,
+.review-modal .documents-grid .document-status,
+.review-modal .documents-grid .view-document-btn {
+
+
+  animation: none !important;
+
+  opacity: 1 !important;
+
+  transform: none !important;
+
+  filter: none !important;
+
+}
+
+
+
+/* Remove hover movement if you don't want effects */
+
+.review-modal .documents-grid .document-card:hover {
+
+
+  transform: none !important;
+
+  box-shadow: none !important;
+
+
 }

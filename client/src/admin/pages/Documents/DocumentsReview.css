@@ -329,3 +329,293 @@
     font-size: 1rem;
   }
 }
+/* ===============================
+   Apple Style Page Animation
+================================ */
+
+.documents-review-page {
+  animation: documentsreview__pageReveal 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+
+@keyframes documentsreview__pageReveal {
+
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+}
+
+
+/* ===============================
+   Header Animation
+================================ */
+
+.documents-header {
+
+  animation: documentsreview__headerReveal 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+
+}
+
+
+@keyframes documentsreview__headerReveal {
+
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+}
+
+
+/* ===============================
+   Applicant Card Apple Reveal
+================================ */
+
+.applicant-card {
+
+  opacity: 0;
+
+  transform:
+    translateY(25px)
+    scale(0.96);
+
+  filter: blur(8px);
+
+  animation:
+    documentsreview__appleCardReveal
+    0.6s
+    cubic-bezier(0.22, 1, 0.36, 1)
+    forwards;
+
+}
+
+
+@keyframes documentsreview__appleCardReveal {
+
+  0% {
+
+    opacity: 0;
+
+    transform:
+      translateY(25px)
+      scale(0.96);
+
+    filter: blur(8px);
+
+  }
+
+
+  100% {
+
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1);
+
+    filter: blur(0);
+
+  }
+
+}
+
+
+/* ===============================
+   Card Stagger Animation
+================================ */
+
+.applicant-card:nth-child(1) {
+  animation-delay: 0.05s;
+}
+
+.applicant-card:nth-child(2) {
+  animation-delay: 0.12s;
+}
+
+.applicant-card:nth-child(3) {
+  animation-delay: 0.19s;
+}
+
+.applicant-card:nth-child(4) {
+  animation-delay: 0.26s;
+}
+
+.applicant-card:nth-child(5) {
+  animation-delay: 0.33s;
+}
+
+.applicant-card:nth-child(6) {
+  animation-delay: 0.40s;
+}
+
+.applicant-card:nth-child(7) {
+  animation-delay: 0.47s;
+}
+
+.applicant-card:nth-child(8) {
+  animation-delay: 0.54s;
+}
+
+.applicant-card:nth-child(9) {
+  animation-delay: 0.61s;
+}
+
+.applicant-card:nth-child(10) {
+  animation-delay: 0.68s;
+}
+
+.applicant-card:nth-child(11) {
+  animation-delay: 0.75s;
+}
+
+.applicant-card:nth-child(12) {
+  animation-delay: 0.82s;
+}
+
+.applicant-card:nth-child(13) {
+  animation-delay: 0.89s;
+}
+
+.applicant-card:nth-child(14) {
+  animation-delay: 0.96s;
+}
+
+.applicant-card:nth-child(15) {
+  animation-delay: 1.03s;
+}
+
+.applicant-card:nth-child(16) {
+  animation-delay: 1.10s;
+}
+
+.applicant-card:nth-child(17) {
+  animation-delay: 1.17s;
+}
+
+.applicant-card:nth-child(18) {
+  animation-delay: 1.24s;
+}
+
+.applicant-card:nth-child(19) {
+  animation-delay: 1.31s;
+}
+
+.applicant-card:nth-child(20) {
+  animation-delay: 1.38s;
+}
+
+.applicant-card:nth-child(21) {
+  animation-delay: 1.45s;
+}
+
+.applicant-card:nth-child(22) {
+  animation-delay: 1.52s;
+}
+
+.applicant-card:nth-child(23) {
+  animation-delay: 1.59s;
+}
+
+.applicant-card:nth-child(24) {
+  animation-delay: 1.66s;
+}
+
+.applicant-card:nth-child(25) {
+  animation-delay: 1.73s;
+}
+
+.applicant-card:nth-child(26) {
+  animation-delay: 1.80s;
+}
+
+.applicant-card:nth-child(27) {
+  animation-delay: 1.87s;
+}
+
+.applicant-card:nth-child(28) {
+  animation-delay: 1.94s;
+}
+
+.applicant-card:nth-child(29) {
+  animation-delay: 2.01s;
+}
+
+.applicant-card:nth-child(30) {
+  animation-delay: 2.08s;
+}
+
+
+/* ===============================
+   Premium Hover
+================================ */
+
+.applicant-card {
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+
+}
+
+
+.applicant-card:hover {
+
+  transform:
+    translateY(-5px)
+    scale(1.01);
+
+  box-shadow:
+    0 12px 30px rgba(0,0,0,0.08);
+
+}
+
+
+/* ===============================
+   Avatar Pop
+================================ */
+
+.applicant-avatar {
+
+  animation:
+    avatarReveal
+    0.55s
+    cubic-bezier(.34,1.56,.64,1);
+
+}
+
+
+@keyframes avatarReveal {
+
+  from {
+
+    opacity:0;
+
+    transform:
+      scale(0.7);
+
+  }
+
+
+  to {
+
+    opacity:1;
+
+    transform:
+      scale(1);
+
+  }
+
+}
