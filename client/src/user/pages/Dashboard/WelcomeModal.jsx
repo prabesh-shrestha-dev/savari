@@ -9,7 +9,11 @@ export default function WelcomeModal() {
     // Check if the user has already seen the welcome popup
     const hasSeenWelcome = localStorage.getItem("hasSeenWelcome");
     if (!hasSeenWelcome) {
-      setIsVisible(true);
+      const timer = setTimeout(() => {
+        setIsVisible(true);
+      }, 1200);
+
+      return () => clearTimeout(timer);
     }
   }, []);
 

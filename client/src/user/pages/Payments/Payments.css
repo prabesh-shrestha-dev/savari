@@ -1,5 +1,8 @@
-.payments-page {
+/* =========================================================
+   PAYMENTS PAGE
+   ========================================================= */
 
+.payments-page {
   width: calc(100% - 2rem);
   margin: 1rem;
   padding: 2rem;
@@ -8,320 +11,422 @@
   border: 1px solid #e5e7eb;
   border-radius: 16px;
   background: #ffffff;
+
+  /* Page entrance */
+  animation: payments__pageReveal 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 
+/* =========================================================
+   CONTAINER
+   ========================================================= */
 
 .payments-container {
-
-  width:100%;
-
-  margin:auto;
-
+  width: 100%;
+  margin: auto;
 }
 
-.payments-container p {
+.payments-container > p {
   color: #64748b;
   margin-bottom: 2rem;
+
+  animation: fadeUp 0.6s 0.08s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 
-
-/* TITLE */
-
+/* =========================================================
+   TITLE
+   ========================================================= */
 
 .page-title {
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
 
-  font-size:32px;
-
-  font-weight:800;
-
-  letter-spacing:-0.5px;
-
+  animation: fadeUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
-
-
 
 .page-title span {
-
-  color:#2563eb;
-
+  color: #2563eb;
 }
 
 
-/* COMMON CARD */
-
+/* =========================================================
+   COMMON CARDS
+   ========================================================= */
 
 .payment-card,
 .history-card {
+  background: white;
 
-  background:white;
+  border: 1px solid #e2e8f0;
 
-  border:1px solid #e2e8f0;
+  border-radius: 20px;
 
-  border-radius:20px;
+  padding: 2rem;
 
-  padding:2rem;
+  margin-bottom: 1.5rem;
 
-  margin-bottom:1.5rem;
+  /* Card entrance */
+  animation: payments__cardReveal 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
 
+  transition:
+    box-shadow 0.3s ease,
+    transform 0.3s ease,
+    border-color 0.3s ease;
 }
 
 
+/* First card */
 
-/* PAYMENT */
+.payment-card {
+  animation-delay: 0.12s;
+}
 
+
+/* Second card */
+
+.history-card {
+  animation-delay: 0.22s;
+}
+
+
+/* Subtle card interaction */
+
+.payment-card:hover,
+.history-card:hover {
+  transform: translateY(-2px);
+
+  border-color: #dbeafe;
+
+  box-shadow:
+    0 12px 35px rgba(15, 23, 42, 0.07);
+}
+
+
+/* =========================================================
+   PAYMENT HEADER
+   ========================================================= */
 
 .payment-header h2 {
+  margin: 0 0 4px;
 
-  margin:0 0 4px;
+  font-size: 24px;
 
-  font-size:24px;
+  font-weight: 700;
 
-  font-weight:700;
-
+  animation:
+    fadeUp
+    0.5s
+    0.2s
+    cubic-bezier(0.22, 1, 0.36, 1)
+    both;
 }
-
 
 
 .payment-header p {
+  margin: 0;
 
-  margin:0;
+  color: #64748b;
 
-  color:#64748b;
+  font-size: 13px;
 
-  font-size:13px;
-
+  animation:
+    fadeUp
+    0.5s
+    0.28s
+    cubic-bezier(0.22, 1, 0.36, 1)
+    both;
 }
 
 
+/* =========================================================
+   PAYMENT BODY
+   ========================================================= */
 
 .payment-body {
+  display: flex;
 
-  display:flex;
+  justify-content: space-between;
 
-  justify-content:space-between;
+  align-items: flex-end;
 
-  align-items:flex-end;
+  margin-top: 24px;
 
-  margin-top:24px;
-
+  animation:
+    fadeUp
+    0.55s
+    0.32s
+    cubic-bezier(0.22, 1, 0.36, 1)
+    both;
 }
 
 
+/* =========================================================
+   AMOUNT
+   ========================================================= */
 
 .amount-label {
+  display: block;
 
-  display:block;
+  color: #475569;
 
-  color:#475569;
+  font-size: 13px;
 
-  font-size:13px;
-
-  margin-bottom:4px;
-
+  margin-bottom: 4px;
 }
-
 
 
 .amount {
+  margin: 0;
 
-  margin:0;
+  font-size: 32px;
 
-  font-size:32px;
+  font-weight: 800;
 
-  font-weight:800;
+  color: #2563eb;
 
-  color:#2563eb;
-
+  animation:
+    amountReveal
+    0.7s
+    0.38s
+    cubic-bezier(0.22, 1, 0.36, 1)
+    both;
 }
 
 
+/* =========================================================
+   PAY BUTTON
+   ========================================================= */
 
 .pay-button {
+  display: flex;
 
+  align-items: center;
 
-  display:flex;
+  gap: 8px;
 
-  align-items:center;
+  border: none;
 
-  gap:8px;
+  padding: 12px 22px;
 
+  border-radius: 8px;
 
-  border:none;
+  background: #1d4ed8;
 
-  padding:12px 22px;
+  color: white;
 
-  border-radius:8px;
+  font-weight: 600;
 
+  cursor: pointer;
 
-  background:#1d4ed8;
-
-  color:white;
-
-
-  font-weight:600;
-
-  cursor:pointer;
-
-
-  transition:.2s;
-
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
-
 
 
 .pay-button:hover {
+  background: #1e40af;
 
-  background:#1e40af;
+  transform: translateY(-2px);
 
+  box-shadow:
+    0 8px 20px rgba(29, 78, 216, 0.22);
 }
 
 
+.pay-button:active {
+  transform: translateY(0);
 
-/* HISTORY */
+  box-shadow: none;
+}
 
+
+/* =========================================================
+   HISTORY
+   ========================================================= */
 
 .history-card h2 {
+  margin: 0 0 24px;
 
-  margin:0 0 24px;
+  font-size: 22px;
 
-  font-size:22px;
-
+  animation:
+    fadeUp
+    0.5s
+    0.3s
+    cubic-bezier(0.22, 1, 0.36, 1)
+    both;
 }
 
 
+/* =========================================================
+   TABLE
+   ========================================================= */
 
 .table-wrapper {
+  width: 100%;
 
-  width:100%;
-
-  overflow-x:auto;
-
+  overflow-x: auto;
 }
-
 
 
 table {
+  width: 100%;
 
-  width:100%;
+  border-collapse: collapse;
 
-  border-collapse:collapse;
-
-  text-align:left;
-
+  text-align: left;
 }
-
 
 
 th {
+  padding-bottom: 16px;
 
-  padding-bottom:16px;
+  border-bottom: 1px solid #e2e8f0;
 
-  border-bottom:1px solid #e2e8f0;
+  color: #475569;
 
+  font-size: 14px;
 
-  color:#475569;
-
-  font-size:14px;
-
-  font-weight:500;
-
+  font-weight: 500;
 }
-
 
 
 td {
+  padding: 20px 0;
 
-  padding:20px 0;
+  border-bottom: 1px solid #f1f5f9;
 
-  border-bottom:1px solid #f1f5f9;
+  font-size: 14px;
 
-  font-size:14px;
-
-  color:#1e293b;
-
+  color: #1e293b;
 }
-
 
 
 tr:last-child td {
-
-  border-bottom:none;
-
+  border-bottom: none;
 }
 
 
+/* =========================================================
+   TABLE ROW ANIMATION
+   ========================================================= */
 
+.history-card tbody tr {
+  animation:
+    rowReveal
+    0.5s
+    cubic-bezier(0.22, 1, 0.36, 1)
+    both;
+
+  transition:
+    background-color 0.2s ease;
+}
+
+
+.history-card tbody tr:nth-child(1) {
+  animation-delay: 0.35s;
+}
+
+
+.history-card tbody tr:nth-child(2) {
+  animation-delay: 0.42s;
+}
+
+
+.history-card tbody tr:nth-child(3) {
+  animation-delay: 0.49s;
+}
+
+
+.history-card tbody tr:nth-child(4) {
+  animation-delay: 0.56s;
+}
+
+
+.history-card tbody tr:nth-child(5) {
+  animation-delay: 0.63s;
+}
+
+
+.history-card tbody tr:hover {
+  background: #f8fafc;
+}
+
+
+/* =========================================================
+   BADGES
+   ========================================================= */
 
 .badge {
+  display: inline-flex;
 
-  display:inline-flex;
+  justify-content: center;
 
-  justify-content:center;
+  align-items: center;
 
-  align-items:center;
+  padding: 6px 24px;
 
+  border-radius: 20px;
 
-  padding:6px 24px;
+  font-size: 13px;
 
-  border-radius:20px;
+  font-weight: 500;
 
-  font-size:13px;
-
-  font-weight:500;
-
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
+
+.badge:hover {
+  transform: scale(1.04);
+}
 
 
 .paid {
+  background: #bbf7d0;
 
-  background:#bbf7d0;
-
-  color:#166534;
-
+  color: #166534;
 }
-
 
 
 .due {
+  background: #fed7aa;
 
-  background:#fed7aa;
-
-  color:#9a3412;
-
+  color: #9a3412;
 }
 
 
-
-/* FOOTER */
-
+/* =========================================================
+   FOOTER
+   ========================================================= */
 
 .payment-divider {
+  height: 1px;
 
-  height:1px;
+  background: #cbd5e1;
 
-  background:#cbd5e1;
-
-  margin:40px 0;
-
+  margin: 40px 0;
 }
-
 
 
 .payment-footer {
+  text-align: center;
 
-  text-align:center;
+  font-size: 11px;
 
-  font-size:11px;
+  color: #94a3b8;
 
-  color:#94a3b8;
-
-}
-
-.table-wrapper {
-  overflow-x: auto;
+  animation:
+    fadeUp
+    0.5s
+    0.7s
+    cubic-bezier(0.22, 1, 0.36, 1)
+    both;
 }
 
 .history-card .table-wrapper table th,
@@ -331,115 +436,242 @@ tr:last-child td {
 }
 
 
-/* RESPONSIVE */
+/* =========================================================
+   ANIMATIONS
+   ========================================================= */
+
+@keyframes payments__pageReveal {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+@keyframes payments__cardReveal {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.985);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+
+@keyframes amountReveal {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+
+@keyframes rowReveal {
+  from {
+    opacity: 0;
+    transform: translateX(-8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .payments-page *,
+  .payments-page *::before,
+  .payments-page *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
 
 @media (max-width: 900px) and (min-width: 768px) {
 
   .pay-button {
     width: 50%;
+
     justify-content: center;
+
     box-sizing: border-box;
+
     font-size: 0.8rem;
   }
 }
 
 
 @media (max-width: 768px) {
+
   .payments-page {
     width: calc(100% - 1.5rem);
+
     margin: 0.75rem;
+
     padding: 1.25rem;
+
     border-radius: 12px;
   }
 
+
   .payments-container > p {
     margin-bottom: 1.5rem;
+
     font-size: 0.85rem;
   }
 
+
   .page-title {
     margin: 0 0 0.5rem;
+
     font-size: 1.6rem;
   }
+
 
   .payment-card,
   .history-card {
     padding: 1.25rem;
+
     border-radius: 14px;
   }
+
 
   .payment-header h2 {
     font-size: 1.15rem;
   }
 
+
   .payment-body {
     align-items: stretch;
+
     flex-direction: column;
+
     gap: 1.25rem;
+
     margin-top: 1.25rem;
   }
+
 
   .amount {
     font-size: 1.75rem;
   }
 
+
   .pay-button {
     width: 100%;
+
     justify-content: center;
+
     box-sizing: border-box;
   }
 
+
   .history-card h2 {
     margin-bottom: 1rem;
+
     font-size: 1.1rem;
   }
 
+
   .table-wrapper {
     margin: 0 -0.25rem;
+
+    overflow-x: auto;
   }
+
 
   table {
     min-width: 600px;
   }
 
+
   th,
   td {
     white-space: nowrap;
+
     font-size: 0.8rem;
   }
+
 
   th {
     padding-bottom: 0.75rem;
   }
 
+
   td {
     padding: 0.9rem 0;
   }
 
+
   .badge {
     padding: 0.35rem 0.8rem;
+
     font-size: 0.75rem;
   }
 }
 
+
 @media (max-width: 400px) {
+
   .payments-page {
     width: calc(100% - 1rem);
+
     margin: 0.5rem;
+
     padding: 1rem;
   }
+
 
   .payment-card,
   .history-card {
     padding: 1rem;
   }
 
+
   .page-title {
     font-size: 1.4rem;
   }
 
+
   .pay-button {
     padding: 0.75rem 1rem;
+
     font-size: 0.85rem;
   }
 }

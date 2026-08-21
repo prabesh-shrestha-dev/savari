@@ -758,3 +758,319 @@
     padding: 1rem;
   }
 }
+/* =========================================================
+   DOCUMENTS PAGE — APPLE STYLE MOTION
+   ========================================================= */
+
+.documents-page {
+  position: relative;
+  overflow: hidden;
+
+  animation:
+    documentsPageIn 0.9s cubic-bezier(.16, 1, .3, 1) both;
+}
+
+
+/* =========================================
+   APPLE STYLE CARD REVEAL
+========================================= */
+
+.document-card {
+    opacity: 0;
+
+    transform:
+        translateY(30px)
+        scale(.96);
+
+    filter: blur(10px);
+
+    animation:
+        documents__appleCardReveal
+        .8s
+        cubic-bezier(.16,1,.3,1)
+        forwards;
+}
+
+
+/* STAGGER */
+
+.document-card:nth-child(1){
+    animation-delay:.1s;
+}
+
+.document-card:nth-child(2){
+    animation-delay:.2s;
+}
+
+.document-card:nth-child(3){
+    animation-delay:.3s;
+}
+
+.document-card:nth-child(4){
+    animation-delay:.4s;
+}
+
+.document-card:nth-child(5){
+    animation-delay:.5s;
+}
+
+.document-card:nth-child(6){
+    animation-delay:.6s;
+}
+
+.document-card:nth-child(7){
+    animation-delay:.7s;
+}
+
+.document-card:nth-child(8){
+    animation-delay:.8s;
+}
+
+.document-card:nth-child(9){
+    animation-delay:.9s;
+}
+
+.document-card:nth-child(10){
+    animation-delay:1s;
+}
+
+
+/* =========================================
+   APPLE MOTION
+========================================= */
+
+@keyframes documents__appleCardReveal {
+
+    0% {
+        opacity:0;
+
+        transform:
+            translateY(35px)
+            scale(.96);
+
+        filter:
+            blur(12px);
+    }
+
+
+    60% {
+
+        opacity:1;
+
+        transform:
+            translateY(-4px)
+            scale(1.01);
+
+        filter:
+            blur(0);
+    }
+
+
+    100% {
+
+        opacity:1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+        filter:
+            blur(0);
+    }
+
+}
+
+
+
+/* =========================================
+   PREMIUM HOVER
+========================================= */
+
+.document-card {
+
+    transition:
+        transform .45s cubic-bezier(.16,1,.3,1),
+        box-shadow .45s ease,
+        border-color .3s ease;
+
+}
+
+
+.document-card:hover {
+
+    transform:
+        translateY(-8px)
+        scale(1.015);
+
+
+    box-shadow:
+        0 25px 60px rgba(0,0,0,.08);
+
+
+}
+/* =========================================================
+   DOCUMENT HEADER TEXT ANIMATION
+========================================================= */
+
+.documents-page-header h1,
+.documents-page-header p {
+
+    opacity: 0;
+
+    transform:
+        translateY(20px);
+
+    filter:
+        blur(8px);
+
+    animation:
+        documents__textReveal
+        .7s
+        cubic-bezier(.16,1,.3,1)
+        forwards;
+}
+
+
+.documents-page-header h1 {
+    animation-delay:.1s;
+}
+
+
+.documents-page-header p {
+    animation-delay:.2s;
+}
+
+
+
+/* =========================================================
+   REQUIREMENTS TEXT ANIMATION
+========================================================= */
+
+.document-requirements-box h3 {
+
+    opacity:0;
+
+    transform:
+        translateY(15px);
+
+    filter:
+        blur(6px);
+
+    animation:
+        documents__textReveal
+        .7s
+        cubic-bezier(.16,1,.3,1)
+        .3s
+        forwards;
+}
+
+
+
+.document-requirements-box li {
+
+    opacity:0;
+
+    transform:
+        translateX(-10px);
+
+    filter:
+        blur(5px);
+
+    animation:
+        listReveal
+        .5s
+        cubic-bezier(.16,1,.3,1)
+        forwards;
+}
+
+
+.document-requirements-box li:nth-child(1){
+    animation-delay:.5s;
+}
+
+.document-requirements-box li:nth-child(2){
+    animation-delay:.6s;
+}
+
+.document-requirements-box li:nth-child(3){
+    animation-delay:.7s;
+}
+
+.document-requirements-box li:nth-child(4){
+    animation-delay:.8s;
+}
+
+.document-requirements-box li:nth-child(5){
+    animation-delay:.9s;
+}
+
+.document-requirements-box li:nth-child(6){
+    animation-delay:1s;
+}
+
+.document-requirements-box li:nth-child(7){
+    animation-delay:1.1s;
+}
+
+.document-requirements-box li:nth-child(8){
+    animation-delay:1.2s;
+}
+
+
+
+/* =========================================================
+   KEYFRAMES
+========================================================= */
+
+@keyframes documents__textReveal {
+
+    from {
+
+        opacity:0;
+
+        transform:
+            translateY(20px);
+
+        filter:
+            blur(8px);
+    }
+
+
+    to {
+
+        opacity:1;
+
+        transform:
+            translateY(0);
+
+        filter:
+            blur(0);
+    }
+}
+
+
+@keyframes listReveal {
+
+    from {
+
+        opacity:0;
+
+        transform:
+            translateX(-10px);
+
+        filter:
+            blur(5px);
+    }
+
+
+    to {
+
+        opacity:1;
+
+        transform:
+            translateX(0);
+
+        filter:
+            blur(0);
+    }
+}

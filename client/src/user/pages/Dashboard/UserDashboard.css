@@ -1029,3 +1029,1326 @@
     min-width: 25px;
   }
 }
+/* =========================================================
+   APPLE-STYLE DYNAMIC MOTION SYSTEM
+   ========================================================= */
+
+.user-dashboard {
+  position: relative;
+  isolation: isolate;
+
+  animation: pageIn 1s cubic-bezier(.16, 1, .3, 1) both;
+}
+
+
+/* =========================================================
+   AMBIENT LIGHT
+   ========================================================= */
+
+.user-dashboard::before {
+  content: "";
+  position: fixed;
+
+  width: 420px;
+  height: 420px;
+
+  top: 8%;
+  right: 8%;
+
+  border-radius: 50%;
+
+  background: rgba(59, 130, 246, 0.07);
+
+  filter: blur(90px);
+
+  pointer-events: none;
+
+  z-index: -1;
+
+  animation: ambientFloat 12s ease-in-out infinite;
+}
+
+.user-dashboard::after {
+  content: "";
+
+  position: fixed;
+
+  width: 320px;
+  height: 320px;
+
+  bottom: 5%;
+  left: 5%;
+
+  border-radius: 50%;
+
+  background: rgba(147, 197, 253, 0.06);
+
+  filter: blur(80px);
+
+  pointer-events: none;
+
+  z-index: -1;
+
+  animation: ambientFloatReverse 15s ease-in-out infinite;
+}
+
+
+/* =========================================================
+   PAGE
+   ========================================================= */
+
+@keyframes pageIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+    filter: blur(14px);
+  }
+
+  55% {
+    opacity: .9;
+    filter: blur(3px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+
+/* =========================================================
+   AMBIENT MOTION
+   ========================================================= */
+
+@keyframes ambientFloat {
+
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  33% {
+    transform: translate3d(-30px, 20px, 0) scale(1.08);
+  }
+
+  66% {
+    transform: translate3d(20px, -25px, 0) scale(.94);
+  }
+}
+
+@keyframes ambientFloatReverse {
+
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(35px, -30px, 0) scale(1.1);
+  }
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.dashboard-header {
+  opacity: 0;
+
+  transform:
+    translateY(28px)
+    scale(.985);
+
+  filter: blur(10px);
+
+  animation:
+    userdashboard__sectionIn .9s cubic-bezier(.16, 1, .3, 1)
+    .08s forwards;
+}
+
+
+.dashboard-header h1 span {
+  display: inline-block;
+
+  animation:
+    nameReveal .8s cubic-bezier(.16, 1, .3, 1)
+    .3s both;
+}
+
+
+/* =========================================================
+   BUTTON
+   ========================================================= */
+
+.primary-btn {
+  position: relative;
+  overflow: hidden;
+
+  transition:
+    transform .45s cubic-bezier(.16, 1, .3, 1),
+    box-shadow .45s ease,
+    background .25s ease;
+
+  animation:
+    buttonIn .8s cubic-bezier(.16, 1, .3, 1)
+    .35s both;
+}
+
+
+/* Moving shine */
+
+.primary-btn::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: -120%;
+
+  width: 70%;
+  height: 100%;
+
+  background:
+    linear-gradient(
+      100deg,
+      transparent,
+      rgba(255,255,255,.22),
+      transparent
+    );
+
+  transform: skewX(-20deg);
+
+  transition: left .7s cubic-bezier(.16, 1, .3, 1);
+}
+
+.primary-btn:hover::before {
+  left: 140%;
+}
+
+.primary-btn:hover {
+  transform:
+    translateY(-3px)
+    scale(1.015);
+
+  box-shadow:
+    0 14px 35px rgba(37,99,235,.2);
+}
+
+.primary-btn:active {
+  transform: scale(.96);
+}
+
+
+/* =========================================================
+   ACTION BANNER
+   ========================================================= */
+
+.action-banner {
+  position: relative;
+  overflow: hidden;
+
+  opacity: 0;
+
+  transform:
+    translateY(30px)
+    scale(.985);
+
+  filter: blur(9px);
+
+  animation:
+    userdashboard__sectionIn .9s cubic-bezier(.16, 1, .3, 1)
+    .2s forwards;
+
+  transition:
+    transform .5s cubic-bezier(.16, 1, .3, 1),
+    box-shadow .5s ease;
+}
+
+
+/* Moving glass highlight */
+
+.action-banner::after {
+  content: "";
+
+  position: absolute;
+
+  top: -100%;
+  left: -30%;
+
+  width: 25%;
+  height: 300%;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,255,255,.35),
+      transparent
+    );
+
+  transform: rotate(20deg);
+
+  opacity: 0;
+
+  pointer-events: none;
+
+  transition:
+    left .9s cubic-bezier(.16, 1, .3, 1),
+    opacity .3s ease;
+}
+
+.action-banner:hover::after {
+  left: 120%;
+  opacity: 1;
+}
+
+.action-banner:hover {
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 20px 55px rgba(15,23,42,.07);
+}
+
+
+/* =========================================================
+   ACTION ICON
+   ========================================================= */
+
+.action-icon {
+  animation:
+    iconEntrance .8s cubic-bezier(.16, 1, .3, 1)
+    .4s both;
+}
+
+@keyframes iconEntrance {
+
+  0% {
+    opacity: 0;
+    transform: scale(.6) rotate(-12deg);
+  }
+
+  70% {
+    transform: scale(1.08) rotate(2deg);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0);
+  }
+}
+
+
+/* =========================================================
+   STATUS CARDS
+========================================================= */
+
+.status-card {
+    position: relative;
+    overflow: hidden;
+
+    opacity: 0;
+
+    transform:
+        translateY(38px)
+        scale(.97);
+
+    filter: blur(10px);
+
+    animation:
+        statusCardEntrance .9s cubic-bezier(.16, 1, .3, 1)
+        forwards;
+
+    transition:
+        transform .55s cubic-bezier(.16, 1, .3, 1),
+        box-shadow .55s ease,
+        border-color .35s ease;
+}
+
+
+.status-card:nth-child(1) {
+    animation-delay: .3s;
+}
+
+.status-card:nth-child(2) {
+    animation-delay: .4s;
+}
+
+.status-card:nth-child(3) {
+    animation-delay: .5s;
+}
+
+
+/* Card light */
+.status-card::before {
+    content: "";
+
+    position: absolute;
+
+    width: 180px;
+    height: 180px;
+
+    top: -120px;
+    right: -120px;
+
+    border-radius: 50%;
+
+    background: rgba(59,130,246,.08);
+
+    filter: blur(25px);
+
+    transition:
+        transform .7s cubic-bezier(.16,1,.3,1);
+}
+
+
+.status-card:hover::before {
+    transform: scale(2);
+}
+
+
+.status-card:hover {
+    transform:
+        translateY(-7px)
+        scale(1.012);
+
+    box-shadow:
+        0 25px 60px rgba(15,23,42,.09);
+
+    border-color: #dbeafe;
+}
+
+
+/* FIXED ANIMATION */
+@keyframes statusCardEntrance {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(38px)
+            scale(.97);
+
+        filter: blur(10px);
+    }
+
+
+    70% {
+        opacity: 1;
+
+        filter: blur(2px);
+    }
+
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+        filter: blur(0);
+    }
+}
+
+/* =========================================================
+   STATUS ICON
+   ========================================================= */
+
+.status-icon {
+  transition:
+    transform .55s cubic-bezier(.16,1,.3,1),
+    box-shadow .4s ease;
+}
+
+.status-card:hover .status-icon {
+  transform:
+    translateY(-3px)
+    scale(1.1)
+    rotate(-3deg);
+
+  box-shadow:
+    0 8px 20px rgba(37,99,235,.12);
+}
+
+
+/* =========================================================
+   MAIN PANELS
+   ========================================================= */
+
+.dashboard-layout > .dashboard-left > .dashboard-panel,
+.dashboard-layout > .dashboard-panel {
+
+  opacity: 0;
+
+  transform:
+    translateY(42px)
+    scale(.975);
+
+  filter: blur(11px);
+
+  animation:
+    panelEntrance 1s cubic-bezier(.16,1,.3,1)
+    forwards;
+}
+
+
+.dashboard-left > .dashboard-panel:nth-child(1) {
+  animation-delay: .62s;
+}
+
+.dashboard-left > .dashboard-panel:nth-child(2) {
+  animation-delay: .75s;
+}
+
+.dashboard-layout > .dashboard-panel {
+  animation-delay: .88s;
+}
+
+
+.dashboard-panel {
+  transition:
+    box-shadow .55s cubic-bezier(.16,1,.3,1),
+    transform .55s cubic-bezier(.16,1,.3,1);
+}
+
+.dashboard-panel:hover {
+  box-shadow:
+    0 25px 65px rgba(15,23,42,.065);
+}
+
+
+/* =========================================================
+   PANEL CONTENT
+   ========================================================= */
+
+.panel-header {
+  animation:
+    contentFade .7s cubic-bezier(.16,1,.3,1)
+    1s both;
+}
+
+
+.panel-label {
+  animation:
+    labelReveal .7s ease 1.05s both;
+}
+
+
+/* =========================================================
+   STEPPER
+   ========================================================= */
+
+.step {
+  opacity: 0;
+
+  transform:
+    translateY(18px)
+    scale(.9);
+
+  animation:
+    stepEntrance .65s cubic-bezier(.16,1,.3,1)
+    forwards;
+}
+
+
+.step:nth-child(1) {
+  animation-delay: .9s;
+}
+
+.step:nth-child(3) {
+  animation-delay: 1s;
+}
+
+.step:nth-child(5) {
+  animation-delay: 1.1s;
+}
+
+.step:nth-child(7) {
+  animation-delay: 1.2s;
+}
+
+.step:nth-child(9) {
+  animation-delay: 1.3s;
+}
+
+.step:nth-child(11) {
+  animation-delay: 1.4s;
+}
+
+
+/* Nodes */
+
+.step-node {
+  position: relative;
+
+  transition:
+    transform .45s cubic-bezier(.16,1,.3,1),
+    box-shadow .45s ease;
+}
+
+.step-node::after {
+  content: "";
+
+  position: absolute;
+
+  inset: -5px;
+
+  border-radius: inherit;
+
+  border: 1px solid #2563eb;
+
+  opacity: 0;
+
+  transform: scale(.7);
+
+  transition:
+    transform .5s cubic-bezier(.16,1,.3,1),
+    opacity .4s ease;
+}
+
+.step.active .step-node::after {
+  opacity: .25;
+
+  animation:
+    nodePulse 2.2s ease-in-out infinite;
+}
+
+.step:hover .step-node {
+  transform: scale(1.12);
+}
+
+
+/* =========================================================
+   CONNECTORS
+   ========================================================= */
+
+.step-connector {
+  transform-origin: left center;
+
+  animation:
+    lineDraw .8s cubic-bezier(.16,1,.3,1) both;
+}
+
+
+.step-connector.blue {
+  position: relative;
+  overflow: hidden;
+}
+
+.step-connector.blue::after {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,255,255,.7),
+      transparent
+    );
+
+  transform: translateX(-100%);
+
+  animation:
+    lineShine 1.4s ease-in-out infinite;
+}
+
+
+/* =========================================================
+   EXAM CARD
+   ========================================================= */
+
+.exam-card {
+  animation:
+    contentFade .8s cubic-bezier(.16,1,.3,1)
+    1.05s both;
+
+  transition:
+    transform .5s cubic-bezier(.16,1,.3,1);
+}
+
+.exam-card:hover {
+  transform: translateX(5px);
+}
+
+
+.exam-icon {
+  transition:
+    transform .5s cubic-bezier(.16,1,.3,1),
+    box-shadow .4s ease;
+}
+
+.exam-card:hover .exam-icon {
+  transform:
+    scale(1.1)
+    rotate(-4deg);
+
+  box-shadow:
+    0 8px 22px rgba(37,99,235,.12);
+}
+
+
+/* =========================================================
+   QR
+   ========================================================= */
+
+.qr-container {
+  animation:
+    qrEntrance .8s cubic-bezier(.16,1,.3,1)
+    1.05s both;
+
+  transition:
+    transform .5s cubic-bezier(.16,1,.3,1);
+}
+
+.qr-container:hover {
+  transform: scale(1.07) rotate(1deg);
+}
+
+
+/* =========================================================
+   ACTIVITY
+   ========================================================= */
+
+.activity-item {
+  opacity: 0;
+
+  transform:
+    translateX(25px)
+    scale(.98);
+
+  filter: blur(6px);
+
+  animation:
+    activityEntrance .65s cubic-bezier(.16,1,.3,1)
+    forwards;
+
+  transition:
+    transform .4s cubic-bezier(.16,1,.3,1);
+}
+
+
+.activity-item:nth-child(1) {
+  animation-delay: 1s;
+}
+
+.activity-item:nth-child(2) {
+  animation-delay: 1.08s;
+}
+
+.activity-item:nth-child(3) {
+  animation-delay: 1.16s;
+}
+
+.activity-item:nth-child(4) {
+  animation-delay: 1.24s;
+}
+
+.activity-item:nth-child(5) {
+  animation-delay: 1.32s;
+}
+
+.activity-item:nth-child(6) {
+  animation-delay: 1.4s;
+}
+
+.activity-item:nth-child(7) {
+  animation-delay: 1.48s;
+}
+
+
+.activity-item:hover {
+  transform: translateX(6px);
+}
+
+
+.activity-icon {
+  transition:
+    transform .4s cubic-bezier(.16,1,.3,1);
+}
+
+.activity-item:hover .activity-icon {
+  transform: scale(1.12);
+}
+
+
+/* =========================================================
+   FOOTER BUTTONS
+   ========================================================= */
+
+.panel-footer button {
+  transition:
+    transform .4s cubic-bezier(.16,1,.3,1),
+    box-shadow .4s ease;
+}
+
+.panel-footer button:hover {
+  transform:
+    translateY(-2px)
+    scale(1.015);
+
+  box-shadow:
+    0 10px 25px rgba(37,99,235,.15);
+}
+
+.panel-footer button:active {
+  transform: scale(.96);
+}
+
+
+.action-link {
+  transition:
+    transform .35s cubic-bezier(.16,1,.3,1),
+    opacity .3s ease;
+}
+
+.action-link:hover {
+  transform: translateX(5px);
+  opacity: .7;
+}
+
+
+/* =========================================================
+   KEYFRAMES
+   ========================================================= */
+
+@keyframes userdashboard__sectionIn {
+
+  from {
+    opacity: 0;
+    transform:
+      translateY(30px)
+      scale(.985);
+    filter: blur(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform:
+      translateY(0)
+      scale(1);
+    filter: blur(0);
+  }
+}
+
+
+@keyframes userdashboard__cardEntrance {
+
+  from {
+    opacity: 0;
+    transform:
+      translateY(38px)
+      scale(.97);
+    filter: blur(10px);
+  }
+
+  65% {
+    opacity: 1;
+    filter: blur(1px);
+  }
+
+  to {
+    opacity: 1;
+    transform:
+      translateY(0)
+      scale(1);
+    filter: blur(0);
+  }
+}
+
+
+@keyframes panelEntrance {
+
+  from {
+    opacity: 0;
+    transform:
+      translateY(42px)
+      scale(.975);
+    filter: blur(11px);
+  }
+
+  to {
+    opacity: 1;
+    transform:
+      translateY(0)
+      scale(1);
+    filter: blur(0);
+  }
+}
+
+
+@keyframes contentFade {
+
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+    filter: blur(5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+
+@keyframes nameReveal {
+
+  from {
+    opacity: 0;
+    transform:
+      translateY(10px)
+      scale(.96);
+    filter: blur(5px);
+  }
+
+  to {
+    opacity: 1;
+    transform:
+      translateY(0)
+      scale(1);
+    filter: blur(0);
+  }
+}
+
+
+@keyframes buttonIn {
+
+  from {
+    opacity: 0;
+    transform:
+      translateY(-8px)
+      scale(.95);
+  }
+
+  to {
+    opacity: 1;
+    transform:
+      translateY(0)
+      scale(1);
+  }
+}
+
+
+@keyframes stepEntrance {
+
+  from {
+    opacity: 0;
+    transform:
+      translateY(18px)
+      scale(.9);
+  }
+
+  to {
+    opacity: 1;
+    transform:
+      translateY(0)
+      scale(1);
+  }
+}
+
+
+@keyframes lineDraw {
+
+  from {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+
+  to {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+
+@keyframes lineShine {
+
+  0% {
+    transform: translateX(-100%);
+  }
+
+  55%,
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+
+@keyframes nodePulse {
+
+  0%,
+  100% {
+    transform: scale(.8);
+    opacity: .1;
+  }
+
+  50% {
+    transform: scale(1.15);
+    opacity: .3;
+  }
+}
+
+
+@keyframes qrEntrance {
+
+  from {
+    opacity: 0;
+    transform:
+      scale(.8)
+      rotate(-5deg);
+    filter: blur(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform:
+      scale(1)
+      rotate(0);
+    filter: blur(0);
+  }
+}
+
+
+@keyframes activityEntrance {
+
+  from {
+    opacity: 0;
+    transform:
+      translateX(25px)
+      scale(.98);
+    filter: blur(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform:
+      translateX(0)
+      scale(1);
+    filter: blur(0);
+  }
+}
+
+
+@keyframes labelReveal {
+
+  from {
+    opacity: 0;
+    letter-spacing: 4px;
+    filter: blur(3px);
+  }
+
+  to {
+    opacity: 1;
+    letter-spacing: .8px;
+    filter: blur(0);
+  }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+
+  .user-dashboard::before,
+  .user-dashboard::after {
+    display: none;
+  }
+}
+
+
+/* =========================================================
+   MOBILE PERFORMANCE
+   ========================================================= */
+
+@media (max-width: 650px) {
+
+  .user-dashboard::before,
+  .user-dashboard::after {
+    filter: blur(60px);
+    opacity: .6;
+  }
+
+  .status-card:hover,
+  .dashboard-panel:hover {
+    transform: none;
+  }
+}
+/* =========================================================
+   ACTION NEEDED — PREMIUM ALERT
+   ========================================================= */
+
+.action-banner {
+  position: relative;
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      135deg,
+      #fffdf2 0%,
+      #fffbeb 55%,
+      #fff7d6 100%
+    );
+
+  border: 1px solid rgba(234, 179, 8, 0.35);
+
+  box-shadow:
+    0 8px 30px rgba(234, 179, 8, 0.07);
+
+  animation:
+    userdashboard__alertReveal .9s cubic-bezier(.16, 1, .3, 1) .2s both,
+    alertGlow 3.5s ease-in-out 1.2s infinite;
+}
+
+
+/* Soft moving highlight */
+
+.action-banner::before {
+  content: "";
+
+  position: absolute;
+
+  top: -100%;
+  left: -40%;
+
+  width: 35%;
+  height: 300%;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,255,255,.55),
+      transparent
+    );
+
+  transform: rotate(20deg);
+
+  pointer-events: none;
+
+  animation:
+    alertSweep 5s ease-in-out 2s infinite;
+}
+
+
+/* =========================================================
+   ALERT ICON
+   ========================================================= */
+
+.action-icon {
+  position: relative;
+
+  background: #eab308;
+
+  box-shadow:
+    0 0 0 0 rgba(234, 179, 8, 0.35);
+
+  animation:
+    alertIconIn .7s cubic-bezier(.16,1,.3,1) .55s both,
+    userdashboard__alertPulse 2.4s ease-in-out 1.4s infinite;
+}
+
+
+/* Outer pulse ring */
+
+.action-icon::after {
+  content: "";
+
+  position: absolute;
+
+  inset: -5px;
+
+  border-radius: 50%;
+
+  border: 1px solid rgba(234, 179, 8, .35);
+
+  animation:
+    alertRing 2.4s ease-out 1.4s infinite;
+}
+
+
+/* =========================================================
+   ALERT TEXT
+   ========================================================= */
+
+.action-content h4 {
+  color: #854d0e;
+
+  animation:
+    alertTextIn .7s cubic-bezier(.16,1,.3,1) .45s both;
+}
+
+.action-content p {
+  animation:
+    alertTextIn .7s cubic-bezier(.16,1,.3,1) .55s both;
+}
+
+
+/* =========================================================
+   VIEW DETAILS
+   ========================================================= */
+
+.action-banner .action-link {
+  color: #a16207;
+
+  position: relative;
+
+  z-index: 2;
+
+  transition:
+    transform .35s cubic-bezier(.16,1,.3,1),
+    color .25s ease;
+}
+
+.action-banner .action-link:hover {
+  color: #854d0e;
+
+  transform:
+    translateX(4px);
+}
+
+
+/* =========================================================
+   ALERT ANIMATIONS
+   ========================================================= */
+
+@keyframes userdashboard__alertReveal {
+
+  from {
+    opacity: 0;
+    transform:
+      translateY(22px)
+      scale(.985);
+    filter: blur(9px);
+  }
+
+  to {
+    opacity: 1;
+    transform:
+      translateY(0)
+      scale(1);
+    filter: blur(0);
+  }
+}
+
+
+@keyframes alertGlow {
+
+  0%,
+  100% {
+    box-shadow:
+      0 8px 30px rgba(234, 179, 8, 0.07);
+  }
+
+  50% {
+    box-shadow:
+      0 12px 40px rgba(234, 179, 8, 0.14);
+  }
+}
+
+
+@keyframes alertSweep {
+
+  0% {
+    left: -50%;
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 1;
+  }
+
+  45%,
+  100% {
+    left: 130%;
+    opacity: 0;
+  }
+}
+
+
+@keyframes alertIconIn {
+
+  from {
+    opacity: 0;
+    transform:
+      scale(.65)
+      rotate(-10deg);
+  }
+
+  70% {
+    transform:
+      scale(1.08)
+      rotate(2deg);
+  }
+
+  to {
+    opacity: 1;
+    transform:
+      scale(1)
+      rotate(0);
+  }
+}
+
+
+@keyframes userdashboard__alertPulse {
+
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 0 rgba(234, 179, 8, .28);
+  }
+
+  50% {
+    box-shadow:
+      0 0 0 7px rgba(234, 179, 8, .08);
+  }
+}
+
+
+@keyframes alertRing {
+
+  0% {
+    opacity: .5;
+    transform: scale(.8);
+  }
+
+  70%,
+  100% {
+    opacity: 0;
+    transform: scale(1.45);
+  }
+}
+
+
+@keyframes alertTextIn {
+
+  from {
+    opacity: 0;
+    transform:
+      translateX(-8px);
+    filter: blur(4px);
+  }
+
+  to {
+    opacity: 1;
+    transform:
+      translateX(0);
+    filter: blur(0);
+  }
+}

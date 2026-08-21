@@ -1,5 +1,6 @@
 import { CreditCard, ArrowRight } from "lucide-react";
 import "./Payments.css";
+import AnimatedAmount from "./AnimatedAmount";
 
 export default function Payments() {
 
@@ -75,7 +76,7 @@ export default function Payments() {
 
 
               <h3 className="amount">
-                Rs. 2,150
+                <AnimatedAmount value={2150} />
               </h3>
 
 

@@ -1,10 +1,8 @@
 .confirm-overlay {
   position: fixed;
 
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 287px;
+  inset: 0;
+  left: 280px;
 
   display: flex;
   justify-content: center;
@@ -14,7 +12,6 @@
 
   z-index: 2000;
 }
-
 .confirm-card {
   width: 450px;
   max-width: 92vw;
@@ -69,8 +66,8 @@
   gap: 1rem;
 }
 
-.cancel-btn,
-.confirm-btn {
+.application-confirm-cancel,
+.application-confirm-submit {
   padding: .8rem 1.5rem;
 
   border-radius: 10px;
@@ -82,17 +79,17 @@
   transition: .2s;
 }
 
-.cancel-btn {
+.application-confirm-cancel {
   background: white;
 
   border: 1px solid #d1d5db;
 }
 
-.cancel-btn:hover {
+.application-confirm-cancel:hover {
   background: #f8fafc;
 }
 
-.confirm-btn {
+.application-confirm-submit {
   border: none;
 
   background: #2563eb;
@@ -100,12 +97,12 @@
   color: white;
 }
 
-.confirm-btn:hover {
+.application-confirm-submit:hover {
   background: #1d4ed8;
 }
 
-.confirm-btn:disabled,
-.cancel-btn:disabled {
+.application-confirm-submit:disabled,
+.application-confirm-cancel:disabled {
   opacity: .6;
 
   cursor: not-allowed;
@@ -113,20 +110,24 @@
 
 @media (max-width: 768px) {
   .confirm-overlay {
-    left: 0;
-    padding: 1rem;
+    inset: 0;
+    align-items: center;
+    padding: 0.75rem;
     box-sizing: border-box;
   }
 
   .confirm-card {
     width: 100%;
     max-width: 450px;
+    max-height: calc(100dvh - 1.5rem);
+    overflow-y: auto;
     box-sizing: border-box;
   }
 }
 
 @media (max-width: 480px) {
   .confirm-overlay {
+    inset: 0;
     align-items: center;
     overflow-y: auto;
     padding: 0.75rem;
@@ -156,9 +157,280 @@
     gap: 0.75rem;
   }
 
-  .cancel-btn,
-  .confirm-btn {
+  .application-confirm-cancel,
+  .application-confirm-submit {
     width: 100%;
     box-sizing: border-box;
   }
+}
+/* =========================================================
+   APPLE STYLE CONFIRM MODAL ANIMATION
+========================================================= */
+
+
+/* Overlay fade */
+
+.confirm-overlay {
+
+  animation:
+    applicationconfirmmodal__overlayIn
+    .35s
+    ease
+    both;
+
+}
+
+
+@keyframes applicationconfirmmodal__overlayIn {
+
+from {
+
+  opacity:0;
+
+}
+
+
+to {
+
+  opacity:1;
+
+}
+
+}
+
+
+
+
+
+/* Modal card entrance */
+
+.confirm-card {
+
+  animation:
+
+    applicationconfirmmodal__modalPop
+    .45s
+    cubic-bezier(.16,1,.3,1)
+    both;
+
+
+  transform-origin:center;
+
+
+}
+
+
+
+@keyframes applicationconfirmmodal__modalPop {
+
+
+from {
+
+  opacity:0;
+
+  transform:
+
+    translateY(25px)
+
+    scale(.92);
+
+
+  filter:
+
+    blur(8px);
+
+}
+
+
+
+to {
+
+  opacity:1;
+
+  transform:
+
+    translateY(0)
+
+    scale(1);
+
+
+  filter:
+
+    blur(0);
+
+}
+
+}
+
+
+
+
+
+
+
+/* Button hover */
+
+.application-confirm-cancel,
+.application-confirm-submit {
+
+
+transition:
+
+transform .25s cubic-bezier(.16,1,.3,1),
+box-shadow .25s ease,
+background .25s ease;
+
+
+}
+
+
+
+.application-confirm-cancel:hover {
+
+
+transform:
+
+translateY(-2px);
+
+
+box-shadow:
+
+0 8px 20px rgba(15,23,42,.08);
+
+
+}
+
+
+
+
+
+.application-confirm-submit:hover {
+
+
+transform:
+
+translateY(-3px);
+
+
+box-shadow:
+
+0 12px 30px rgba(37,99,235,.25);
+
+
+}
+
+
+
+
+
+
+/* Button click */
+
+.application-confirm-cancel:active,
+.application-confirm-submit:active {
+
+
+transform:
+
+scale(.96);
+
+
+}
+
+
+
+
+
+
+/* Confirm button shine */
+
+.application-confirm-submit {
+
+position:relative;
+
+overflow:hidden;
+
+}
+
+
+
+.application-confirm-submit::before {
+
+
+content:"";
+
+
+position:absolute;
+
+
+top:0;
+
+left:-120%;
+
+
+width:80%;
+
+height:100%;
+
+
+background:
+
+linear-gradient(
+
+90deg,
+
+transparent,
+
+rgba(255,255,255,.45),
+
+transparent
+
+);
+
+
+
+transform:
+
+skewX(-20deg);
+
+
+transition:.8s;
+
+
+}
+
+
+
+.application-confirm-submit:hover::before {
+
+
+left:140%;
+
+
+}
+
+
+
+
+
+
+/* Mobile safe */
+
+@media(prefers-reduced-motion:reduce){
+
+
+.confirm-overlay,
+.confirm-card,
+.application-confirm-submit,
+.application-confirm-cancel {
+
+
+animation:none!important;
+
+transition:none!important;
+
+
+}
+
+
 }
