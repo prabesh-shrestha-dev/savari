@@ -1,78 +1,138 @@
 .login-form-content {
   width: 100%;
   max-width: 380px;
+
   display: flex;
   flex-direction: column;
+
   box-sizing: border-box;
 }
+
+
+/* =========================
+   HEADER
+========================= */
 
 .login-header-title {
   font-size: 2.2rem;
   font-weight: 700;
+
   color: #000000;
+
   margin: 0 0 0.25rem 0;
 }
 
 .login-header-subtitle {
   color: #a0a0a0;
+
   font-size: 0.875rem;
+
   margin: 0;
 }
 
 .login-header .header-divider {
   border: 0;
+
   border-top: 1px solid #e5e7eb;
+
   margin-top: 1rem;
   margin-bottom: 1.5rem;
 }
 
-/* Error */
+
+/* =========================
+   ERROR
+========================= */
+
 .login-form .error-message {
   color: #dc2626;
+
   background-color: #fef2f2;
+
   padding: 0.5rem 0.75rem;
+
   border-radius: 6px;
+
   font-size: 0.85rem;
+
   margin: 0 0 1rem 0;
+
   border: 1px solid #fecaca;
+
   box-sizing: border-box;
 }
 
-/* Form */
+
+/* =========================
+   FORM
+========================= */
+
 .login-form {
   width: 100%;
+
   display: flex;
   flex-direction: column;
 }
 
-/* Form group */
+
+/* =========================
+   FORM GROUP
+========================= */
+
 .login-form .form-group {
   width: 100%;
+
   display: flex;
   flex-direction: column;
+
   gap: 0.35rem;
+
   margin-bottom: 1.25rem;
 }
 
-/* Labels */
+
+/* =========================
+   LABEL
+========================= */
+
 .login-form .form-label {
   font-size: 0.75rem;
+
   color: #9ca3af;
+
   font-weight: 500;
 }
 
-/* Inputs */
+
+/* =========================
+   INPUT
+========================= */
+
 .login-form .form-input {
   width: 100%;
+
   padding: 0.8rem 1rem;
+
   border-radius: 8px;
+
   border: none;
+
   background-color: #bebebe;
+
   color: #1f2937;
+
   font-size: 0.95rem;
+
   box-sizing: border-box;
+
   outline: none;
+
   letter-spacing: normal;
+
+  transition:
+    transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.25s ease,
+    background-color 0.25s ease;
 }
 
 .login-form .form-input::placeholder {
@@ -81,56 +141,129 @@
 
 .login-form .form-input:focus {
   outline: 2px solid #505050;
+
+  transform: translateY(-1px);
+
+  background-color: #ffffff;
+
+  box-shadow:
+    0 6px 18px rgba(0, 0, 0, 0.08);
 }
 
-/* Button */
+
+/* =========================
+   LOGIN BUTTON
+========================= */
+
 .login-form .submit-btn {
   width: 100%;
+
   padding: 0.8rem;
+
   border-radius: 8px;
+
   border: none;
+
   color: #ffffff;
+
   background-color: #287EFF;
+
   font-size: 0.95rem;
+
   font-weight: 500;
+
   cursor: pointer;
+
   margin-top: 0.5rem;
-  transition: background-color 0.2s ease;
+
   box-sizing: border-box;
+
+  transition:
+    transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.3s ease;
 }
 
+
+/* Premium hover */
+
 .login-form .submit-btn:hover:not(:disabled) {
-  background-color: #3f3f3f !important;
+  background-color: #1f6fe5;
+  
+  transform:
+    translateY(-3px)
+    scale(1.02);
+
+  box-shadow:
+    0 12px 28px rgba(40, 126, 255, 0.25);
 }
+
+
+/* Press effect */
+
+.login-form .submit-btn:active:not(:disabled) {
+  transform:
+    translateY(0)
+    scale(0.98);
+
+  box-shadow:
+    0 5px 12px rgba(40, 126, 255, 0.15);
+}
+
+
+/* Disabled */
 
 .login-form .submit-btn:disabled {
   opacity: 0.7;
+
   cursor: not-allowed;
+
+  transform: none;
+
+  box-shadow: none;
 }
 
-/* Signup */
+
+/* =========================
+   SIGNUP
+========================= */
+
 .login-form .signup-text {
   text-align: center;
+
   font-size: 0.75rem;
+
   color: #6b7280;
+
   margin-top: 1rem;
 }
 
 .login-form .signup-link {
   color: #287EFF;
+
   font-weight: 600;
+
   text-decoration: underline;
+
   text-underline-offset: 2px;
+
+  transition:
+    opacity 0.2s ease;
+}
+
+.login-form .signup-link:hover {
+  opacity: 0.75;
 }
 
 
-/* ========================= */
-/* Tablet / Mobile */
-/* ========================= */
+/* =========================
+   TABLET / MOBILE
+========================= */
 
 @media (max-width: 768px) {
+
   .login-form-content {
     width: 100%;
+
     max-width: none;
   }
 
@@ -149,11 +282,12 @@
 }
 
 
-/* ========================= */
-/* Small Phones */
-/* ========================= */
+/* =========================
+   SMALL PHONES
+========================= */
 
 @media (max-width: 400px) {
+
   .login-header-title {
     font-size: 1.3rem;
   }
@@ -175,5 +309,19 @@
 
   .login-form .submit-btn {
     padding: 0.7rem;
+  }
+}
+
+
+/* =========================
+   REDUCED MOTION
+========================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .login-form .form-input,
+  .login-form .submit-btn,
+  .login-form .signup-link {
+    transition: none;
   }
 }

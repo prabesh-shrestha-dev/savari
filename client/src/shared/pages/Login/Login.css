@@ -136,3 +136,269 @@
     border-radius: 14px;
   }
 }
+/* =========================================================
+   LOGIN PAGE — APPLE STYLE PAGE ANIMATION
+========================================================= */
+
+
+/* Background Entrance */
+
+.login-page-container {
+
+    animation:
+        login__pageFadeIn
+        .8s
+        cubic-bezier(.16,1,.3,1)
+        forwards;
+}
+
+
+
+/* Main Card */
+
+.login-card {
+
+    opacity:0;
+
+    transform:
+        translateY(40px)
+        scale(.96);
+
+    filter:
+        blur(12px);
+
+    animation:
+        loginCardReveal
+        .9s
+        cubic-bezier(.16,1,.3,1)
+        .15s
+        forwards;
+}
+
+
+
+/* =========================================================
+   IMAGE SIDE
+========================================================= */
+
+
+.login-hero-container {
+
+    opacity:0;
+
+    transform:
+        translateX(-30px)
+        scale(.97);
+
+    filter:
+        blur(8px);
+
+    animation:
+        imageReveal
+        .9s
+        cubic-bezier(.16,1,.3,1)
+        .35s
+        forwards;
+}
+
+
+
+/* Image smooth zoom */
+
+.login-card .placeholder-image-box img {
+
+    transform:
+        scale(1.08);
+
+    animation:
+        imageZoom
+        1.2s
+        cubic-bezier(.16,1,.3,1)
+        .5s
+        forwards;
+}
+
+
+
+/* =========================================================
+   FORM SIDE
+========================================================= */
+
+
+.login-form-wrapper {
+
+    opacity:0;
+
+    transform:
+        translateX(30px);
+
+    filter:
+        blur(8px);
+
+    animation:
+        formReveal
+        .9s
+        cubic-bezier(.16,1,.3,1)
+        .45s
+        forwards;
+}
+
+
+
+/* =========================================================
+   HOVER IMAGE EFFECT
+========================================================= */
+
+
+.login-hero-container {
+
+    transition:
+        transform .5s cubic-bezier(.16,1,.3,1),
+        box-shadow .5s ease;
+}
+
+
+.login-hero-container:hover {
+
+    transform:
+        scale(1.02);
+
+    box-shadow:
+
+        0 25px 60px
+        rgba(0,0,0,.18);
+}
+
+
+.login-hero-container:hover img {
+
+    transform:
+        scale(1.05);
+}
+
+
+
+/* =========================================================
+   KEYFRAMES
+========================================================= */
+
+
+@keyframes login__pageFadeIn {
+
+    from {
+
+        opacity:0;
+    }
+
+
+    to {
+
+        opacity:1;
+    }
+}
+
+
+
+@keyframes loginCardReveal {
+
+    from {
+
+        opacity:0;
+
+        transform:
+            translateY(40px)
+            scale(.96);
+
+        filter:
+            blur(12px);
+    }
+
+
+    to {
+
+        opacity:1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+        filter:
+            blur(0);
+    }
+}
+
+
+
+@keyframes imageReveal {
+
+    from {
+
+        opacity:0;
+
+        transform:
+            translateX(-30px)
+            scale(.97);
+
+        filter:
+            blur(8px);
+    }
+
+
+    to {
+
+        opacity:1;
+
+        transform:
+            translateX(0)
+            scale(1);
+
+        filter:
+            blur(0);
+    }
+}
+
+
+
+@keyframes imageZoom {
+
+    from {
+
+        transform:
+            scale(1.08);
+    }
+
+
+    to {
+
+        transform:
+            scale(1);
+    }
+}
+
+
+
+@keyframes formReveal {
+
+    from {
+
+        opacity:0;
+
+        transform:
+            translateX(30px);
+
+        filter:
+            blur(8px);
+    }
+
+
+    to {
+
+        opacity:1;
+
+        transform:
+            translateX(0);
+
+        filter:
+            blur(0);
+    }
+}
